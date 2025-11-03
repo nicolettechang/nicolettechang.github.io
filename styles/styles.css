@@ -17,14 +17,14 @@ body {
 
 @font-face {
   font-family: 'Barlow';
-  src: url('../fonts/Barlow-ExtraLight.woff2') format('woff2');
+  src: url('fonts/Barlow-ExtraLight.woff2') format('woff2');
   font-weight: 200;
   font-display: swap;
 }
 
 @font-face {
   font-family: 'Corinthia';
-  src: url('../fonts/Corinthia-Regular.woff2') format('woff2');
+  src: url('fonts/Corinthia-Regular.woff2') format('woff2');
   font-weight: 400;
   font-display: swap;
 }
