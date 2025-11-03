@@ -15,6 +15,20 @@ body {
 
 @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@200&family=Corinthia&display=swap');
 
+@font-face {
+  font-family: 'Barlow';
+  src: url('../fonts/Barlow-ExtraLight.woff2') format('woff2');
+  font-weight: 200;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Corinthia';
+  src: url('../fonts/Corinthia-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
+
 .navigation-bar {
     width: 100%;  /* i'm assuming full width */
     height: 80px; /* change it to desired width */
