@@ -1,0 +1,88 @@
+html {
+	height : 100%
+}
+
+
+body {
+    background: #FDAFAB;
+    font-family: 'Barlow', sans-serif;
+    margin:0;
+    
+}
+
+nav {
+	position: fixed;
+	z-index: 1;
+	left: 0;
+	right: 0;
+}
+
+.navigation {
+     text-align: center;
+     min-height:80ox==px;
+}
+.navigation img {
+   img{float:left;}
+}
+.navigation a {
+    display: inline-block;
+	text-align: right;
+	color: #b6e3e9;
+    padding: 14px 16px;
+	text-decoration: none;
+	font-size: 17px;
+}
+/* Change the color of links on hover */
+.navigation a:hover {
+  color: #FAF1D6;
+}
+
+/* Add a color to the active/current link */
+.navigation a.active {
+  color: #FAF1D6;
+}
+
+}
+.logo img{float:left;}
+
+p {
+font-size: 16px
+}
+
+.intro-paragraph {
+font-size: 20px
+}
+
+h1 {
+text-align: center;
+color: #b6e3e9;
+font-family: 'Barlow', sans-serif;
+}
+
+
+img {
+    max-width: 100%;
+}
+.left-col, .right-col {
+ text-align: center;
+}
+
+.left-col{
+	background-color: #FAF1D6
+}
+
+.right-col{
+	background-color: #b6e3e9
+}
+
+footer {
+background-color: #b6e3e9
+}
+.social-icon {
+	height : 60px;
+	margin : 10px 20px
+}
+
+.social-icons-container {
+ text-align: center;
+}
