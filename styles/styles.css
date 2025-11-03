@@ -13,6 +13,7 @@ body {
 
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@200&family=Corinthia&display=swap');
 
 .navigation-bar {
     width: 100%;  /* i'm assuming full width */
