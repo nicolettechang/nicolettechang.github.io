@@ -1,33 +1,23 @@
 @font-face {
   font-family: 'Barlow';
-  src: url('fonts/Barlow-ExtraLight.woff2') format('woff2');
+  src: url('../fonts/Barlow-ExtraLight.woff2') format('woff2');
   font-weight: 200;
   font-display: swap;
 }
-
 @font-face {
   font-family: 'Corinthia';
-  src: url('fonts/Corinthia-Regular.woff2') format('woff2');
+  src: url('../fonts/Corinthia-Regular.woff2') format('woff2');
   font-weight: 400;
   font-display: swap;
 }
-
 html {
-	height : 100%
+	height: 100%;
 }
-
-
 body {
     background: white;
     font-family: 'Barlow', sans-serif;
-    margin:0;
-    
+    margin: 0;
 }
-
-
-}
-
-
 
 .navigation-bar {
     width: 100%;  /* i'm assuming full width */
@@ -46,13 +36,11 @@ body {
 .navigation-bar a:hover {
   color: #FAF1D6;
 }
-
 /* Add a color to the active/current link */
 .navigation-bar a:active {
   color: #FAF1D6;
 }
-
 /* override bootstrap */
-."bg-body-tertiary {
+.bg-body-tertiary {
     background-color: #FADEE1;
 }
