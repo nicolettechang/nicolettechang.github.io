@@ -9,63 +9,163 @@
 	</head>
 	
 	<body>
-	
-		<nav class="navbar fixed-top mx-auto position-relative overflow-hidden" style="width: 80%; border-radius: 21px 21px 0 0;">
-		
-			<div class="container d-flex flex-wrap" >
-				<!-- LOGO 	-->
-				<a class="navbar-brand  me-auto" href="#"> <img src="img/logo.png"  alt="logo" height="50"></a>
-				<!-- NAVIGATION MENU-->
-				<ul class="nav navigation-bar">
-				<li class="nav-item navigation-bar"><a href="about.html" class="nav-link navigation-bar px-2">ABOUT</a></li>
-				<li class="nav-item navigation-bar"><a href="code.html" class="nav-link navigation-bar px-2">CODE</a></li>
-				<li class="nav-item navigation-bar"><a href="output.html" class="nav-link navigation-bar px-2">OUTPUT</a></li>
-				<li class="nav-item navigation-bar"><a href="shop.html" class="nav-link navigation-bar px-2">SHOP</a></li>
-				</ul>
-			</div>
-		</nav>  
-		
+		<div style="padding-top: 100px;">
+			<nav class="navbar fixed-top" style="background-color: #FADEE1; border-radius: 0;">
+				<div class="container" style="max-width: 80%;">
+					<!-- LOGO -->
+					<a class="navbar-brand" href="index.html"> <img src="img/logo.png" alt="logo" height="50"></a>
+					<!-- NAVIGATION MENU -->
+					<ul class="nav ms-auto">
+						<li class="nav-item"><a href="about.html" class="nav-link px-2">ABOUT</a></li>
+						<li class="nav-item"><a href="code.html" class="nav-link px-2">CODE</a></li>
+						<li class="nav-item"><a href="output.html" class="nav-link px-2">OUTPUT</a></li>
+						<li class="nav-item"><a href="shop.html" class="nav-link px-2">SHOP</a></li>
+					</ul>
+				</div>
+			</nav>
+		</div>
+
 		<main>
-		
-	
-			<div class="bg-body-tertiary shadow-sm mx-auto position-relative overflow-hidden" style="background-color:#FADEE1; width: 80%; border-radius: 21px 21px 0 0;">
-					<!-- List of things I've donr -->
 
-
-				<section>
-				<div class="container d-flex justify-content-center" style="height: 350px;">
-					<div class="row d-flex align-items-center">
-						<div class="col-md-4"> <img src="img/sst_blankie.jpg"  alt="sst blankie" width="100%"></div>
-						<div class="col-md-8"> 
-							<h1 class="display-4"><span style="font-family:'Corinthia', cursive;">hello</span></h1>
-							<h1 class="display-4 fw-normal"> Ocean surface temperature blanket </h1>
-							<div class="container-md">
-								<p class="lead fw-normal"> You might have heard of a temperature blanket where each row of the blanket reflects a temperature (daily-meen, annual-mean).
-									Well this is a ocean surface temperature blanket, representing a snapshot of ocean temperature in the ocean South of Africa at a single time. </p>
+		<div class="bg-body-tertiary shadow-sm mx-auto position-relative overflow-hidden" style="background-color:#FADEE1; width: 80%; border-radius: 21px 21px 0 0;">
 		
-							</div>
-						</div>
-					</div>	
+		<!---Title and images-->
+		<section class="mb-5">
+			<div class="container" style="min-height: 350px;">
+				<div class="row d-flex align-items-center">
+					<div class="col-md-12 text-center">
+						<h1 class="display-4 fw-normal mb-4">Ocean surface temperature blanket</h1>
+						<img src="img/nchang_sst_blanket.jpg" alt="sst blanket with yarn" style="width: 80%; height: auto;">
+					</div>
 				</div>
-			</section>
+			</div>
+		</section>
 
-				<section>
-				<div class="container d-flex justify-content-center" style="height: 350px;">
-					<div class="row d-flex align-items-center">
-						<div class="col-md-12"> 
-							<h1 class="display-4"><span style="font-family:'Corinthia', cursive;"> About this image </span></h1>
-	
-							<h1 class="display-4 fw-normal"> Ocean surface temperature blanket </h1>
-							<div class="container-md">
-								<p class="lead fw-normal"> This image is from an ocean-ice-biogeochemical model, called <a href="bp12_main.html">BIOPERIANT12</a>  </p>
-		
-							</div>
-						</div>
-					</div>	
+
+		<section class="mb-5">
+			<div class="container d-flex justify-content-center" style="min-height: 250px;">
+				<div class="col-md-8 text-center"> 
+					<h2 class="fw-bold"> The inspiration </h2>
+					<div class="py-4"></div>
+					<p class="fw-normal" text-justify" style="text-align: justify;"> 
+						You might have heard of a temperature blanket where each row of the blanket reflects a temperature (daily-mean, annual-mean). Well this is an ocean surface temperature blanket, representing a snapshot of ocean temperature in the ocean south of Africa at a single time. 
+					</p>
+					<p class="fw-bold"> 
+					<a href="#bp12">The frustrating intersection between art and science.</a>
+					</p>
 				</div>
-			</section>
+				<div class="col-md-4 text-center"> <img src="img/sst_blankie.jpg"  alt="sst blankie" width="50%"></div>
+			</div>
+		</section>
+
+		<hr class="my-5" style="width: 50%; margin: auto; border-top: 2px solid #6c88c4;">
+
+		<section class="mb-5">
+			<div class="container d-flex justify-content-center" style="min-height: 250px;">
+				<div class="col-md-4 text-center"> <img src="img/BP12_sst_subset.png"  alt="sst subset" width="50%"></div>
+				<div class="col-md-8 text-center">
+					<h3 class="fw-bold">About the temperture snapshot</h3>
+					<p class="fw-normal" style="text-align: left;"></p> 
+						The temperature snapshot (left) is from from the output of an ocean-ice-biogeochemical model, called <a href="bp12_main.html">BIOPERIANT12</a> as shown below.  
+					</p>
+					<img src="img/BP12_sst_mercator.png"  alt="sst mercator" width="95%">
+				</div>		
+			</div>	
+		</section>
+		<hr class="my-5" style="width: 50%; margin: auto; border-top: 2px solid #6c88c4;">
+<!---Blanket-->
+		<section class="mb-5">
+			<div class="container" style="min-height: 250px;">
+				<div class="row"></div><div class="col-md-12 text-center">
+					<h3 class="fw-bold">Blanket design</h3>
+				</div>
+				<div class="py-4"></div>
+				<div class="row">
+					<div class="col-md-8 text-center"><img src="img/yarn_colours.png" alt="yarn colours" width="95%"></div>		
+					<div class="col-md-4">
+						<p class="fw-normal" style="text-align: left;">
+							One colour of yarn was chosen to represent each temperature band (e.g. 0-1&deg;C, 1-2&deg;C, etc.). For ice concentration each colour of glitter yarn represents an ice coverage band e.g. 0-20%, 20-40%, etc.
+						</p>
+					</div>
+				</div>
+				<div class="py-4"></div>
+				<div class="row">		
+					<div class="col-md-8 mx-auto">
+						<div class="p-4 text-center" style="background-color: #FADEE1;">
+							<p class="fw-bold mb-0">1 model grid point = 1 single crochet stitch</p>
+						</div>
+					</div>
+				</div>
+				<div class="py-4"></div>
+				<div class="row">		
+					<div class="col-md-2">	</div>
+					<div class="col-md-4 text-center"><img src="img/grid.png" alt="grid breakdown" width="95%"></div>
+					<div class="col-md-4">	
+						<p class="fw-normal" style="text-align: left;">
+							Thus, the model grid converts into a crochet pattern such as the left example (visualised in Python).
+						</p>
+					</div>		
+				</div>
+				<div class="py-4"></div>
+				<div class="row">		
+					<div class="col-md-2">	</div>
+					<div class="col-md-4">	
+						<p class="fw-normal" style="text-align: left;">
+							By counting the number of grid points for each colour, and estimating how much wool I would need for each stitch.
+							I estimated the number of balls of yarn needed for each colour, totally 35 balls.
+						</p>
+					</div>
+					<div class="col-md-4 text-center"><img src="img/yarn_balls.png" alt="yarn colours" width="95%"></div>	
+				</div>
+				
+
+			</div>	
+		</section>
+<!---BP12-->
+		<hr class="my-5" style="width: 50%; margin: auto; border-top: 2px solid #6c88c4;">
+		<section id="bp12" class="mb-5">
+			<div class="container d-flex justify-content-center" style="min-height: 250px;">
+				<div class="col-md-4 text-center"> <img src="img/bp12_key_fig.png"  alt="sst key" width="80%"></div>
+				<div class="col-md-8 text-center">
+					<h3 class="fw-bold">About BIOPERIANT12 </h3>
+					<div class="py-1"></div>
+					<p class="fw-normal" style="text-align: left;">
+						This is the original snapshot of surface temperature from the BIOPERIANT12 model shown in a different map projection. The red colours indicate warm waters, while the blues are for cool waters. Around Antartica, the blue-white shading shows ice concentration.
+					</p>
+					<div class="py-1"></div>
+					<p class="fw-normal" style="text-align: left;">
+						The BIOPERIANT12 model domain consists of domain has 4.8 million grid points at each vertical level (multiplied by 46 vertical level for a total of over 223 million grid points).
+						The subset consists is 250 x 500 grid points or 125,000 stitches. But due to lots of user error, te stitches in any row can vary and the number of rows is ongoing (390 currently, but there might be some duplicate rows in there). 
+					</p>
+				</div>		
+			</div>	
+
+			<div class="py-4"></div>
+			
+			<div class="row">		
+				<div class="col-md-12 mx-auto">
+					<div class="p-4 text-center" style="background-color: #FADEE1;">
+						<h4 class="fw-bold"> Why BIOPERIANT12 is important/why this blanket is not completed yet </h4>
+					</div>
+				</div>
+			</div>
+			<div class="py-4"></div>
+			<div class="row">
+				<div class="col-md-4 text-center"> <img src="img/sst_swirls.jpg"  alt="sst swirls" width="80%"></div>	
+				<div class="col-md-8 text-center">
+						<p class="fw-normal" style="text-align: left;">
+							The BIOPERIANT12 model represents the ocean with an approximately 3-8 km horizontal grid. It is thus able to resolve eddies and ocean fronts (10-100 km wide). This means this high resolution model is able to represent the ocean processes responsible for moving heat and carbon which great for reducing uncertainty in flux estimates and ocean understanding. Hoever, this also means more colour changes and tangles which slows down this amateur crochet artist.
+						</p>
+						<p class="fw-normal" style="text-align: left;">
+							It blows my mind how necessary access to supercomputers are. This model with over 223 million grid points required 3240 CPUs on the NICIS-CHPC supercomputer to run, and took about 3 months (not including all the testing): cycling over 20 years of snpshots at 10 minute intervals for 20+ variables (temperatue, salinity, ocean currents, nitrate, chlorophyll, etc.). This compared to this blanket consisting of a tiny 125,000 stitches of a subset of 1 snapshot of 1 variable that I started 2 years ago and have have yet to complete.
+						</p>
+				</div>
+				
+			</div>
+		</section>
+
 		
-		
+		</div>
 		</main>
 
 	
