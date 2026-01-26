@@ -11,6 +11,7 @@
   --radius: 18px;
   --radius-lg: 26px;
   --max: 1080px;
+  --text-max: 62ch;
 }
 
 html, body{
@@ -43,9 +44,10 @@ h1, h2, h3{
 
 /* Paragraph measure (stops “wall of text”) */
 p{
-  max-width: var(--text-max);
-  color: rgba(47,42,42,.78); 
+  max-width: var(--text-max, 62ch);
+  color: rgba(47,42,42,.78);
 }
+
 
 /* Make academic content feel intentional */
 .paper-title{
@@ -77,7 +79,7 @@ code{
 
 
 *{ box-sizing: border-box; }
-html{ scroll-behaviour: smooth; }
+html{ scroll-behavior: smooth; }
 body{
   margin:0;
   color: var(--ink);
@@ -190,20 +192,21 @@ img{ max-width:100%; display:block; }
 .hero{
   padding: 3.6rem 0 2.6rem;
   position: relative;
+  overflow-x: clip; /* modern */
 }
+
+
 .hero-grid{
   display:grid;
   gap: 2.2rem;
   align-items:center;
 }
-.hero-grid--pic-right{
-  grid-template-columns: 1.05fr .95fr;
+.hero-grid > *{
+  min-width: 0;
 }
 
-.hero-grid--pic-left{
-  grid-template-columns: .95fr 1.05fr;
-}
-
+.hero-grid--pic-right{grid-template-columns: 1.05fr .95fr; }
+.hero-grid--pic-left{grid-template-columns: .95fr 1.05fr; }
 
 
 .kicker{
@@ -248,6 +251,7 @@ img{ max-width:100%; display:block; }
   position: relative;
   overflow: hidden;          /* prevents blob/polaroid causing horizontal overflow */
   border-radius: var(--radius-lg);
+  min-height: 420px;
 }
 .blob{
   position:absolute;
@@ -423,9 +427,9 @@ img{ max-width:100%; display:block; }
   margin: 0 auto;
   left: auto;
   top: auto;
-}
   transform: rotate(1deg);
 }
+  
 .polaroid--side{
   right: 2%;
   bottom: 8%;
@@ -700,5 +704,3 @@ img{ max-width:100%; display:block; }
   .media-row{grid-template-columns: 1fr;}
   .polaroid--media{transform: rotate(-1deg); margin: 0 auto;}
 }
-
-
