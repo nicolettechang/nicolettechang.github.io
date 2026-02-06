@@ -1,146 +1,100 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8">
-		<title>Stuff I've done </title>	
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-		<link rel="stylesheet" href="styles/styles.css" type="text/css">
-		<link rel="icon" type="image/png" href="octonori_pink.png">
-	</head>
-	
-	<body>
-		<div style="padding-top: 100px;">
-			<nav class="navbar fixed-top" style="background-color: #FADEE1; border-radius: 0;">
-				<div class="container" style="max-width: 80%;">
-					<!-- LOGO -->
-					<a class="navbar-brand" href="index.html"> <img src="img/logo.png" alt="logo" height="50"></a>
-					<!-- NAVIGATION MENU -->
-					<ul class="nav ms-auto">
-						<li class="nav-item"><a href="about.html" class="nav-link px-2">ABOUT</a></li>
-						<li class="nav-item"><a href="code.html" class="nav-link px-2">CODE</a></li>
-						<li class="nav-item"><a href="output.html" class="nav-link px-2">OUTPUT</a></li>
-						<li class="nav-item"><a href="shop.html" class="nav-link px-2">SHOP</a></li>
-					</ul>
-				</div>
-			</nav>
-		</div>
+---
+layout: default
+title: Nicolette Chang — Portfolio
+description: Digital proof that I exist and have some online presence.
+---
 
-		<main>
-		<div class="bg-body-tertiary shadow-sm mx-auto position-relative overflow-hidden" style="background-color:#FADEE1; width: 80%; border-radius: 21px 21px 0 0;">
-		
-			<!--- Heading -->
-			<div class="py-2"></div>
-			<h1 class="fw-bold" style="text-align: center;">BIOPERIANT12 </h1>
-			<div class="py-2"></div>
+<section class="BP12_intro">
+  <div class="container">
+    <h2 class="section-title" align="center">BIOPERIANT12</h2>
+    <p class="section-subtitle"></p>
+    <div class="work-asym">  
+      <img src="img/bp12_key_fig.png" alt="BP12 key figure">
+      
+      <article class="work-card work-card-plain">
+        <p> BIOPERIANT12 is a <a href="https://www.nemo-ocean.eu/">NEMO</a> ocean-ice-biogeochemical model 
+         configuration developed to study the Southern Ocean ecosystem and its role in the global carbon cycle.
+        </p>
+        <p> </p>
+        <p> The model domain covers the Southern Ocean south of 30°S, with a horizontal resolution of approximately 
+        8 km and 46 vertical levels.
+       </p>
+        <p> </p>
+        <p> The model description  <a href="https://gmd.copernicus.org/articles/18/6415/2025/">"BIOPERIANT12: a mesoscale-resolving coupled physics–biogeochemical model for 
+                  the Southern Ocean"</a> is available in the journal Geoscientific Model Development.
+        </p>
+        <p> </p>
+        <p> There are 4.8 million grid points for the ocean surface. To try and imagine the size and CPU power required to run this model, I tried to capture a mesoscale-resolving snapshot of SST by hand <a href="sst_blankie.html">in 
+            yarn</a>.
+        </p>
+      </article> 
+    </div>
+    <div class="card-divider"></div>
+  </div>
+</section>
 
-			<!---BP12-->	
-			<section id="bp12_intro" class="mb-5">
-				<div class="container d-flex justify-content-center" style="min-height: 250px;">
-					<div class="col-md-4 text-left""> <img src="img/bp12_key_fig.png"  alt="sst key" width="90%"></div>
-					<div class="col-md-8 text-center">
-						<div class="py-1"></div>
 
-						<div class="py-2"></div>
-						<p class="fw-normal" style="text-align: left;">
-							BIOPERIANT12 is a <a href="https://www.nemo-ocean.eu/">NEMO</a> ocean-ice-biogeochemical model configuration developed to study the Southern Ocean ecosystem and its role in the global carbon cycle.
-							The BIOPERIAThe model domain covers the Southern Ocean south of 30°S, with a horizontal resolution of approximately 8 km and 46 vertical levels.
 
-						</p>
-						<div class="py-1"></div>
-						<p class="fw-normal" style="text-align: left;">
-							The model description  <a href="https://gmd.copernicus.org/articles/18/6415/2025/">"BIOPERIANT12: a mesoscale-resolving coupled physics–biogeochemical model for 
-								the Southern Ocean"</a> is available in the journal Geoscientific Model Development.
-						</p>
-						<div class="py-1"></div>
-						<p class="fw-normal" style="text-align: left;">
-							There are 4.8 million grid points for the ocean surface. To try and imagine the size and CPU power required to run this model, I tried to capture a mesoscale-resolving snapshot of SST by hand <a href="sst_blankie.html">in 
-							yarn</a>.
-						</p>
-					</div>		
-				</div>	
-			</section>
-					
-			<hr class="my-5" style="width: 50%; margin: auto; border-top: 2px solid #6c88c4;">
+<section class="BP12_biomes">
+  <h2 class="section-title" align="center">BIOPERIANT12 biomes</h2>
+  <p class="section-subtitle"></p>
+  <div class="container">
+    <div class="work-asym">  
+      <img src="img/bp12_biome_defn.png" alt="BP12 biome definitions">
+      
+      <article class="work-card work-card-plain">
+       <p>	Biomes are regions defined by their physical and biological characteristics. 
+          The Southern Ocean biomes in the model are listed and defined based on the classification 
+          by Fay and McKinley (2014).
+				</p>
+        <p>  </p>
+				<p> Fay, A. R. and McKinley, G. A.: Global open-ocean biomes: mean and temporal variability, 
+          Earth Syst. Sci. Data, 6, 273–284,
+					<a href="https://doi.org/10.5194/essd-6-273-2014"> https://doi.org/10.5194/essd-6-273-2014</a>, 2014.
+				</p>
+      </article> 
+    </div>
+  <div class="card-divider"></div>
+  </div>
+</section>
 
-			<!---Biomes-->
-			<section id="bp12_biomes" class="mb-5">
-				<div class="py-1"></div>
-				<h2 class="fw-bold" style="text-align: center;">BIOPERIANT12 biomes </h2>
-				<div class="py-2"></div>
-				<div class="container d-flex justify-content-center" style="min-height: 250px;">
-					<div class="col-md-6 text-center""> <img src="img/bp12_biome_defn.png"  alt="sst key" width="90%"></div>
-					<div class="col-md-4 text-center">
-						<p class="fw-normal" style="text-align: left;">
-							Biomes are regions defined by their physical and biological characteristics. The Southern Ocean biomes in the model are listed and
-							defined based on the classification by Fay and McKinley (2014).
-						</p>
-						<div class="py-2"></div>
-						<p class="fw-normal" style="text-align: left; font-size: x-small ;">
-							Fay, A. R. and McKinley, G. A.: Global open-ocean biomes: mean and temporal variability, Earth Syst. Sci. Data, 6, 273–284,
-							<a href="https://doi.org/10.5194/essd-6-273-2014"> https://doi.org/10.5194/essd-6-273-2014</a>, 2014.
-						</p>
-					</div>		
-				</div>	
-			</section>
 
-			<!---Model RI-->
-			<section id="bp12_stats" class="mb-5">
-				<div class="py-1"></div>
-				<h2 class="fw-bold" style="text-align: center;">BIOPERIANT12 biome-mean statistics </h2>
-				<div class="py-2"></div>
-				<div class="col-md-4 text-center"></div>
-				<div class="row">		
-					<div class="col-md-12 mx-auto">
-						<p class="fw-normal" style="text-align: center;">
-						Biome-mean statistics, such as mean and amplitude, were calculated for selected physical and biogeochemical variables for 10 years 
-						(paper <a href="https://gmd.copernicus.org/articles/18/6415/2025/gmd-18-6415-2025-t03.png">Table 3</a>).
-						</p>
 
-					</div>
-				</div>
-				<div class="py-2"></div>
-				<div class="container d-flex justify-content-center" style="min-height: 250px;">
-					<div class="col-md-7 text-center""> <img src="img/bp12_ri.png"  alt="model ri" width="90%"></div>
-					<div class="col-md-4 text-left">
-						<p class="fw-normal" style="text-align: left;">
-						The biome-mean statistics, model reliability index (RI) and ratio of standard deviation (RSD) show how well the model represents the 
-						climatology compared to gridded datasets from observations.
-						</p>
-						<div class="py-3"></div>
-						<p class="fw-normal" style="text-align: left;">
-						Some of the stand out results which are discussed in the paper are:
-						<ul>
-							<li> Less skill in the SO-ICE biome, </li>
-							<li> Large model-observation biases in chlorophyll, </li>
-							<li> False skill in the representation of pCO<sub>2</sub>.</li>
-						</ul>
-						</p>
-					</div>	
-				</div>	
-			</section>
+<section class="BP12_stats">
+  <h2 class="section-title" align="center">BIOPERIANT12 biome-mean statistics</h2>
+  <p class="section-subtitle"> Biome-mean statistics, such as mean and amplitude, were calculated for selected 
+    physical and biogeochemical variables for 10 years 
+    (paper <a href="https://gmd.copernicus.org/articles/18/6415/2025/gmd-18-6415-2025-t03.png">Table 3</a>).		  
+  </p>
+  <div class="container">
+    <div class="work-asym">  
+      <article class="work-card work-card-plain">
+        <p> The biome-mean statistics, model reliability index (RI) and ratio of standard deviation (RSD) 
+            show how well the model represents the climatology compared to gridded datasets from observations.
+        </p>
+        <p> </p>
+        <p>Some of the stand out results which are discussed in the paper are:
+        </p>
+          <ul>
+            <li> Less skill in the SO-ICE biome, </li>
+            <li> Large model-observation biases in chlorophyll, </li>
+            <li> False skill in the representation of pCO<sub>2</sub>.</li>
+          </ul>
+      </article> 
+     <div class="work-image-inner-straight">
+      <img src="img/bp12_ri.png" alt="BP12 model biome RI" >
+      </div>
+    </div>
+  <div class="card-divider"></div>
+  </div>
+</section>
 
-			<!---pco2-->
-			<section id="bp12_pco2" class="mb-5">
-				<div class="py-1"></div>
-				<h2 class="fw-bold" style="text-align: center;">pCO<sub>2</sub> sneakiness </h2>
-				<div class="py-2"></div>
-				<div class="container d-flex justify-content-center" style="min-height: 250px;">
-					<div class="col-md-8 text-center""> <img src="img/bp12_pco2.png"  alt="sst key" width="90%"></div>
-					<div class="col-md-3 text-center">
-						<div class="py-2"></div>
-						<p class="fw-normal" style="text-align: left;">
-							Although the model shows good skill in representing pCO<sub>2</sub>, 
-							the model-observation comparison and seasonal cycle for each biome show large biases.
-						</p>
-					</div>		
-				</div>	
-			</section>
-
-		</div>
-		</main>
-
-	
-	</body>
-</html>
-	
+<section class="BP12_pco2">
+  <h2 class="section-title" align="center">pCO<sub>2</sub> sneakiness</h2>
+  <p class="section-subtitle">Although the model shows good skill in representing pCO<sub>2</sub>, 
+						the model-observation comparison and seasonal cycle for each biome show large biases.</p>
+  <div class="container" align="center">
+    <img src="img/bp12_pco2.png" alt="BP12 pCO2 sneakiness" width="80%">
+    <div class="card-divider"></div>
+  </div>
+</section>
