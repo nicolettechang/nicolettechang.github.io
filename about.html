@@ -1,80 +1,135 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8">
-		<title>Nicolette Chang's another online dumping ground</title>	
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-		<link rel="stylesheet" href="styles/styles.css" type="text/css">
-		<link rel="icon" type="image/png" href="octonori_pink.png">
-	</head>
-	
-	<body>
-		<div style="padding-top: 100px;">
-		<nav class="navbar fixed-top" style="background-color: #FADEE1; border-radius: 0;">
-			<div class="container" style="max-width: 80%;">
-				<!-- LOGO -->
-				<a class="navbar-brand" href="index.html"> <img src="img/logo.png" alt="logo" height="50"></a>
-				<!-- NAVIGATION MENU -->
-				<ul class="nav ms-auto">
-					<li class="nav-item"><a href="about.html" class="nav-link px-2">ABOUT</a></li>
-					<li class="nav-item"><a href="code.html" class="nav-link px-2">CODE</a></li>
-					<li class="nav-item"><a href="output.html" class="nav-link px-2">OUTPUT</a></li>
-					<li class="nav-item"><a href="shop.html" class="nav-link px-2">SHOP</a></li>
-				</ul>
-			</div>
-		</nav>
+---
+layout: default
+title: Nicolette Chang — Portfolio
+description: Digital proof that I exist and have some online presence.
+---
+
+<section class="hero">
+  <div class="container hero-grid hero-grid--pic-left">
+	<div class="hero-art">
+		<div class="blob" aria-hidden="true"></div>
+		<figure class="polaroid polaroid--main">
+		<img src="img/nic_cyber.jpg" alt="cyber-me" />
+		<figcaption></figcaption>
+		</figure>
+	</div>
+
+	<div class="hero-copy">
+	  <p class="kicker">CV</p>
+	  <h1 class="hero-title">
+		Dr Nicolette Chang <br />
+	  </h1>
+	  <p class="hero-subtitle">
+		I'm a senior technologist in ocean modelling at 
+		the Southern Ocean Carbon-Climate Observatory <a href="https://socco.org.za/">(SOCCO)</a>.
+		</p>
+	</div>
+  </div>
+</section>
+
+
+<!-- Specs -->
+<section id="projects" class="adventure">
+  <div class="container">
+	<h2 class="section-title">Specs</h2>
+	<p class="section-subtitle">Info about me that might matter</p>
+
+	<div class="cards-3-asym">  
+	  <article class="feature-card">
+		<div class="feature-icon" aria-hidden="true">✦</div>
+		<h3>Cut/paste/code</h3>
+		<div class="mini-badges">
+		<span class="badge">Python</span>
+		<span class="badge">Jupyter</span>
+		<span class="badge">Shell script</span>
+		<span class="badge">Fortran</span>
+		<span class="badge">Matlab</span>
+		<span class="badge">NEMO</span>
+		<span class="badge">PISCES</span>
+		<span class="badge">CROCO</span>
+	  </div>    
+	  </article>
+
+	  <article class="feature-card card-span-2">
+	   <div class="feature-icon" aria-hidden="true">♥</div>
+		<h3>Soft skills</h3>
+		<div class="mini-badges">
+		<span class="badge">Scientific communication</span>
+		<span class="badge">Interdisciplinary collaboration</span>
+		<span class="badge">Analytical thinking</span>
+		<span class="badge">Curiosity-driven</span>
+		<span class="badge">Independent</span>
+		<span class="badge">Comfortable questioning assumptions</span>
+		<span class="badge">Mentorship grounded in empathy </span>
+		<span class="badge">Creative </span>
+		<span class="badge">Purpose-led work ethic</span>
+		<span class="badge">Designing reproducible workflows</span>
+		<span class="badge">Sarcasm</span>
+		<span class="badge">Advanced buffet systems</span>
+		</div>    
+		</article>        
+	</div>
+  </div>
+</section>
+
+
+
+<!-- Specs2 -->
+<section class="work">
+  <div class="container">
+	<h2 class="section-title" align="center">My Education</h2>
+	<p class="section-subtitle"></p>
+	<div class="work-asym">
+	  <div class="work-image polaroid-bg polaroid-bg--work">
+		<div class="work-image-inner">
+		  <img src="img/desk.png" alt="desk">
 		</div>
-		<main>
-			<div class="bg-body-tertiary shadow-sm mx-auto position-relative overflow-hidden" style="background-color:#FADEE1; width: 80%; border-radius: 21px 21px 0 0;">
-				<!-- INTRO TO ME -->
-				<section class="py-5">
-					<div class="container d-flex justify-content-center" style="height: 350px;">
-						<div class="row d-flex align-items-center">
-							<div class="col-md-4"> <img src="img/nic_cyber.jpg"  alt="selfie" width="100%"></div>
-							<div class="col-md-8"> 
-								<h1 class="display-4"><span style="font-family:'Corinthia', cursive;">hello</span></h1>
-								<h1 class="display-4 fw-normal"> I'm Dr Nicolette Chang </h1>
-								<div class="container-md">
-									<p class="lead fw-normal"> I'm a senior technologist in ocean modelling at <a href="https://socco.org.za/">SOCCO</a>. </p>
-								</div>
-							</div>
-						</div>	
-					</div>
-				</section>
-				<div class="py-2"></div>
-				<hr class="my-5" style="width: 50%; margin: auto; border-top: 2px solid #6c88c4;">
-				<div class="py-2"></div>
-
-				<section class="py-5">
-					<div class="container d-flex justify-content-center" style="min-height: 250px;">
-						<div class="row">
-							<div class="col-md-8"> 
-								<div class="container-md">
-									<p class="lead fw-normal"> I just updated this page so I could show off my <a href="sst_blankie.html">sst blankie</a>. </p>
-									<p>Maybe I'll update it soon.</p>
-                				</div>
-			
-							</div>
-							<div class="col-md-4"> <img src="img/sst_blankie.jpg"  alt="selfie" width="100%"></div>
-						</div>
-					</div>
-
-					<div class="container d-flex justify-content-center" style="min-height: 150px;"></div>
-						<div class="row">
-							<div class="col-md-4"> <a href="https://socco.org.za/"><img src="img/SOCCOlogo2022-transparent.png"  alt="SOCCO logo" width="90%"></a></div>
-							<div class="col-md-8"> 
-									<p class="lead fw-normal"> Please see more info about my work at <a href="https://socco.org.za/">SOCCO</a>. </p>
-								</div>
-
-
-							</div>
-						</div>	
-			
-						
-					</div>
-				</section>
-				
-	</body>
-</html>
+	  </div>
 	
+	  <div class="work-cards work-asym-2">
+		<article class="work-card">
+		  <span class="feature-icon" aria-hidden="true">✦</span>
+		  <div class="work-card-content">
+			<h3>PhD Physical Oceanography, UCT</h3>
+			<p> Numerical ocean model study of the Agulhas Bank and the Cool Ridge. </p>
+		  </div>
+		</article>
+		<article class="work-card">
+		  <span class="feature-icon" aria-hidden="true">✦</span>
+		  <div class="work-card-content">
+			<h3>MSc Applied Marine Science, UCT</h3>
+			<p> Descriptive analysis of a virtual transect through the Benguela Upwelling System. </p>
+		  </div>
+		</article>
+		<article class="work-card">
+		  <span class="feature-icon" aria-hidden="true">✦</span>
+		  <div class="work-card-content">
+			<h3>BSc (Hons) Physical Oceanography, UCT</h3>
+			<p> The use of stable light isotope ratios to investigate nitrogen fixation in the Benguela Upwelling System. </p>
+		  </div>
+		</article>
+		   <article class="work-card">
+		  <span class="feature-icon" aria-hidden="true">✦</span>
+		  <div class="work-card-content">
+			<h3>BSc Physical & Mathematical Sciences, UCT</h3>
+			<p> </p>
+		  </div>
+		</article>
+	  </div>
+	</div>
+  </div>  
+</section>
+
+<section id="work" class="work">
+  <div class="container contact-card card">
+	  <h2>Contact</h2>
+	  <p class="muted">
+		Stalking links
+	  </p>
+	  <div class="contact-actions">
+	  <a class="btn btn-ghost" href="mailto:chang.nicolette@gmail.com">Email me</a>
+	  <a class="btn btn-ghost" href="https://github.com/nicolettechang">GitHub</a>
+	  <a class="btn btn-ghost" href="https://www.linkedin.com/in/nicolette-chang-949672b">LinkedIn</a>
+	  </div>
+  </div>
+</section>
