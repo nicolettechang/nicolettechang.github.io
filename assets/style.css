@@ -861,3 +861,57 @@ footer {
 @media (max-width: 640px) {
   .to-top { width: 60px; height: 60px; }
 }
+
+/* ---------- code page: Lengau (CHPC) status card ---------- */
+
+.chpc-card {
+  --chpc-up: #52d273;
+  --chpc-down: #dc3545;
+  --chpc-unreach: #f0a13a;
+  --chpc-gap: rgba(19, 33, 62, 0.08);
+  margin-bottom: 40px;
+}
+.chpc-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 4px 20px; }
+.chpc-head h3 { margin: 0; }
+.chpc-title { display: flex; align-items: center; gap: 12px; }
+.chpc-fish { height: 30px; width: auto; flex: none; }
+.chpc-now-line { margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; }
+.chpc-checked { font-family: var(--font-caption); font-style: italic; color: var(--ink-soft); font-size: 0.92rem; }
+.chpc-dot {
+  width: 12px; height: 12px; border-radius: 50%;
+  background: var(--chpc-gap); box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.7);
+}
+.chpc-card[data-state="up"] .chpc-dot { background: var(--chpc-up); }
+.chpc-card[data-state="down"] .chpc-dot { background: var(--chpc-down); }
+.chpc-card[data-state="unreachable"] .chpc-dot { background: var(--chpc-unreach); }
+.chpc-card[data-state="gap"] .chpc-dot { background: #9aa3b5; }
+
+.chpc-timeline { margin-top: 18px; }
+.chpc-track {
+  position: relative;
+  height: 28px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: repeating-linear-gradient(45deg, rgba(255,255,255,0.55) 0 6px, rgba(255,255,255,0.25) 6px 12px);
+  border: 2px solid rgba(19, 33, 62, 0.1);
+}
+.chpc-seg { position: absolute; top: 0; bottom: 0; }
+.chpc-seg.is-up, .chpc-key.is-up { background: var(--chpc-up); }
+.chpc-seg.is-down, .chpc-key.is-down { background: var(--chpc-down); }
+.chpc-seg.is-unreachable, .chpc-key.is-unreachable { background: var(--chpc-unreach); }
+.chpc-seg.is-gap, .chpc-key.is-gap { background: var(--chpc-gap); }
+.chpc-now { position: absolute; top: -2px; bottom: -2px; width: 2px; margin-left: -1px; background: var(--ink); }
+.chpc-axis {
+  display: flex; justify-content: space-between;
+  font-family: var(--font-mono); font-size: 0.72rem; color: var(--ink-soft);
+  margin-top: 4px;
+}
+
+.chpc-summary { margin: 14px 0 8px; font-weight: 700; }
+.chpc-legend {
+  list-style: none; padding: 0; margin: 0 0 16px;
+  display: flex; flex-wrap: wrap; gap: 4px 18px;
+  font-size: 0.88rem; color: var(--ink-soft);
+}
+.chpc-legend li { display: inline-flex; align-items: center; gap: 6px; }
+.chpc-key { width: 12px; height: 12px; border-radius: 3px; border: 1px solid rgba(19, 33, 62, 0.15); }

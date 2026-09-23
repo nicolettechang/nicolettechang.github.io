@@ -6,7 +6,7 @@
 <title>Code — Nicolette Chang</title>
 <meta name="description" content="Code by Nicolette Chang: ocean modelling scripts and tools on GitHub.">
 <link rel="icon" href="assets/logo-mark.svg?v=4" type="image/svg+xml">
-<link rel="stylesheet" href="assets/style.css?v=21">
+<link rel="stylesheet" href="assets/style.css?v=23">
 </head>
 <body class="notebook" id="top">
   <main>
@@ -42,6 +42,31 @@
             <a class="btn blue" href="https://github.com/nicolettechang">Go to GitHub</a>
           </div>
         </div>
+
+        <section class="panel panel--lavender chpc-card" id="chpc-status" data-state="loading" aria-live="polite">
+          <div class="chpc-head">
+            <h3 class="chpc-title"><img class="chpc-fish" src="assets/fish-trio.svg" alt="">Lengau (CHPC) status</h3>
+            <p class="chpc-now-line">
+              <span class="chpc-dot" aria-hidden="true"></span>
+              <strong class="chpc-state">Checking…</strong>
+              <span class="chpc-checked"></span>
+            </p>
+          </div>
+          <div class="chpc-timeline">
+            <div class="chpc-track" role="img" aria-label="Today's availability timeline"></div>
+            <div class="chpc-axis" aria-hidden="true">
+              <span>00:00</span><span>06:00</span><span>12:00</span><span>18:00</span><span>24:00</span>
+            </div>
+          </div>
+          <p class="chpc-summary"></p>
+          <ul class="chpc-legend">
+            <li><span class="chpc-key is-up"></span>reachable</li>
+            <li><span class="chpc-key is-down"></span>service disruption</li>
+            <li><span class="chpc-key is-unreachable"></span>portal unreachable</li>
+            <li><span class="chpc-key is-gap"></span>no data</li>
+          </ul>
+          <a class="corner-link" href="https://nicolettechang.github.io/chpc-status/">full history &amp; outage log →</a>
+        </section>
       </div>
     </div>
 
@@ -60,5 +85,6 @@
     </a>
   </main>
   <script src="assets/to-top.js" defer></script>
+  <script src="assets/chpc-status.js" defer></script>
 </body>
 </html>
