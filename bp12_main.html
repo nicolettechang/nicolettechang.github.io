@@ -1,100 +1,122 @@
----
-layout: default
-title: Nicolette Chang — Portfolio
-description: Digital proof that I exist and have some online presence.
----
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BIOPERIANT12 — Nicolette Chang</title>
+<meta name="description" content="BIOPERIANT12: a mesoscale-resolving coupled physics–biogeochemical NEMO model of the Southern Ocean, built by Nicolette Chang.">
+<link rel="icon" href="assets/logo-mark.svg?v=4" type="image/svg+xml">
+<link rel="stylesheet" href="assets/style.css?v=20">
+</head>
+<body class="notebook" id="top">
+  <main>
+    <header class="masthead">
+      <a class="brand" href="index.html">
+        <img class="brand-mark" src="assets/logo-mark.svg?v=4" alt="">
+        <span>
+          <span class="brand-name">Nicolette Chang</span>
+          <span class="brand-tag">climate · ocean modelling · HPC</span>
+        </span>
+      </a>
+      <nav class="tabs" aria-label="Primary">
+        <a href="index.html" class="tab tab-home">home</a>
+        <a href="about.html" class="tab tab-mint">about</a>
+        <a href="work.html" class="tab tab-teal" aria-current="true">work</a>
+        <a href="code.html" class="tab tab-blue">code</a>
+        <a href="shop.html" class="tab tab-pink">shop</a>
+      </nav>
+    </header>
 
-<section class="BP12_intro">
-  <div class="container">
-    <h2 class="section-title" align="center">BIOPERIANT12</h2>
-    <p class="section-subtitle"></p>
-    <div class="work-asym">  
-      <img src="img/bp12_key_fig.png" alt="BP12 key figure">
-      
-      <article class="work-card work-card-plain">
-        <p> BIOPERIANT12 is a <a href="https://www.nemo-ocean.eu/">NEMO</a> ocean-ice-biogeochemical model 
-         configuration developed to study the Southern Ocean ecosystem and its role in the global carbon cycle.
-        </p>
-        <p> </p>
-        <p> The model domain covers the Southern Ocean south of 30°S, with a horizontal resolution of approximately 
-        8 km and 46 vertical levels.
-       </p>
-        <p> </p>
-        <p> The model description  <a href="https://gmd.copernicus.org/articles/18/6415/2025/">"BIOPERIANT12: a mesoscale-resolving coupled physics–biogeochemical model for 
-                  the Southern Ocean"</a> is available in the journal Geoscientific Model Development.
-        </p>
-        <p> </p>
-        <p> There are 4.8 million grid points for the ocean surface. To try and imagine the size and CPU power required to run this model, I tried to capture a mesoscale-resolving snapshot of SST by hand <a href="sst_blankie.html">in 
-            yarn</a>.
-        </p>
-      </article> 
-    </div>
-    <div class="card-divider"></div>
-  </div>
-</section>
+    <div class="page-wrap">
+      <div class="sheet">
+        <div class="rings" aria-hidden="true"></div>
+        <a class="corner-link back-link" href="work.html">← back to work</a>
+        <h1 class="page-title">BIOPERIANT12</h1>
 
+        <div class="split">
+          <figure class="figure-card">
+            <img src="img/bp12_key_fig.png" alt="BIOPERIANT12 snapshot of Southern Ocean surface temperature and sea ice">
+          </figure>
+          <div>
+            <p>BIOPERIANT12 is a <a href="https://www.nemo-ocean.eu/">NEMO</a> ocean-ice-biogeochemical model
+              configuration developed to study the Southern Ocean ecosystem and its role in the global carbon cycle.</p>
+            <p>The model domain covers the Southern Ocean south of 30°S, with a horizontal resolution of approximately
+              8 km and 46 vertical levels.</p>
+            <p>The model description, <a href="https://gmd.copernicus.org/articles/18/6415/2025/">“BIOPERIANT12: a mesoscale-resolving coupled physics–biogeochemical model for
+              the Southern Ocean”</a>, is available in the journal Geoscientific Model Development.</p>
+            <p>There are 4.8 million grid points for the ocean surface. To try and imagine the size and CPU power required to run this model, I tried to capture a mesoscale-resolving snapshot of SST by hand <a href="sst_blanket.html">in yarn</a>.</p>
+          </div>
+        </div>
 
+        <section class="section" aria-labelledby="biomes-title">
+          <div class="section-head">
+            <h2 id="biomes-title">BIOPERIANT12 biomes</h2>
+          </div>
+          <div class="split">
+            <figure class="figure-card">
+              <img src="img/bp12_biome_defn.png" alt="Definitions of the Southern Ocean biomes used in BIOPERIANT12">
+            </figure>
+            <div>
+              <p>Biomes are regions defined by their physical and biological characteristics.
+                The Southern Ocean biomes in the model are listed and defined based on the classification
+                by Fay and McKinley (2014).</p>
+              <p class="eyebrow">Fay, A. R. and McKinley, G. A.: Global open-ocean biomes: mean and temporal variability,
+                Earth Syst. Sci. Data, 6, 273–284, <a href="https://doi.org/10.5194/essd-6-273-2014">https://doi.org/10.5194/essd-6-273-2014</a>, 2014.</p>
+            </div>
+          </div>
+        </section>
 
-<section class="BP12_biomes">
-  <h2 class="section-title" align="center">BIOPERIANT12 biomes</h2>
-  <p class="section-subtitle"></p>
-  <div class="container">
-    <div class="work-asym">  
-      <img src="img/bp12_biome_defn.png" alt="BP12 biome definitions">
-      
-      <article class="work-card work-card-plain">
-       <p>	Biomes are regions defined by their physical and biological characteristics. 
-          The Southern Ocean biomes in the model are listed and defined based on the classification 
-          by Fay and McKinley (2014).
-				</p>
-        <p>  </p>
-				<p> Fay, A. R. and McKinley, G. A.: Global open-ocean biomes: mean and temporal variability, 
-          Earth Syst. Sci. Data, 6, 273–284,
-					<a href="https://doi.org/10.5194/essd-6-273-2014"> https://doi.org/10.5194/essd-6-273-2014</a>, 2014.
-				</p>
-      </article> 
-    </div>
-  <div class="card-divider"></div>
-  </div>
-</section>
-
-
-
-<section class="BP12_stats">
-  <h2 class="section-title" align="center">BIOPERIANT12 biome-mean statistics</h2>
-  <p class="section-subtitle"> Biome-mean statistics, such as mean and amplitude, were calculated for selected 
-    physical and biogeochemical variables for 10 years 
-    (paper <a href="https://gmd.copernicus.org/articles/18/6415/2025/gmd-18-6415-2025-t03.png">Table 3</a>).		  
-  </p>
-  <div class="container">
-    <div class="work-asym">  
-      <article class="work-card work-card-plain">
-        <p> The biome-mean statistics, model reliability index (RI) and ratio of standard deviation (RSD) 
-            show how well the model represents the climatology compared to gridded datasets from observations.
-        </p>
-        <p> </p>
-        <p>Some of the stand out results which are discussed in the paper are:
-        </p>
+        <section class="section" aria-labelledby="stats-title">
+          <div class="section-head">
+            <div>
+              <h2 id="stats-title">Biome-mean statistics</h2>
+              <p class="section-lede">Biome-mean statistics, such as mean and amplitude, were calculated for selected
+                physical and biogeochemical variables for 10 years
+                (paper <a href="https://gmd.copernicus.org/articles/18/6415/2025/gmd-18-6415-2025-t03.png">Table 3</a>).</p>
+            </div>
+          </div>
+          <p>The biome-mean statistics, model reliability index (RI) and ratio of standard deviation (RSD)
+            show how well the model represents the climatology compared to gridded datasets from observations.</p>
+          <p>Some of the stand-out results which are discussed in the paper are:</p>
           <ul>
-            <li> Less skill in the SO-ICE biome, </li>
-            <li> Large model-observation biases in chlorophyll, </li>
-            <li> False skill in the representation of pCO<sub>2</sub>.</li>
+            <li>Less skill in the SO-ICE biome,</li>
+            <li>Large model-observation biases in chlorophyll,</li>
+            <li>False skill in the representation of pCO<sub>2</sub>.</li>
           </ul>
-      </article> 
-     <div class="work-image-inner-straight">
-      <img src="img/bp12_ri.png" alt="BP12 model biome RI" >
+          <figure class="figure-card figure-wide">
+            <img src="img/bp12_ri.png" alt="Model reliability index and ratio of standard deviation for each biome and variable, BIOPERIANT12 against observations">
+          </figure>
+        </section>
+
+        <section class="section" aria-labelledby="pco2-title">
+          <div class="section-head">
+            <div>
+              <h2 id="pco2-title">pCO<sub>2</sub> sneakiness</h2>
+              <p class="section-lede">Although the model shows good skill in representing pCO<sub>2</sub>,
+                the model-observation comparison and seasonal cycle for each biome show large biases.</p>
+            </div>
+          </div>
+          <figure class="figure-card figure-wide">
+            <img src="img/bp12_pco2.png" alt="BIOPERIANT12 and observed pCO2 maps for January and September, with the climatological seasonal cycle per biome">
+          </figure>
+        </section>
       </div>
     </div>
-  <div class="card-divider"></div>
-  </div>
-</section>
 
-<section class="BP12_pco2">
-  <h2 class="section-title" align="center">pCO<sub>2</sub> sneakiness</h2>
-  <p class="section-subtitle">Although the model shows good skill in representing pCO<sub>2</sub>, 
-						the model-observation comparison and seasonal cycle for each biome show large biases.</p>
-  <div class="container" align="center">
-    <img src="img/bp12_pco2.png" alt="BP12 pCO2 sneakiness" width="80%">
-    <div class="card-divider"></div>
-  </div>
-</section>
+    <div class="footer-border" aria-hidden="true"></div>
+    <footer>
+      <div class="contact-links">
+        <a href="mailto:chang.nicolette@gmail.com">email</a>
+        <a href="https://github.com/nicolettechang">github</a>
+        <a href="https://www.linkedin.com/in/nicolette-chang-949672b">linkedin</a>
+        <a href="https://orcid.org/0000-0001-7144-7529">orcid</a>
+      </div>
+      <span class="copyright">© 2026 · built with a spiral binder, for GitHub Pages</span>
+    </footer>
+    <a class="to-top" href="#top" aria-label="Back to top" title="Back to top">
+      <img src="assets/logo-mark.svg?v=4" alt="">
+    </a>
+  </main>
+  <script src="assets/to-top.js" defer></script>
+</body>
+</html>

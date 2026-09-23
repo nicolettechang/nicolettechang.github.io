@@ -1,0 +1,5 @@
+<svg width="49.083" height="31" viewBox="0 0 49.083 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+<!-- one wavelength of border.svg, so it tiles without seams -->
+<path d="M0 19.733C6.8805 13.1994 17.6701 13.1994 24.546 19.733C31.4218 26.2666 42.2114 26.2666 49.083 19.733" stroke="#83D1FD" stroke-width="11" stroke-linecap="round"/>
+<path d="M0 11.9966C6.8805 5.463 17.6701 5.463 24.546 11.9966C31.4218 18.5302 42.2114 18.5302 49.083 11.9966" stroke="#4368B1" stroke-width="7" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1398 78" width="1398" height="78" fill="none">
+  <!-- two blue waves with a pink heart between them (work page divider) -->
+  <g stroke="#2c96e1" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M45.0 39 q14 -14 28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0"/>
+    <path d="M737.0 39 q14 -14 28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0 t28 0"/>
+  </g>
+  <path d="M699 56 C693 51 680 42 680 33 C680 26 685 22 690 22 C694 22 697 24 699 28 C701 24 704 22 708 22 C713 22 718 26 718 33 C718 42 705 51 699 56 Z" fill="#f2a8c8"/>
+</svg>

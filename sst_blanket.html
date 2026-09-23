@@ -1,204 +1,201 @@
----
-layout: default
-title: Nicolette Chang — Portfolio
-description: Digital proof that I exist and have some online presence.
----
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SST Blanket — Nicolette Chang</title>
+<meta name="description" content="A hand-crocheted blanket of a sea surface temperature snapshot from the BIOPERIANT12 Southern Ocean model: one grid point, one stitch.">
+<link rel="icon" href="assets/logo-mark.svg?v=4" type="image/svg+xml">
+<link rel="stylesheet" href="assets/style.css?v=20">
+</head>
+<body class="notebook" id="top">
+  <main>
+    <header class="masthead">
+      <a class="brand" href="index.html">
+        <img class="brand-mark" src="assets/logo-mark.svg?v=4" alt="">
+        <span>
+          <span class="brand-name">Nicolette Chang</span>
+          <span class="brand-tag">climate · ocean modelling · HPC</span>
+        </span>
+      </a>
+      <nav class="tabs" aria-label="Primary">
+        <a href="index.html" class="tab tab-home">home</a>
+        <a href="about.html" class="tab tab-mint">about</a>
+        <a href="work.html" class="tab tab-teal" aria-current="true">work</a>
+        <a href="code.html" class="tab tab-blue">code</a>
+        <a href="shop.html" class="tab tab-pink">shop</a>
+      </nav>
+    </header>
 
-<section class="blanket_intro">
-  <div class="container" align="center">
-    <h2 class="section-title" align="center">Ocean surface temperature blanket</h2>
-    <p class="section-subtitle">A hand-crocheted blanket representing a snapshot of sea surface temperature (SST) from the BIOPERIANT12 model.</p>
-    <img src="img/nchang_sst_blanket.jpg" alt="Crocheted blanket of sea surface temperature" width="60%">
-    <div class="card-divider"></div>
-  </div>
-</section>
+    <div class="page-wrap">
+      <div class="sheet">
+        <div class="rings" aria-hidden="true"></div>
+        <a class="corner-link back-link" href="work.html">← back to work</a>
+        <h1 class="page-title">Ocean surface temperature blanket</h1>
+        <p class="page-lede">A hand-crocheted blanket representing a snapshot of sea surface temperature (SST) from the BIOPERIANT12 model.</p>
 
+        <figure class="figure-card figure-wide">
+          <img src="img/nchang_sst_blanket.jpg" alt="The crocheted sea surface temperature blanket laid out flat">
+        </figure>
 
+        <section class="section" aria-labelledby="inspo-title">
+          <div class="section-head">
+            <h2 id="inspo-title">The inspiration</h2>
+          </div>
+          <div class="split">
+            <figure class="taped rotate-l">
+              <img src="img/sst_blankie.jpg" alt="Close-up of the crocheted blanket">
+              <figcaption>work in progress</figcaption>
+            </figure>
+            <div>
+              <p>You might have heard of a temperature blanket where each row of the blanket
+                reflects a temperature (daily-mean, annual-mean). Well this is an ocean surface
+                temperature blanket, representing a snapshot of ocean temperature in the ocean
+                south of Africa at a single time.</p>
+              <a class="btn" href="#progress-title">The frustrating intersection between art and science</a>
+            </div>
+          </div>
+        </section>
 
-<section class="blanket_inspo">
-  <h2 class="section-title" align="center">The inspiration</h2>
-  <p class="section-subtitle"></p>
-  <div class="container">
-    <div class="work-asym">  
-      <img src="img/sst_blankie.jpg" alt="Crocheted blanket of sea surface temperature">
-      
-      <article class="work-asym-2 work-card work-card-plain">
-       <p>	You might have heard of a temperature blanket where each row of the blanket 
-        reflects a temperature (daily-mean, annual-mean). Well this is an ocean surface 
-        temperature blanket, representing a snapshot of ocean temperature in the ocean 
-        south of Africa at a single time.
-				</p>
-        <p>
-          <a class="btn btn-ghost" href="#bp12">The frustrating intersection between art and science.</a>
-        </p>
-      </article> 
-    </div>
-  <div class="card-divider"></div>
-  </div>
-</section>
+        <section class="section" aria-labelledby="snapshot-title">
+          <div class="section-head">
+            <h2 id="snapshot-title">About the temperature snapshot</h2>
+          </div>
+          <div class="split">
+            <figure class="figure-card narrow">
+              <img src="img/BP12_sst_subset.png" alt="The subset of the BIOPERIANT12 sea surface temperature snapshot used for the blanket">
+            </figure>
+            <div>
+              <p>The temperature snapshot (left) is from the output of an ocean-ice-biogeochemical
+                model called <a href="bp12_main.html">BIOPERIANT12</a>, as shown below.</p>
+              <figure class="figure-card">
+                <img src="img/BP12_sst_mercator.png" alt="BIOPERIANT12 sea surface temperature on a Mercator map, with the blanket subset marked">
+              </figure>
+            </div>
+          </div>
+        </section>
 
-<section class="blanket_snapshot">
-  <h2 class="section-title" align="center">About the temperature snapshot</h2>
-  <p class="section-subtitle"></p>
-  <div class="container">
-    <div class="work-asym">  
-      <div class="work-image-inner-straight" align="center">
-        <img src="img/BP12_sst_subset.png" alt="Subset of BIOPERIANT12 sea surface temperature snapshot">
-      </div>
-      <article class="work-asym-2 work-card work-card-plain">
-       <p>The temperature snapshot (left) is from from the output of an ocean-ice-biogeochemical 
-        model, called <a href="bp12_main.html">BIOPERIANT12</a> as shown below.  
-				</p>
-				<img src="img/BP12_sst_mercator.png"  alt="sst mercator" width="95%">
-				</article> 
-    </div>
-  <div class="card-divider"></div>
-  </div>
-</section>
+        <section class="section" aria-labelledby="design-title">
+          <div class="section-head">
+            <h2 id="design-title">Blanket design</h2>
+          </div>
+          <div class="split">
+            <p>One colour of yarn was chosen to represent each temperature band
+              (e.g. 0–1&deg;C, 1–2&deg;C, etc.). For ice concentration each colour of glitter yarn
+              represents an ice coverage band, e.g. 0–20%, 20–40%, etc.</p>
+            <figure class="figure-card">
+              <img src="img/yarn_colours.png" alt="The yarn colours chosen for each temperature band">
+            </figure>
+          </div>
 
+          <div class="sticky callout">1 model grid point = 1 single crochet stitch</div>
 
-<section class="blanket_design">
-  <h2 class="section-title" align="center">Blanket design</h2>
-  <p class="section-subtitle"></p>
-  <div class="container">
-    <div class="work-asym">  
-      <article class="work-card work-card-plain">
-        <p>One colour of yarn was chosen to represent each temperature band 
-          (e.g. 0-1&deg;C, 1-2&deg;C, etc.). For ice concentration each colour of glitter yarn 
-          represents an ice coverage band e.g. 0-20%, 20-40%, etc.
-        </p>
-      </article>
-      <div class="work-asym-2 work-image-inner-straight" align="center">
-        <img src="img/yarn_colours.png" alt="Yarn colors used for blanket design">
-      </div>
-    </div>
-    <div class="cards-4">
-      <article class="card card--span-mid">
-        <p align="center">1 model grid point = 1 single crochet stitch</p>
-      </article>
+          <div class="split">
+            <figure class="figure-card narrow">
+              <img src="img/grid.png" alt="A section of the model grid shown as a crochet pattern">
+            </figure>
+            <p>Thus, the model grid converts into a crochet pattern
+              such as the example on the left (visualised in Python).</p>
+          </div>
+          <div class="split">
+            <p>By counting the number of grid points for each colour, and estimating how much wool I would need for each stitch,
+              I estimated the number of balls of yarn needed for each colour, totalling 35 balls.</p>
+            <figure class="figure-card">
+              <img src="img/yarn_balls.png" alt="Number of yarn balls needed per colour">
+            </figure>
+          </div>
+        </section>
 
-    </div>
-    <div class="card-space"></div>
-  </div>
-  
-    <div class="work-asym">  
-      <div class="work-image-inner-straight" align="center">
-        <img src="img/grid.png" alt="grid breakdown">
-      </div>
-      <article class="work-asym-2 work-card work-card-plain">
-        <p> Thus, the model grid converts into a crochet pattern 
-            such as the left example (visualised in Python).
-        </p>
-      </article>  
-    </div>
-    <div class="card-space"></div>
-    <div class="work-asym"> 
-      <article class="work-card work-card-plain">
-        <p class="fw-normal" style="text-align: left;"> 
-					By counting the number of grid points for each colour, and estimating how much wool I would need for each stitch.
-					I estimated the number of balls of yarn needed for each colour, totalling 35 balls.
-				</p>
-      </article>  
-      <div class="work-asym-2 work-image-inner-straight" align="center">
-        <img src="img/yarn_balls.png" alt="yarn colour breakdown">
-      </div>
-    </div>
-  <div class="card-divider"></div>
-  </div>
-</section>
+        <section class="section" aria-labelledby="model-title">
+          <div class="section-head">
+            <h2 id="model-title">About BIOPERIANT12</h2>
+          </div>
+          <div class="split">
+            <figure class="figure-card">
+              <img src="img/bp12_key_fig.png" alt="The original BIOPERIANT12 surface temperature snapshot in a polar projection">
+            </figure>
+            <div>
+              <p>This is the original snapshot of surface temperature from the BIOPERIANT12 model shown in a different map projection. The red colours indicate warm waters, while the blues are for cool waters. Around Antarctica, the blue-white shading shows ice concentration.</p>
+              <p>The BIOPERIANT12 model domain has 4.8 million grid points at each vertical level (multiplied by 46 vertical levels for a total of over 223 million grid points).
+                The subset is 250 x 500 grid points, or 125,000 stitches. But due to lots of user error, the stitches in any row can vary and the number of rows is ongoing (390 currently, but there might be some duplicate rows in there).</p>
+            </div>
+          </div>
+        </section>
 
-<section class="model info">
-  <h2 class="section-title" align="center">About BIOPERIANT12</h2>
-  <p class="section-subtitle"></p>
-  <div class="container">
-    <div class="work-asym">  
-      <div class="work-image-inner-straight" align="center">
-        <img src="img/bp12_key_fig.png" alt="BIOPERIANT12 key figure snapshot" width="90%">
-      </div>
-      <article class="work-asym-2 work-card work-card-plain">
-       <p> This is the original snapshot of surface temperature from the BIOPERIANT12 model shown in a different map projection. The red colours indicate warm waters, while the blues are for cool waters. Around Antartica, the blue-white shading shows ice concentration.
-			  </p>
-				<p>
-						The BIOPERIANT12 model domain consists of domain has 4.8 million grid points at each vertical level (multiplied by 46 vertical level for a total of over 223 million grid points).
-						The subset consists is 250 x 500 grid points or 125,000 stitches. But due to lots of user error, te stitches in any row can vary and the number of rows is ongoing (390 currently, but there might be some duplicate rows in there). 
-				</p>
-			</article> 
-    </div>
-  <div class="card-divider"></div>
-  </div>
-</section>
+        <section class="section" aria-labelledby="progress-title">
+          <div class="section-head">
+            <h2 id="progress-title">Is the blanket actually finished?</h2>
+          </div>
+          <div class="split">
+            <figure class="taped rotate-r">
+              <img src="img/sst_swirls.jpg" alt="Close-up of crocheted temperature swirls">
+              <figcaption>eddies, in progress</figcaption>
+            </figure>
+            <div>
+              <p>The BIOPERIANT12 model represents the ocean with an approximately 3–8 km
+                horizontal grid. It is thus able to resolve eddies and ocean fronts
+                (10–100 km wide). This means this high resolution model is able to
+                represent the ocean processes responsible for moving heat and carbon,
+                which is great for reducing uncertainty in flux estimates and ocean
+                understanding. However, this also means more colour changes and tangles,
+                which slows down this amateur crochet artist.</p>
+              <p>It blows my mind how necessary access to supercomputers is.
+                This model with over 223 million grid points required 3240 CPUs on
+                the NICIS-CHPC supercomputer to run, and took about 3 months
+                (not including all the testing): cycling over 20 years of snapshots at
+                10 minute intervals for 20+ variables (temperature, salinity, ocean currents,
+                nitrate, chlorophyll, etc.). This compared to this blanket consisting of a
+                tiny 125,000 stitches of a subset of 1 snapshot of 1 variable that I
+                started 2 years ago and have yet to complete.</p>
+            </div>
+          </div>
+        </section>
 
-<section class="blanket progress">
-  <h2 class="section-title" align="center">Is the blanket actually finished?</h2>
-  <p class="section-subtitle"></p>
-  <div class="container">
-    <div class="work-asym">  
-      <div class="work-image-inner-straight" align="center">
-        <img src="img/sst_swirls.jpg" alt="swirls crochet">
-      </div>
-      <article class="work-asym-2 work-card work-card-plain">
-        <p> The BIOPERIANT12 model represents the ocean with an approximately 3-8 km 
-          horizontal grid. It is thus able to resolve eddies and ocean fronts 
-          (10-100 km wide). This means this high resolution model is able to 
-          represent the ocean processes responsible for moving heat and carbon 
-          which great for reducing uncertainty in flux estimates and ocean 
-          understanding. Hoever, this also means more colour changes and tangles 
-          which slows down this amateur crochet artist.
-				</p>
-				<p> It blows my mind how necessary access to supercomputers are. 
-          This model with over 223 million grid points required 3240 CPUs on 
-          the NICIS-CHPC supercomputer to run, and took about 3 months 
-          (not including all the testing): cycling over 20 years of snpshots at 
-          10 minute intervals for 20+ variables (temperatue, salinity, ocean currents,
-           nitrate, chlorophyll, etc.). This compared to this blanket consisting of a 
-           tiny 125,000 stitches of a subset of 1 snapshot of 1 variable that I 
-           started 2 years ago and have have yet to complete.
-				</p>
-				</article> 
-    </div>
-  <div class="card-divider"></div>
-  </div>
-</section>
+        <section class="section" aria-labelledby="tour-title">
+          <div class="section-head">
+            <h2 id="tour-title">Tour dates</h2>
+          </div>
 
-<section class="blanket tour">
-  <h2 class="section-title" align="center">Tour Dates</h2>
-  <p class="section-subtitle"></p>
-  <div class="container">
-    <div class="cards-4">
-      <article class="card card--span-mid">
-        <h3 align="center">Ocean20</h3>
-        <p align="center">The Avenue, Cape Town, 4-5 November 2025</p>
-      </article>
-    </div>
-    <div class="card-space"></div>
-    <div class="work-asym">  
-      <div class="work-image-inner-straight" align="center">
-        <img src="img/qr_code_blankie.png" alt="old qr code" width="50%">
-      </div>
-      <article class="work-asym-2 work-card work-card-plain">
-        <p> If you got here from the <a href="https://g20.org/track/ocean-o20/">Ocean20 Summit</a>.
-				</p> 
-        <p> A copy of the pdf accompanying the crochet can be found below. The included qr code is no longer valid.
-				<iframe src="files/ocean_blankie.pdf#toolbar=0&navpanes=0&scrollbar=0" width="100%" height="600px"></iframe>
-				
-        </p>
-        </article> 
-    </div>
-  <div class="card-divider"></div>
-  </div>
-  <div class="container">
-    <div class="cards-4">
-      <article class="card card--span-mid">
-        <h3 align="center">SANAP</h3>
-        <p align="center">Kwalata Game Lodge, 16-19 November 2025</p>
-      </article>
-    </div>
-    <div class="card-space"></div>
-    <div class="work-asym">  
-      <div class="work-image-inner-straight" align="center">
-        <img src="img/blankie_sanap2025.jpg" alt="blankie at sanap" width="80%">
+          <div class="sticky mint callout">
+            <h3>Ocean20</h3>
+            <p>The Avenue, Cape Town, 4–5 November 2025</p>
+          </div>
+          <div class="split">
+            <figure class="figure-card narrow">
+              <img src="img/qr_code_blankie.png" alt="The QR code shown with the blanket at Ocean20 (no longer valid)">
+            </figure>
+            <div>
+              <p>If you got here from the <a href="https://g20.org/track/ocean-o20/">Ocean20 Summit</a>:
+                a copy of the PDF accompanying the crochet is below. The included QR code is no longer valid.</p>
+            </div>
+          </div>
+          <iframe class="pdf-frame" src="files/ocean_blankie.pdf#toolbar=0&amp;navpanes=0&amp;scrollbar=0" title="Ocean20 blanket handout (PDF)"></iframe>
+
+          <div class="sticky pale callout">
+            <h3>SANAP</h3>
+            <p>Kwalata Game Lodge, 16–19 November 2025</p>
+          </div>
+          <figure class="figure-card figure-wide">
+            <img src="img/blankie_sanap2025.jpg" alt="The blanket on display at the SANAP conference, 2025">
+          </figure>
+        </section>
       </div>
     </div>
-  <div class="card-divider"></div>
-  </div>
-</section>
+
+    <div class="footer-border" aria-hidden="true"></div>
+    <footer>
+      <div class="contact-links">
+        <a href="mailto:chang.nicolette@gmail.com">email</a>
+        <a href="https://github.com/nicolettechang">github</a>
+        <a href="https://www.linkedin.com/in/nicolette-chang-949672b">linkedin</a>
+        <a href="https://orcid.org/0000-0001-7144-7529">orcid</a>
+      </div>
+      <span class="copyright">© 2026 · built with a spiral binder, for GitHub Pages</span>
+    </footer>
+    <a class="to-top" href="#top" aria-label="Back to top" title="Back to top">
+      <img src="assets/logo-mark.svg?v=4" alt="">
+    </a>
+  </main>
+  <script src="assets/to-top.js" defer></script>
+</body>
+</html>

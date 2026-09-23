@@ -1,0 +1,854 @@
+/* =========================================================
+   Nicolette Chang — Portfolio
+   "Field Notebook" design system
+   ========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,600&family=Bitter:ital,wght@0,400;0,600;1,400;1,500&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+:root {
+  --ink: #13213e;
+  --ink-soft: #3d4c6b;
+  --paper: #fdf2f4;      /* pale pink, from her original site */
+  --paper-dim: #f7e3e7;
+  --mint: #ade4d9;
+  --mint-deep: #7fcdba;
+  --teal: #6bbdcc;
+  --teal-deep: #4a9fb0;
+  --blue: #4368b1;
+  --blue-deep: #2f4c85;
+  --pale-blue: #ddf5fa;
+  --lavender: #d9e9f6;
+  --lavender-edge: #88b3d6;
+  --pink: #fdd2e5;
+  --pink-deep: #f2a8c8;
+  --sky: #80cff8;
+  --sky-deep: #4798ee;
+  --sheet: #faf6ee;       /* notebook paper: warm ivory */
+  --sheet-glow: #fffdf8;
+
+  --font-body: 'Nunito', system-ui, sans-serif;
+  --font-caption: 'Bitter', Georgia, serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  --page-max: 1180px;
+  --gutter: clamp(20px, 4vw, 56px);
+  --radius: 14px;
+  --shadow-tape: 0 6px 14px rgba(19, 33, 62, 0.16);
+}
+
+* { box-sizing: border-box; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; display: block; }
+
+a { color: var(--blue-deep); }
+
+a:focus-visible,
+button:focus-visible,
+.tab:focus-visible {
+  outline: 3px solid var(--blue);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+h1, h2, h3 { font-family: var(--font-body); font-weight: 800; margin: 0 0 0.4em; color: var(--ink); }
+h1 { font-size: clamp(2.4rem, 5vw, 3.6rem); line-height: 1.05; letter-spacing: -0.01em; }
+h2 { font-size: clamp(1.5rem, 3vw, 2rem); }
+h3 { font-size: 1.15rem; font-weight: 700; }
+
+p { max-width: 62ch; }
+
+.eyebrow {
+  font-family: var(--font-caption);
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--ink-soft);
+}
+
+/* ---------- layout ---------- */
+
+.page-wrap {
+  max-width: var(--page-max);
+  margin: 0 auto;
+  padding: 0 var(--gutter) 40px;
+}
+
+/* ---------- header / tab navigation ---------- */
+
+.masthead {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 44px var(--gutter) 0;
+  max-width: var(--page-max);
+  margin: 0 auto;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: var(--ink);
+}
+.brand-mark { width: 38px; height: 38px; }
+.brand-name {
+  font-weight: 800;
+  font-size: 1.05rem;
+  letter-spacing: -0.01em;
+}
+.brand-tag {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--ink-soft);
+  display: block;
+  margin-top: -2px;
+}
+
+.tabs {
+  display: flex;
+  gap: 6px;
+  align-items: flex-end;
+  margin-right: 33px; /* clears the card's rounded corner on home; kept everywhere so tabs never move */
+}
+
+.tab {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.92rem;
+  text-decoration: none;
+  color: var(--ink);
+  position: relative;
+  padding: 9px 18px 8px;
+  border-radius: 10px 10px 0 0;
+  border: 2px solid rgba(19, 33, 62, 0.14);
+  border-bottom: none;
+  transition: padding 0.18s ease;
+  background: var(--paper-dim);
+}
+.tab:not([aria-current]):hover { padding-bottom: 12px; }
+
+.tab-home { background: var(--lavender); border-color: var(--lavender-edge); --tab-edge: var(--lavender-edge); }
+.tab.tab-home[aria-current] { border-color: var(--lavender-edge); }
+.tab-mint { background: var(--mint); --tab-edge: var(--mint-deep); }
+.tab-teal { background: var(--teal); color: #fff; --tab-edge: var(--teal-deep); }
+.tab-blue { background: var(--blue); color: #fff; --tab-edge: var(--blue); }
+.tab-pink { background: var(--pink); --tab-edge: var(--pink-deep); }
+
+/* the open tab stands 6px taller than the rest */
+.tab[aria-current] {
+  z-index: 2;
+  padding-bottom: 14px;
+  box-shadow: var(--shadow-tape);
+  border-color: rgba(19, 33, 62, 0.22);
+}
+
+/* ---------- torn / wave divider ---------- */
+
+.torn {
+  height: 26px;
+  margin: 44px 0 40px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 20' preserveAspectRatio='none'%3E%3Cpath d='M0 10 Q 6 0 12 10 T 24 10 T 36 10 T 48 10 T 60 10 T 72 10 T 84 10 T 96 10 T 108 10 T 120 10' fill='none' stroke='%2313213e' stroke-width='1.4' stroke-linecap='round' opacity='0.16'/%3E%3C/svg%3E");
+  background-repeat: repeat-x;
+  background-size: 120px 20px;
+  background-position: center;
+}
+
+/* dotted line with a cat in the middle (assets/cat-divider.svg) */
+.torn--cat {
+  height: auto;
+  aspect-ratio: 808 / 64;
+  max-width: 640px;
+  margin: clamp(48px, 6vw, 72px) auto 0;
+  background: url("cat-divider.svg") center / contain no-repeat;
+}
+/* the divider already makes the gap, so the next section doesn't add its own */
+.torn--cat + .section { margin-top: clamp(40px, 5vw, 56px); }
+
+/* wave with a heart in the middle (assets/wave-heart.svg), drawn once, not tiled */
+.torn--heart {
+  height: auto;
+  aspect-ratio: 1398 / 78;
+  max-width: 820px;
+  margin-inline: auto;
+  background: url("wave-heart.svg") center / contain no-repeat;
+}
+
+/* ---------- washi-taped photo ---------- */
+
+.taped {
+  position: relative;
+  display: inline-block;
+  background: #fff;
+  padding: 10px 10px 34px;
+  box-shadow: var(--shadow-tape);
+  border-radius: 2px;
+}
+.taped img { border-radius: 1px; max-height: 320px; width: auto; object-fit: cover; }
+.taped::before {
+  content: "";
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  width: 78px;
+  height: 26px;
+  background: var(--pink);
+  opacity: 0.85;
+  transform: translateX(-50%) rotate(-3deg);
+  box-shadow: 0 2px 4px rgba(19,33,62,0.15);
+}
+.taped figcaption {
+  position: absolute;
+  bottom: 8px;
+  left: 12px;
+  right: 12px;
+  font-family: var(--font-caption);
+  font-style: italic;
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+}
+.taped.rotate-l { transform: rotate(-3deg); }
+.taped.rotate-r { transform: rotate(2.5deg); }
+
+@media (prefers-reduced-motion: no-preference) {
+  .taped {
+    animation: settle 0.5s ease both;
+  }
+}
+@keyframes settle {
+  from { opacity: 0; transform: translateY(10px) rotate(0deg) scale(0.98); }
+  to { opacity: 1; }
+}
+
+/* ---------- sticky note ---------- */
+
+.sticky {
+  background: var(--pink);
+  padding: 16px 18px;
+  border-radius: 2px;
+  box-shadow: var(--shadow-tape);
+  font-family: var(--font-caption);
+  font-style: italic;
+  transform: rotate(-2deg);
+  max-width: 220px;
+}
+.sticky.mint { background: var(--mint); }
+.sticky.pale { background: var(--pale-blue); }
+
+/* ---------- tags ---------- */
+
+.tag-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0; padding: 0; list-style: none; }
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 14px;
+  border-radius: 999px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  border: 2px solid rgba(19,33,62,0.1);
+}
+.tag-mono { font-family: var(--font-mono); font-weight: 500; background: var(--pale-blue); }
+.tag-soft { font-family: var(--font-body); background: var(--pink); }
+
+/* ---------- simple page heading (work, code, shop) ---------- */
+
+.page-title { margin-top: 30px; font-size: clamp(2rem, 4vw, 2.6rem); }
+.page-lede { font-size: 1.1rem; }
+
+/* ---------- panels / sections ---------- */
+
+.panel {
+  background: var(--paper-dim);
+  border-radius: var(--radius);
+  padding: clamp(20px, 4vw, 32px);
+  border: 2px solid rgba(19,33,62,0.06);
+}
+.panel--pale-blue { background: var(--pale-blue); }
+.panel--lavender { background: var(--lavender); }
+.panel--pink { background: var(--pink); }
+
+.two-col {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
+  gap: 24px;
+  align-items: start;
+}
+
+/* shop: three cards of equal height, images cropped to one size */
+.shop-cards { align-items: stretch; margin-top: 10px; }
+.shop-cards .panel { display: flex; flex-direction: column; }
+.shop-cards .panel img {
+  width: 100%;
+  height: 180px;
+  object-fit: contain;   /* contain, not cover: the BP12 figure must not be cropped */
+  background: #fff;
+  padding: 8px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+.shop-cards .panel p { flex: 1; }
+.shop-cards .panel .corner-link { align-self: flex-start; }
+
+.entry {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 26px;
+  align-items: center;
+  margin-bottom: 40px;
+}
+.entry .taped img { width: 200px; }
+@media (max-width: 640px) {
+  .entry { grid-template-columns: 1fr; }
+}
+
+/* ---------- buttons / links ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  text-decoration: none;
+  color: var(--ink);
+  background: var(--mint);
+  padding: 11px 22px;
+  border-radius: 999px;
+  border: 2px solid rgba(19,33,62,0.15);
+  transition: transform 0.15s ease;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn.blue { background: var(--blue); color: #fff; }
+
+.corner-link {
+  font-family: var(--font-caption);
+  font-style: italic;
+  font-weight: 600;
+  color: var(--blue-deep);
+  text-decoration: none;
+  border-bottom: 1.5px dashed var(--blue-deep);
+}
+
+/* ---------- doodle ---------- */
+
+.doodle { width: 46px; height: 46px; opacity: 0.9; }
+
+/* ---------- footer ---------- */
+
+/* double-wave separator from Figma (assets/border.svg), tiled per wavelength */
+.footer-border {
+  width: min(calc(100% - 2 * var(--gutter)), calc(var(--page-max) - 2 * var(--gutter)));
+  height: 31px;
+  margin: clamp(56px, 8vw, 96px) auto 0;
+  /* round = whole wavelengths only, so both ends finish cleanly */
+  background: url("border-tile.svg") round;
+  background-size: 49.083px 31px;
+}
+
+footer {
+  padding: 26px var(--gutter) 40px;
+  max-width: var(--page-max);
+  margin-inline: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.contact-links {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+}
+.contact-links a { color: var(--ink); text-decoration: none; border-bottom: 1.5px solid var(--teal); }
+
+.copyright {
+  font-family: var(--font-caption);
+  font-style: italic;
+  color: var(--ink-soft);
+  font-size: 0.92rem;
+}
+
+/* ---------- small screens ---------- */
+
+@media (max-width: 640px) {
+  .masthead { padding-top: 24px; justify-content: center; }
+  .tabs { gap: 4px; margin-right: 0; }
+  .tab { padding: 8px 10px 7px; font-size: 0.82rem; }
+  .tab[aria-current] { padding-bottom: 13px; }
+}
+
+/* ---------- sticker sheet (shop) ---------- */
+
+.sticker-sheet {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 22px;
+  background: var(--pale-blue);
+  border-radius: var(--radius);
+  border: 2px dashed rgba(19,33,62,0.2);
+}
+.sticker {
+  width: 110px;
+  height: 110px;
+  background: #fff;
+  border-radius: 50%;
+  padding: 10px;
+  box-shadow: var(--shadow-tape);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.sticker img { max-width: 100%; max-height: 100%; object-fit: contain; }
+.sticker:nth-child(odd) { transform: rotate(-6deg); }
+.sticker:nth-child(even) { transform: rotate(5deg); }
+
+/* ---------- notebook pages: tabs attached to a card ---------- */
+
+.notebook { --card-top: var(--sheet); }
+
+/* tabs sit on the top edge of the card; the open tab takes the card colour */
+.notebook .masthead { justify-content: flex-end; }
+.notebook .masthead .brand { margin-right: auto; }
+.notebook .tab[aria-current] {
+  margin-bottom: -1px;
+  box-shadow: none;
+  background: var(--card-top);
+  border-color: var(--tab-edge);
+  color: var(--ink);
+}
+
+/* the notebook page itself: home hero and every inner page */
+.hero,
+.sheet {
+  position: relative;
+  margin: 0 0 10px 18px;
+  padding: clamp(36px, 5vw, 64px) clamp(24px, 4vw, 48px) clamp(48px, 5vw, 72px) clamp(56px, 7vw, 96px);
+  background:
+    radial-gradient(120% 90% at 86% 33%, var(--sheet-glow) 0%, transparent 60%),
+    var(--sheet);
+  border-radius: 30px;
+  box-shadow: 0 14px 32px -20px rgba(19, 33, 62, 0.35);
+}
+.sheet > .rings + * { margin-top: 0; }
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: 24px;
+  align-items: center;
+}
+/* spiral binder rings down the left edge */
+.rings {
+  position: absolute;
+  /* each ring is centred in a 60px slot, matching the Figma spacing */
+  top: 23.5px;
+  bottom: 20.5px;
+  left: -10.5px;
+  width: 40px;
+  background: url("ring.svg") no-repeat space;
+  background-size: 40px 60px;
+}
+
+.hero-copy { position: relative; z-index: 1; }
+
+.hero-title {
+  font-family: var(--font-body);
+  font-weight: 800;
+  font-size: clamp(2.6rem, 5.4vw, 4.4rem);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  margin: 0 0 22px;
+}
+.hero-title .hi {
+  display: block;
+  font-size: 0.78em;
+  margin-bottom: 4px;
+}
+
+.hero-roles {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 14px;
+  margin: 0 0 22px;
+  padding: 9px 22px;
+  background: var(--pink);
+  border-radius: 999px;
+  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.7), 0 4px 10px -6px rgba(19, 33, 62, 0.3);
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 1.05rem;
+  max-width: none;
+}
+.hero-roles span + span::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-right: 14px;
+  vertical-align: middle;
+  border-radius: 50%;
+  background: #fff;
+}
+
+.hero-intro {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: clamp(1.1rem, 1.6vw, 1.3rem);
+  line-height: 1.55;
+  max-width: 30ch;
+  margin: 0;
+}
+
+.hero-visual {
+  position: relative;
+  justify-self: center;
+  width: min(100%, 440px);
+  padding: 24px 0 40px;
+}
+
+.hero-blob {
+  position: absolute;
+  inset: 0 -6% 4% -14%;
+  width: 120%;
+  height: 100%;
+  z-index: 0;
+}
+
+.hero-photo.taped {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 86%;
+  margin: 0;
+  padding: 12px 12px 44px;
+  transform: rotate(2deg);
+}
+.hero-photo.taped img {
+  width: 100%;
+  max-height: none;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  object-position: 50% 30%;
+}
+.hero-photo.taped::before { width: 110px; height: 30px; opacity: 0.9; }
+.hero-photo.taped figcaption { bottom: 12px; font-size: 1rem; }
+
+.hero-cat {
+  position: absolute;
+  z-index: 3;
+  right: -30px;
+  bottom: -4px;
+  width: 196px;
+  height: auto;
+}
+
+/* wave straddling the bottom edge of the card */
+.hero-wave {
+  position: absolute;
+  left: 25%;
+  right: 5%;
+  bottom: -8px;
+  height: 31px;
+  background: url("wave.svg") repeat-x;
+  background-size: 49.083px 31px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-cat { animation: bob 5s ease-in-out infinite; }
+}
+@keyframes bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+@media (max-width: 820px) {
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+  .hero, .sheet {
+    margin-left: 12px;
+    padding-left: 52px;
+  }
+  .hero-visual { width: min(100%, 360px); }
+  .hero-cat { right: -14px; width: 140px; }
+  .hero-wave { left: 15%; }
+}
+@media (max-width: 640px) {
+  .notebook .masthead { justify-content: center; }
+  .hero, .sheet { padding: 32px 20px 48px 44px; margin-left: 10px; }
+  .hero-roles { background: none; box-shadow: none; padding: 0; gap: 8px; font-size: 0.95rem; }
+  .hero-roles span {
+    padding: 7px 16px;
+    background: var(--pink);
+    border-radius: 999px;
+    box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.7);
+  }
+  .hero-roles span + span::before { display: none; }
+}
+
+/* ---------- inner-page intro (smaller than the home hero) ---------- */
+
+.page-intro {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: clamp(28px, 5vw, 56px);
+  align-items: center;
+  margin-top: 48px;
+}
+.page-intro h1 { font-size: clamp(2rem, 3.6vw, 2.6rem); margin-bottom: 10px; }
+.page-intro-text { font-size: 1.12rem; max-width: 44ch; margin: 0; }
+.page-intro-text a {
+  color: var(--blue-deep);
+  font-weight: 700;
+  text-decoration-color: var(--sky);
+  text-decoration-thickness: 3px;
+  text-underline-offset: 4px;
+}
+.page-intro-photo.taped {
+  display: block;
+  width: 190px;
+  margin: 0 0 0 8px;
+  padding: 9px 9px 34px;
+  transform: rotate(-3deg);
+}
+.page-intro-photo.taped img { width: 100%; max-height: none; aspect-ratio: 1 / 1; object-fit: cover; }
+.page-intro-photo.taped figcaption { bottom: 8px; font-size: 0.85rem; }
+
+.btn-socco {
+  margin-top: 18px;
+  padding: 8px 20px;
+  background: #fff;
+  border-color: var(--lavender-edge);
+}
+.btn-socco img { height: 34px; width: auto; }
+
+.section { margin-top: clamp(64px, 8vw, 96px); }
+
+.section-head {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 26px;
+}
+.section-icon { flex: 0 0 auto; width: 44px; height: 44px; }
+.section-head h2 {
+  position: relative;
+  margin: 0;
+  padding-bottom: 14px;
+  font-size: clamp(1.8rem, 3.2vw, 2.4rem);
+  line-height: 1.1;
+}
+/* short wave underline, cut from the same wave as the card edge */
+.section-head h2::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 76px;
+  height: 16px;
+  background: url("wave.svg") repeat-x;
+  background-size: 25.33px 16px;
+}
+.section-lede {
+  margin: 12px 0 0;
+  font-family: var(--font-caption);
+  font-style: italic;
+  color: var(--ink-soft);
+}
+
+.skill-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+  gap: 24px;
+}
+.skill-card {
+  padding: clamp(24px, 3vw, 34px);
+  border-radius: 24px;
+}
+.skill-card h3 {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 8px;
+  font-size: 1.3rem;
+  font-weight: 800;
+}
+.skill-card--tools {
+  background:
+    radial-gradient(120% 90% at 86% 20%, #cfeefa 0%, transparent 60%),
+    var(--pale-blue);
+}
+.skill-card--tools .tag { background: #fff; border-color: #bfe3f5; }
+.skill-card--soft { background: #fbe1ea; }
+.skill-card--soft .tag {
+  background: var(--pink);
+  border-color: transparent;
+  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.7);
+}
+
+.edu-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: clamp(28px, 5vw, 64px);
+  align-items: center;
+  padding: clamp(28px, 4vw, 48px) clamp(24px, 4vw, 56px);
+  background:
+    radial-gradient(120% 90% at 86% 33%, #cfeefa 0%, transparent 60%),
+    var(--pale-blue);
+  border-radius: 30px;
+}
+
+/* timeline: dashed line with a dot per degree */
+.edu-list {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 30px;
+  border-left: 3px dashed #9fd6f3;
+}
+.edu-list li { position: relative; }
+.edu-list li + li { margin-top: 24px; }
+.edu-list li::before {
+  content: "";
+  position: absolute;
+  left: -40.5px;
+  top: 5px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--sky-deep);
+  box-shadow: 0 0 0 4px var(--pale-blue);
+}
+.edu-list h3 { margin: 0; font-size: 1.12rem; font-weight: 800; }
+.edu-list p { margin: 4px 0 0; color: var(--ink-soft); }
+
+.edu-photo.taped {
+  display: block;
+  width: 220px;
+  margin: 0;
+  padding: 10px 10px 40px;
+  transform: rotate(3deg);
+}
+.edu-photo.taped img { width: 100%; max-height: none; aspect-ratio: 1 / 1; object-fit: cover; }
+
+@media (max-width: 640px) {
+  .page-intro { grid-template-columns: 1fr; margin-top: 32px; }
+  .page-intro-photo.taped { width: 160px; }
+}
+@media (max-width: 820px) {
+  .edu-card { grid-template-columns: 1fr; }
+  .edu-photo.taped { justify-self: center; width: 200px; }
+}
+
+/* ---------- project pages (BIOPERIANT12, SST blanket) ---------- */
+
+.back-link { display: inline-block; margin-top: 30px; }
+.back-link + .page-title { margin-top: 12px; }
+
+/* text beside a figure; stacks on small screens */
+.split {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(24px, 4vw, 48px);
+  align-items: center;
+}
+.split + .split { margin-top: 36px; }
+.split p:first-child { margin-top: 0; }
+@media (max-width: 820px) {
+  .split { grid-template-columns: 1fr; }
+}
+
+/* plain white mount for charts and maps (no tape, no tilt: figures must stay readable) */
+.figure-card {
+  margin: 0;
+  background: #fff;
+  padding: 12px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-tape);
+}
+.figure-card img { width: 100%; height: auto; }
+.figure-card.narrow { max-width: 280px; justify-self: center; }
+.figure-wide { margin: 24px 0 0; }
+
+/* sticky-note callout, centred between blocks */
+.callout {
+  margin: 36px auto;
+  max-width: 320px;
+  text-align: center;
+  font-style: normal;
+  font-weight: 700;
+}
+.callout h3 { margin: 0 0 4px; }
+.callout p { margin: 0; }
+
+.pdf-frame {
+  display: block;
+  width: 100%;
+  height: 600px;
+  margin-top: 16px;
+  border: 2px solid rgba(19, 33, 62, 0.1);
+  border-radius: var(--radius);
+  background: #fff;
+}
+.split > .taped { justify-self: center; }
+@media (max-width: 640px) {
+  .sticker-sheet { gap: 14px; padding: 16px; }
+  .sticker { width: 88px; height: 88px; padding: 8px; }
+}
+
+/* ---------- floating cat: back to top ---------- */
+
+.to-top {
+  position: fixed;
+  right: clamp(12px, 3vw, 32px);
+  bottom: clamp(12px, 3vw, 32px);
+  z-index: 10;
+  display: block;
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  transition: opacity 0.25s ease, visibility 0s;
+}
+.to-top img { width: 100%; height: 100%; transition: transform 0.18s ease; }
+.to-top:hover img { transform: translateY(-4px) rotate(-4deg); }
+.to-top:focus-visible { outline-offset: 4px; border-radius: 50%; }
+.to-top[data-hidden] {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0s linear 0.25s;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .to-top { animation: bob 5s ease-in-out infinite; }
+}
+@media (max-width: 640px) {
+  .to-top { width: 60px; height: 60px; }
+}
