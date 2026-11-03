@@ -186,9 +186,9 @@
                     <td data-label="let go"><code>*.o</code> and <code>*.mod</code> files, and executables you can rebuild</td></tr>
                 <tr><th scope="row">settings</th>
                     <td data-label="keep">namelists and config files, job scripts (<code>*.pbs</code>), and a
-                      <a href="#settings">record</a> of your modules, conda environments, crontab and settings files
-                      such as <code>.bashrc</code></td>
-                    <td data-label="let go">installed conda environments: keep the recipe, rebuild them later</td></tr>
+                      <a href="#settings">record</a> of your modules, conda and python environments, crontab and settings files
+                      such as <code>.bashrc</code> and <code>.vim</code></td>
+                    <td data-label="let go">installed conda and python environments: keep the recipe, rebuild them later</td></tr>
                 <tr><th scope="row">model inputs</th>
                     <td data-label="keep">grids, initial and boundary conditions, forcing you made yourself</td>
                     <td data-label="let go">public data, anything you can easily re-download (ERA5, CMIP6, satellite products, …)</td></tr>
@@ -362,17 +362,44 @@
           <p>First load the modules you usually use, so <code>module list</code> shows them. That includes your conda:
             without it Lengau's generic conda answers, and your environments are not in it. For example:</p>
           <div class="lg-cmd" data-cmd="loadmodules"></div>
-          <p>The code below writes a record of each into <code>lengau_settings</code> in your scratch, with copies of your
-            shell, git, conda and vim settings and, in <code>ssh/</code>, your ssh config and public keys.
-            Only environments in your home folder or your scratch are saved. The created files will be added to your
-             download list. Run it on Lengau:</p>
+          <p>The code below writes a record of each into <code>lengau_settings</code> in your scratch. The created files
+            will be added to your download list. Run it on Lengau:</p>
           <div class="lg-cmd" data-cmd="settings"></div>
           <details class="lg-details lg-details--explain">
-            <summary><span class="lg-kind">Explainer</span> Why not all of <code>.ssh</code>?</summary>
+            <summary><span class="lg-kind">Explainer</span> What goes into <code>lengau_settings</code></summary>
+            <ul class="lg-list">
+              <li><strong>Modules, crontab and environment</strong>: <code>modules.txt</code>, <code>crontab.txt</code>,
+                and <code>environment.txt</code> with every variable your shell sets, such as paths to libraries.</li>
+              <li><strong>Shell and editor settings</strong>: <code>.bashrc</code> and the other shell files, your command
+                history (<code>.bash_history</code>, handy for finding how you once ran something), <code>.tmux.conf</code>,
+                <code>.vimrc</code> and <code>.emacs</code>. Folders such as <code>.vim</code>, <code>.emacs.d</code>,
+                <code>.jupyter</code>, your matplotlib and pip settings, your own scripts in <code>~/bin</code> and your
+                own <code>modulefiles</code> go into <code>home/</code>.</li>
+              <li><strong>Conda</strong>: for each environment in your home folder or your scratch, two recipes.
+                <code>conda_env_NAME.yml</code> has every package at its exact version, to rebuild it as it was.
+                <code>conda_env_NAME_asked_for.yml</code> has only the packages you installed yourself, which is
+                easier to rebuild on a new system where the exact versions are not available.</li>
+              <li><strong>Python</strong>: <code>pip_user.txt</code> lists the packages you installed with
+                <code>pip install --user</code>, and <code>venv_NAME.txt</code> the packages in each python virtual
+                environment. Rebuild one with <code>pip install -r venv_NAME.txt</code>.</li>
+              <li><strong>Git</strong>: <code>git_repos.txt</code> lists every git repository it finds, with how many
+                files have changes and how many commits are not pushed. Anything above 0 is work that is only on
+                Lengau: commit and push it, or put the folder on your download list.</li>
+              <li><strong>ssh</strong>: <code>ssh/</code> holds your ssh config and public keys.</li>
+            </ul>
+          </details>
+          <details class="lg-details lg-details--explain">
+            <summary><span class="lg-kind">Explainer</span> What is left out, and why</summary>
             <p><code>.ssh</code> also holds your private keys (<code>id_rsa</code>, <code>id_ed25519</code>).
               Anyone with one of those can log in as you wherever it is accepted, so it should not sit on an
               external drive. Make new keys on the next system instead, and add the new public key wherever the
               old one was used, such as GitHub.</p>
+            <p>The same goes for files that hold passwords or keys: <code>.netrc</code>, <code>.git-credentials</code>,
+              and data service keys such as <code>.cdsapirc</code> (Copernicus) and <code>.ecmwfapirc</code>. Make a new
+              key on the service's website when you need it.</p>
+            <p>Conda environments in a group folder are not recorded: they belong to the group. Python virtual
+              environments and git repositories more than four folders deep are not found: run
+              <code>pip freeze</code> or <code>git status</code> in those yourself.</p>
           </details>
           <p class="lg-note-line" data-settings-note>Copying this command adds <code>lengau_settings</code> to your <a href="list.html">download list</a>.</p>
           <label class="lg-done"><input type="checkbox" data-tick="decide">Settings saved</label>
@@ -410,6 +437,6 @@
   </main>
   <noscript><p class="lg-noscript">This page needs JavaScript to fill in the commands.</p></noscript>
   <script src="../assets/to-top.js" defer></script>
-  <script src="lengau.js?v=35" defer></script>
+  <script src="lengau.js?v=36" defer></script>
 </body>
 </html>

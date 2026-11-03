@@ -97,17 +97,35 @@
       return 'S=/mnt/lustre/users/$USER/lengau_settings && mkdir -p $S\n' +
         'module list > $S/modules.txt 2>&1\n' +
         'crontab -l > $S/crontab.txt 2>/dev/null\n' +
-        'cp -p ~/.bashrc ~/.bash_profile ~/.profile ~/.bash_aliases ~/.condarc ~/.gitconfig ~/.vimrc $S/ 2>/dev/null\n' +
+        'env | sort > $S/environment.txt\n' +
+        'cp -p ~/.bashrc ~/.bash_profile ~/.profile ~/.bash_aliases ~/.bash_history ~/.cshrc ~/.tcshrc ~/.zshrc ~/.inputrc' +
+        ' ~/.tmux.conf ~/.screenrc ~/.nanorc ~/.vimrc ~/.emacs ~/.condarc ~/.gitconfig ~/.Rprofile ~/.Renviron $S/ 2>/dev/null\n' +
+        'for d in .vim .emacs.d .config/nvim .config/pip .config/matplotlib .ipython/profile_default .jupyter' +
+        ' .local/share/jupyter/kernels bin modulefiles; do\n' +
+        '  [ -d ~/$d ] && mkdir -p $S/home/$d && cp -rp ~/$d/. $S/home/$d/\n' +
+        'done\n' +
         'mkdir -p $S/ssh && cp -p ~/.ssh/config ~/.ssh/*.pub $S/ssh/ 2>/dev/null\n' +
+        'command -v python3 > /dev/null && python3 -m pip list --user --format=freeze > $S/pip_user.txt 2>/dev/null\n' +
         'if command -v conda > /dev/null; then\n' +
         '  { command -v conda; conda env list; } > $S/conda_envs.txt\n' +
         "  for p in $(conda env list | awk '!/^#/ && NF {print $NF}'); do\n" +
         '    case "$p" in\n' +
-        '      "$HOME"/*|/mnt/lustre/users/"$USER"/*) conda env export -p "$p" > $S/conda_env_$(basename "$p").yml ;;\n' +
+        '      "$HOME"/*|/mnt/lustre/users/"$USER"/*)\n' +
+        '        conda env export -p "$p" > $S/conda_env_$(basename "$p").yml\n' +
+        '        conda env export -p "$p" --from-history > $S/conda_env_$(basename "$p")_asked_for.yml ;;\n' +
         '    esac\n' +
         '  done\n' +
         'fi\n' +
-        'echo "settings written to $S"';
+        '# python virtual environments and git repositories, four folders deep in home and scratch\n' +
+        'F=$(find ~ /mnt/lustre/users/$USER -maxdepth 4 \\( -name pyvenv.cfg -o -name .git \\) -not -path "$S/*" 2>/dev/null)\n' +
+        'for v in $(echo "$F" | grep "pyvenv.cfg$"); do\n' +
+        '  d=$(dirname $v); "$d/bin/python" -m pip freeze > $S/venv_$(basename $d).txt 2>/dev/null\n' +
+        'done\n' +
+        'for g in $(echo "$F" | grep "/.git$"); do\n' +
+        '  r=$(dirname $g)\n' +
+        '  echo "$r: $(git -C $r status --porcelain | wc -l) files changed, $(git -C $r log --branches --not --remotes --oneline | wc -l) commits not pushed"\n' +
+        'done > $S/git_repos.txt\n' +
+        'echo "settings written to $S"; cat $S/git_repos.txt';
     },
     'snap-job': function () { return snapJob(); },
     'snap-log': function () { return 'cat ~/lengau_snapshot.log'; },

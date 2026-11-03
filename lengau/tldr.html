@@ -75,8 +75,14 @@
               <div class="lg-cmd" data-static="lengau">conda env export -n ENVNAME &gt; ENVNAME.yml</div></li>
             <li><span class="lg-tldr-what">Record your crontab</span>
               <div class="lg-cmd" data-static="lengau">crontab -l &gt; crontab.txt</div></li>
-            <li><span class="lg-tldr-what">Keep your config files (not your private ssh keys)</span>
-              <div class="lg-cmd" data-static="lengau">cp ~/.bashrc ~/.gitconfig ~/.ssh/config .</div></li>
+            <li><span class="lg-tldr-what">Record a conda environment, only what you asked for (rebuilds on a new system)</span>
+              <div class="lg-cmd" data-static="lengau">conda env export -n ENVNAME --from-history &gt; ENVNAME_asked_for.yml</div></li>
+            <li><span class="lg-tldr-what">Record your pip packages, or those in a virtual environment</span>
+              <div class="lg-cmd" data-static="lengau">python3 -m pip list --user --format=freeze &gt; pip_user.txt; VENV/bin/python -m pip freeze &gt; VENV.txt</div></li>
+            <li><span class="lg-tldr-what">Keep your config files (not your private ssh keys, <code>.netrc</code> or API keys)</span>
+              <div class="lg-cmd" data-static="lengau">cp -p ~/.bashrc ~/.bash_history ~/.gitconfig ~/.vimrc ~/.tmux.conf ~/.ssh/config . 2&gt;/dev/null; cp -rp ~/.vim ~/bin . 2&gt;/dev/null</div></li>
+            <li><span class="lg-tldr-what">Work in a git repository that is only on Lengau: changed files, then commits not pushed</span>
+              <div class="lg-cmd" data-static="lengau">git -C REPO status -s; git -C REPO log --branches --not --remotes --oneline</div></li>
             <li><span class="lg-tldr-what">Compress a NetCDF file, losing nothing</span>
               <div class="lg-cmd" data-static="lengau">nccopy -d 1 -s in.nc out.nc</div></li>
             <li><span class="lg-tldr-what">Make a tarball from a directory</span>
@@ -140,6 +146,6 @@
   </main>
   <noscript><p class="lg-noscript">This page needs JavaScript to fill in the commands.</p></noscript>
   <script src="../assets/to-top.js" defer></script>
-  <script src="lengau.js?v=35" defer></script>
+  <script src="lengau.js?v=36" defer></script>
 </body>
 </html>
