@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lengau commands — Nicolette Chang</title>
+<meta name="description" content="Lengau (CHPC) shuts down on 1 December 2026: every command to save your data, in order, with no explanations.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="../assets/logo-mark.svg?v=4" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/style.css?v=25">
+<link rel="stylesheet" href="lengau.css?v=34">
+</head>
+<body class="notebook" id="top">
+  <main>
+    <header class="masthead">
+      <a class="brand" href="../index.html">
+        <img class="brand-mark" src="../assets/logo-mark.svg?v=4" alt="">
+        <span>
+          <span class="brand-name">Nicolette Chang</span>
+          <span class="brand-tag">climate · ocean modelling · HPC</span>
+        </span>
+      </a>
+      <nav class="tabs" aria-label="Primary">
+        <a href="../index.html" class="tab tab-home">home</a>
+        <a href="../about.html" class="tab tab-mint">about</a>
+        <a href="../work.html" class="tab tab-teal">work</a>
+        <a href="../code.html" class="tab tab-blue">code</a>
+        <a href="../shop.html" class="tab tab-pink">shop</a>
+      </nav>
+    </header>
+
+    <div class="page-wrap">
+      <div class="sheet lg-sheet">
+        <div class="rings" aria-hidden="true"></div>
+
+        <nav class="lg-dividers" aria-label="Guide pages">
+          <a class="lg-divider lg-divider--countdown" href="index.html">Countdown</a>
+          <a class="lg-divider lg-divider--checklist" href="checklist.html">Checklist</a>
+          <a class="lg-divider lg-divider--check" href="check.html">Choose</a>
+          <a class="lg-divider lg-divider--prepare" href="prepare.html">Prepare</a>
+          <a class="lg-divider lg-divider--download" href="download.html">Transfer</a>
+          <a class="lg-divider lg-divider--tldr" href="tldr.html" aria-current="page">TL;DR</a>
+        </nav>
+
+        <div class="lg-intro">
+          <p class="lg-kicker">TL;DR</p>
+          <h1 class="page-title">Just the commands</h1>
+          <p class="page-lede">Know your way around a cluster? These are the commands, one line each. Type your
+            Lengau username and your drive below, then swap in your own <code>DIRNAME</code>. The other tabs explain each step.</p>
+          <form class="panel panel--pale-blue lg-form lg-form--user" id="lg-details" autocomplete="off">
+            <label>Lengau username
+              <input name="user" placeholder="e.g. nchang" spellcheck="false">
+            </label>
+            <label>Path to the folder on your drive
+              <input name="drivepath" placeholder="e.g. /Volumes/USBSTICK/lengau or /mnt/d/lengau" spellcheck="false">
+            </label>
+            <p class="caption lg-form-note">Filled in for you if you set them on the <a href="checklist.html#details">Checklist</a>. Kept in this browser only.</p>
+          </form>
+          <p class="lg-note-line lg-where-key"><img src="laptop.svg" alt="">run on your computer
+            &nbsp;·&nbsp; <img src="data-server.svg" alt="">run on Lengau</p>
+        </div>
+
+        <section class="section lg-section" id="lengau">
+          <div class="section-head"><h2>On Lengau</h2></div>
+          <ul class="lg-tldr">
+            <li><span class="lg-tldr-what">Log in</span>
+              <div class="lg-cmd" data-static="here">ssh USERNAME@lengau.chpc.ac.za</div></li>
+            <li><span class="lg-tldr-what">Size what is in a folder, largest last</span>
+              <div class="lg-cmd" data-static="lengau">du -sh * .[!.]* 2&gt;/dev/null | sort -h</div></li>
+            <li><span class="lg-tldr-what">Killed? Get a compute node for up to 4 hours</span>
+              <div class="lg-cmd" data-static="lengau">qsub -I -q serial -P ERTH0834 -l select=1:ncpus=1 -l walltime=04:00:00</div></li>
+            <li><span class="lg-tldr-what">Record your modules</span>
+              <div class="lg-cmd" data-static="lengau">module list &gt; modules.txt 2&gt;&amp;1</div></li>
+            <li><span class="lg-tldr-what">Record a conda environment</span>
+              <div class="lg-cmd" data-static="lengau">conda env export -n ENVNAME &gt; ENVNAME.yml</div></li>
+            <li><span class="lg-tldr-what">Record your crontab</span>
+              <div class="lg-cmd" data-static="lengau">crontab -l &gt; crontab.txt</div></li>
+            <li><span class="lg-tldr-what">Keep your config files (not your private ssh keys)</span>
+              <div class="lg-cmd" data-static="lengau">cp ~/.bashrc ~/.gitconfig ~/.ssh/config .</div></li>
+            <li><span class="lg-tldr-what">Compress a NetCDF file, losing nothing</span>
+              <div class="lg-cmd" data-static="lengau">nccopy -d 1 -s in.nc out.nc</div></li>
+            <li><span class="lg-tldr-what">Make a tarball from a directory</span>
+              <div class="lg-cmd" data-static="lengau">tar cf DIRNAME.tar DIRNAME</div></li>
+            <li><span class="lg-tldr-what">Make a compressed tarball (worth it for text, not NetCDF)</span>
+              <div class="lg-cmd" data-static="lengau">tar czf DIRNAME.tar.gz DIRNAME</div></li>
+            <li><span class="lg-tldr-what">Check a tarball</span>
+              <div class="lg-cmd" data-static="lengau">tar tf DIRNAME.tar &gt; /dev/null &amp;&amp; echo OK</div></li>
+          </ul>
+        </section>
+
+        <div class="torn torn--waves" aria-hidden="true"></div>
+
+        <section class="section lg-section" id="download">
+          <div class="section-head"><h2>On your computer</h2></div>
+          <ul class="lg-tldr">
+            <li><span class="lg-tldr-what">Copy a directory. Run it again if the VPN drops: it carries on</span>
+              <div class="lg-cmd" data-static="here">rsync -rt --partial --progress USERNAME@lengau.chpc.ac.za:/mnt/lustre/users/USERNAME/DIRNAME /path/to/drive/</div></li>
+            <li><span class="lg-tldr-what">Stream a directory of many small files: nothing written on Lengau</span>
+              <div class="lg-cmd" data-static="here">ssh USERNAME@lengau.chpc.ac.za "cd /mnt/lustre/users/USERNAME &amp;&amp; tar cf - DIRNAME" | tar xf - -C /path/to/drive/</div></li>
+            <li><span class="lg-tldr-what">Copy a tarball</span>
+              <div class="lg-cmd" data-static="here">rsync -t --partial --progress USERNAME@lengau.chpc.ac.za:/mnt/lustre/users/USERNAME/DIRNAME.tar /path/to/drive/</div></li>
+            <li><span class="lg-tldr-what">Check a copied directory: prints nothing but skipped links when it is all there</span>
+              <div class="lg-cmd" data-static="here">rsync -rtn --itemize-changes USERNAME@lengau.chpc.ac.za:/mnt/lustre/users/USERNAME/DIRNAME /path/to/drive/</div></li>
+            <li><span class="lg-tldr-what">Unpack a tarball</span>
+              <div class="lg-cmd" data-static="here">tar xf DIRNAME.tar -C /path/to/drive/</div></li>
+            <li><span class="lg-tldr-what">Keep a Mac awake while a command runs: put this in front of it</span>
+              <div class="lg-cmd" data-static="here">caffeinate -i</div></li>
+            <li><span class="lg-tldr-what">List what is on the drive</span>
+              <div class="lg-cmd" data-static="here">ls -lR /path/to/drive &gt; /path/to/drive/CONTENTS.txt</div></li>
+          </ul>
+        </section>
+
+        <div class="torn torn--heart" aria-hidden="true"></div>
+
+        <section class="section lg-section lg-tldr-loops" id="script">
+          <div class="section-head"><h2>Several directories: a loop</h2></div>
+          <p>Any of the lines above works in a <code>for</code> loop, in a script or at the prompt. Make a tarball of each, on Lengau:</p>
+          <div class="lg-cmd" data-static="lengau">for d in DIR1 DIR2 DIR3; do tar cf $d.tar $d &amp;&amp; tar tf $d.tar &gt; /dev/null &amp;&amp; echo "OK $d" || echo "FAILED $d"; done</div>
+          <p>Copy each to the drive, on your computer. Run it again for any that say <code>FAILED</code>:</p>
+          <div class="lg-cmd" data-static="here">for d in DIR1 DIR2 DIR3; do rsync -rt --partial USERNAME@lengau.chpc.ac.za:/mnt/lustre/users/USERNAME/$d /path/to/drive/ &amp;&amp; echo "OK $d" || echo "FAILED $d"; done</div>
+          <p>Want the scripts written for you, with your own folders and a progress report? Make a
+            <a href="list.html">download list</a> and use the shortcut on <a href="download.html#script">Transfer</a>.</p>
+        </section>
+      </div>
+    </div>
+
+    <div class="footer-border" aria-hidden="true"></div>
+    <footer>
+      <div class="contact-links">
+        <a href="mailto:chang.nicolette@gmail.com">email</a>
+        <a href="https://github.com/nicolettechang">github</a>
+        <a href="https://www.linkedin.com/in/nicolette-chang-949672b">linkedin</a>
+        <a href="https://orcid.org/0000-0001-7144-7529">orcid</a>
+      </div>
+      <span class="copyright">© 2026 · built with a spiral binder, for GitHub Pages</span>
+    </footer>
+    <a class="to-top" href="#top" aria-label="Back to top" title="Back to top">
+      <img src="../assets/logo-mark.svg?v=4" alt="">
+    </a>
+  </main>
+  <noscript><p class="lg-noscript">This page needs JavaScript to fill in the commands.</p></noscript>
+  <script src="../assets/to-top.js" defer></script>
+  <script src="lengau.js?v=35" defer></script>
+</body>
+</html>

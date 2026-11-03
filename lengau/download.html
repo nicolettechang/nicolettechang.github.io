@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Transfer your Lengau data — Nicolette Chang</title>
+<meta name="description" content="Lengau (CHPC) shuts down on 1 December 2026: copy what you keep to an external drive and check it.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="../assets/logo-mark.svg?v=4" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/style.css?v=25">
+<link rel="stylesheet" href="lengau.css?v=34">
+</head>
+<body class="notebook" id="top">
+  <main>
+    <header class="masthead">
+      <a class="brand" href="../index.html">
+        <img class="brand-mark" src="../assets/logo-mark.svg?v=4" alt="">
+        <span>
+          <span class="brand-name">Nicolette Chang</span>
+          <span class="brand-tag">climate · ocean modelling · HPC</span>
+        </span>
+      </a>
+      <nav class="tabs" aria-label="Primary">
+        <a href="../index.html" class="tab tab-home">home</a>
+        <a href="../about.html" class="tab tab-mint">about</a>
+        <a href="../work.html" class="tab tab-teal">work</a>
+        <a href="../code.html" class="tab tab-blue">code</a>
+        <a href="../shop.html" class="tab tab-pink">shop</a>
+      </nav>
+    </header>
+
+    <div class="page-wrap">
+      <div class="sheet lg-sheet">
+        <div class="rings" aria-hidden="true"></div>
+
+        <nav class="lg-dividers" aria-label="Guide pages">
+          <a class="lg-divider lg-divider--countdown" href="index.html">Countdown</a>
+          <a class="lg-divider lg-divider--checklist" href="checklist.html">Checklist</a>
+          <a class="lg-divider lg-divider--check" href="check.html">Choose</a>
+          <a class="lg-divider lg-divider--prepare" href="prepare.html">Prepare</a>
+          <a class="lg-divider lg-divider--download" href="download.html" aria-current="page">Transfer</a>
+          <a class="lg-divider lg-divider--tldr" href="tldr.html">TL;DR</a>
+        </nav>
+
+        <div class="lg-intro">
+          <p class="lg-kicker">Part 5</p>
+          <h1 class="page-title">Transfer your data off Lengau</h1>
+          <p class="page-lede">Copy everything on your download list to the external drive, check each copy, and write down what is on it.</p>
+          <p class="lg-note-line">The commands fill in from <a href="checklist.html#details">your details</a> on the checklist.</p>
+          <p class="lg-note-line lg-where-key"><img src="laptop.svg" alt="">run on your computer
+            &nbsp;·&nbsp; <img src="data-server.svg" alt="">run on Lengau</p>
+        </div>
+
+        <!-- ============ setup ============ -->
+        <section class="section lg-section lg-step" id="setup" data-step="setup">
+          <div class="section-head"><h2>Make a folder on you external drive</h2></div>
+          <p>Plug the drive in, then make a folder for it all:</p>
+          <div class="lg-cmd" data-cmd="setup"></div>
+          <label class="lg-done"><input type="checkbox" data-tick="setup"> Done</label>
+        </section>
+
+        <div class="torn torn--waves" aria-hidden="true"></div>
+
+        <!-- ============ copy ============ -->
+        <section class="section lg-section lg-step" id="copy" data-step="copy">
+          <div class="section-head"><h2>Download commands</h2></div>
+          <details class="lg-details lg-details--explain">
+            <summary><span class="lg-kind">Explainer</span> Three ways a folder is downloaded</summary>
+            <p>Each item on your list comes down one of three ways:</p>
+            <ul class="lg-list">
+              <li><strong>Tarballs</strong> (<code>.tar</code> or <code>.tar.gz</code>), packed on Lengau in
+                <a href="prepare.html#tars">Part 4</a>: each arrives as one file, links included, on any drive.</li>
+              <li><strong>Folders as they are</strong>, for big folders of data files. <code>rsync</code> leaves
+                links out and says <code>skipping non-regular file</code> for each one.</li>
+              <li><strong>Streamed</strong>, for folders of many small files: packed on Lengau as it is sent and unpacked
+                on your drive as it arrives, links included.</li>
+            </ul>
+          </details>
+          <p><strong>If the VPN drops,</strong> run the <code>rsync</code> command again and it carries on where it stopped. A stream
+            can't carry on, so each streamed folder has an <code>rsync</code> command under it that copies only what is missing.</p>
+          <p class="lg-mac-tip" data-os="mac"><code>caffeinate -i</code> at the front keeps the Mac awake.
+            Keep the lid open and the charger in.</p>
+          <p class="lg-mac-tip" data-os="win">Set Windows not to sleep while a copy runs.</p>
+
+          <details class="lg-details lg-details--option" id="script">
+            <summary><span class="lg-kind">Shortcut</span> Download and check everything with one script</summary>
+            <p>One script copies every folder on your list the right way for each, then checks it. It asks for your
+              password once, shows how far it is (<code>[3/12]</code>) and how many folders are left, and keeps a record
+              on the drive in <code>download_progress.txt</code>. Stopped, or the VPN dropped? Run it again: folders
+              already checked are skipped.</p>
+            <p>Copy this into a terminal on your computer. It writes the script for the list as it is now:</p>
+            <div class="lg-cmd" data-cmd="dl-script"></div>
+            <p>Then run it, and leave the terminal open until it ends:</p>
+            <div class="lg-cmd" data-cmd="dl-run"></div>
+            <p>It ends with how many folders are copied and checked. If it says <code>Not complete</code> or
+              <code>Lost the connection</code>, reconnect the VPN if you need to and run it again.
+              See which folders are done at any time:</p>
+            <div class="lg-cmd" data-cmd="dl-log"></div>
+            <p>Changed your list? Copy the first command again to write a new script. Folders already done are still skipped.</p>
+          </details>
+
+          <h3 class="lg-sub lg-sub--small">Below are the download commands for each folder on your download list</h3>
+         
+          <p class="lg-progress" aria-live="polite"></p>
+          <ol class="lg-folders" id="lg-folders"></ol>
+          <label class="lg-done"><input type="checkbox" data-tick="copy"> Done: everything on my list is checked</label>
+        </section>
+
+        <div class="torn torn--cat" aria-hidden="true"></div>
+
+        <!-- ============ record ============ -->
+        <section class="section lg-section lg-step" id="record" data-step="record">
+          <div class="section-head"><h2>Write down what is on the drive</h2></div>
+          <div class="lg-cmd" data-cmd="contents"></div>
+          <ul class="lg-list">
+            <li><strong>Label the drive</strong> with your name and the date.</li>
+            <li><strong>Tell the data manager</strong> which drive it is and what is on it.</li>
+            <li><strong>Irreplaceable? Make a second copy</strong>, on a second drive or on DIRISA.
+              A single drive is one drop away from losing it all.</li>
+          </ul>
+          <label class="lg-done"><input type="checkbox" data-tick="record"> Done</label>
+        </section>
+
+        <div class="torn torn--fish" aria-hidden="true"></div>
+
+        <!-- ============ windows ============ -->
+        <section class="section lg-section" id="windows">
+          <div class="section-head"><h2>Windows</h2></div>
+          <ol class="lg-list">
+            <li>In PowerShell, opened as administrator: <code>wsl --install</code>, then restart.</li>
+            <li>Open <strong>Ubuntu</strong> and run <code>sudo apt update &amp;&amp; sudo apt install -y rsync</code>.</li>
+            <li>Choose <em>Windows</em> under <a href="checklist.html#details">Your details</a>, with your drive's letter.</li>
+            <li>If Ubuntu cannot reach Lengau while the VPN is on, try <code>ssh</code> from PowerShell.
+              If that works, ask the data manager for help with the copy.</li>
+          </ol>
+        </section>
+
+        <nav class="lg-pager" aria-label="Previous and next page">
+          <a class="lg-pager-link lg-pager-prev" href="prepare.html" rel="prev">
+            <span class="lg-pager-dir">Previous</span>
+            <span class="lg-pager-title"><span aria-hidden="true">← </span>Prepare Lengau data for download</span>
+          </a>
+        </nav>
+      </div>
+    </div>
+
+    <div class="footer-border" aria-hidden="true"></div>
+    <footer>
+      <div class="contact-links">
+        <a href="mailto:chang.nicolette@gmail.com">email</a>
+        <a href="https://github.com/nicolettechang">github</a>
+        <a href="https://www.linkedin.com/in/nicolette-chang-949672b">linkedin</a>
+        <a href="https://orcid.org/0000-0001-7144-7529">orcid</a>
+      </div>
+      <span class="copyright">© 2026 · built with a spiral binder, for GitHub Pages</span>
+    </footer>
+    <a class="to-top" href="#top" aria-label="Back to top" title="Back to top">
+      <img src="../assets/logo-mark.svg?v=4" alt="">
+    </a>
+  </main>
+  <noscript><p class="lg-noscript">This page needs JavaScript to fill in the commands.</p></noscript>
+  <script src="../assets/to-top.js" defer></script>
+  <script src="lengau.js?v=35" defer></script>
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Your Lengau download list — Nicolette Chang</title>
+<meta name="description" content="Lengau (CHPC) shuts down on 1 December 2026: the folders you will copy off Lengau.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="../assets/logo-mark.svg?v=4" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/style.css?v=25">
+<link rel="stylesheet" href="lengau.css?v=34">
+</head>
+<body class="notebook" id="top">
+  <main>
+    <header class="masthead">
+      <a class="brand" href="../index.html">
+        <img class="brand-mark" src="../assets/logo-mark.svg?v=4" alt="">
+        <span>
+          <span class="brand-name">Nicolette Chang</span>
+          <span class="brand-tag">climate · ocean modelling · HPC</span>
+        </span>
+      </a>
+      <nav class="tabs" aria-label="Primary">
+        <a href="../index.html" class="tab tab-home">home</a>
+        <a href="../about.html" class="tab tab-mint">about</a>
+        <a href="../work.html" class="tab tab-teal">work</a>
+        <a href="../code.html" class="tab tab-blue">code</a>
+        <a href="../shop.html" class="tab tab-pink">shop</a>
+      </nav>
+    </header>
+
+    <div class="page-wrap">
+      <div class="sheet lg-sheet">
+        <div class="rings" aria-hidden="true"></div>
+
+        <nav class="lg-dividers" aria-label="Guide pages">
+          <a class="lg-divider lg-divider--countdown" href="index.html">Countdown</a>
+          <a class="lg-divider lg-divider--checklist" href="checklist.html">Checklist</a>
+          <a class="lg-divider lg-divider--check" href="check.html">Choose</a>
+          <a class="lg-divider lg-divider--prepare" href="prepare.html">Prepare</a>
+          <a class="lg-divider lg-divider--download" href="download.html">Transfer</a>
+          <a class="lg-divider lg-divider--tldr" href="tldr.html">TL;DR</a>
+        </nav>
+
+        <div class="lg-intro">
+          <p class="lg-kicker">Download list</p>
+          <h1 class="page-title">Your download list</h1>
+          <p class="page-lede">This helps you keep track of the folders you will copy off Lengau and then generate a download script. Tarballs are packed on Lengau in
+            <a href="prepare.html#tars">Part 4</a>, and everything is copied to your drive in <a href="download.html#copy">Part 5</a>.</p>
+          <p class="lg-note-line">Keep this page in its own window next to the guide: both pages update as you go.</p>
+          <p class="lg-note-line">Nothing is uploaded. Your list, and any snapshot you open, stay in this browser on this
+            computer until you clear its site data. To keep a copy, or carry on in another browser,
+            <a href="#save">save your list to a file</a>.</p>
+          <a class="sticky pale lg-jump" href="#list">
+            <img src="../assets/fish-trio.svg" alt="" width="64" height="22">
+            <span>Swim down to your list <span aria-hidden="true">↓</span></span>
+            <span class="lg-jump-count" data-list-count></span>
+          </a>
+        </div>
+
+        <!-- ============ add ============ -->
+        <section class="section lg-section" id="add">
+          <div class="section-head"><h2>1. Add a folder by path</h2></div>
+          <p>Here you can add folders to your download list and decide how to download it</p>
+          <div data-add-form></div>
+        </section>
+
+        <div class="torn torn--heart" aria-hidden="true"></div>
+
+        <!-- ============ snapshot ============ -->
+        <section class="section lg-section" id="snapshot">
+          <div class="section-head"><h2>2. Tick folders from a snapshot</h2></div>
+          <p>Made a snapshot with the <a href="check.html#snapshot">faster method</a> on the Choose page?
+            Open it here and tick the folders to keep: each one goes on your list.</p>
+          <label class="lg-snap-file"><span>Open your snapshots, from
+            the <code>lengau_snapshots</code> folder you made</span>
+            <input type="file" id="lg-snap-file" accept=".gz,.tsv,.txt" multiple>
+          </label>
+          <p class="lg-note-line" id="lg-snap-status" aria-live="polite"></p>
+          <div id="lg-tree"></div>
+        </section>
+
+        <div class="torn torn--waves" aria-hidden="true"></div>
+
+        <!-- ============ the list ============ -->
+        <section class="section lg-section" id="list">
+          <div class="section-head"><h2>On your list</h2></div>
+          <ul class="lg-mini-list" id="lg-list-items"></ul>
+        </section>
+
+        <div class="torn torn--fish" aria-hidden="true"></div>
+
+        <!-- ============ save ============ -->
+        <section class="section lg-section" id="save">
+          <div class="section-head"><h2>Save or move your list</h2></div>
+          <p>Save your list to a file to keep a copy, or to carry on in another browser or on another computer.
+            Open the file there and its folders are added to the list, with what you have already copied and checked.</p>
+          <div class="lg-save-row">
+            <button class="btn blue" type="button" id="lg-save-list">Save my list to a file</button>
+            <label class="lg-snap-file"><span>Open a saved list</span>
+              <input type="file" id="lg-load-list" accept=".json,application/json">
+            </label>
+          </div>
+          <p class="lg-note-line" id="lg-save-status" aria-live="polite"></p>
+        </section>
+      </div>
+    </div>
+
+    <div class="footer-border" aria-hidden="true"></div>
+    <footer>
+      <div class="contact-links">
+        <a href="mailto:chang.nicolette@gmail.com">email</a>
+        <a href="https://github.com/nicolettechang">github</a>
+        <a href="https://www.linkedin.com/in/nicolette-chang-949672b">linkedin</a>
+        <a href="https://orcid.org/0000-0001-7144-7529">orcid</a>
+      </div>
+      <span class="copyright">© 2026 · built with a spiral binder, for GitHub Pages</span>
+    </footer>
+    <a class="to-top" href="#top" aria-label="Back to top" title="Back to top">
+      <img src="../assets/logo-mark.svg?v=4" alt="">
+    </a>
+  </main>
+  <noscript><p class="lg-noscript">This page needs JavaScript to fill in the commands.</p></noscript>
+  <script src="../assets/to-top.js" defer></script>
+  <script src="lengau.js?v=35" defer></script>
+</body>
+</html>

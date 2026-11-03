@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prepare your Lengau data — Nicolette Chang</title>
+<meta name="description" content="Lengau (CHPC) shuts down on 1 December 2026: pack your folders into tarballs on Lengau before you download them.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="../assets/logo-mark.svg?v=4" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/style.css?v=25">
+<link rel="stylesheet" href="lengau.css?v=34">
+</head>
+<body class="notebook" id="top">
+  <main>
+    <header class="masthead">
+      <a class="brand" href="../index.html">
+        <img class="brand-mark" src="../assets/logo-mark.svg?v=4" alt="">
+        <span>
+          <span class="brand-name">Nicolette Chang</span>
+          <span class="brand-tag">climate · ocean modelling · HPC</span>
+        </span>
+      </a>
+      <nav class="tabs" aria-label="Primary">
+        <a href="../index.html" class="tab tab-home">home</a>
+        <a href="../about.html" class="tab tab-mint">about</a>
+        <a href="../work.html" class="tab tab-teal">work</a>
+        <a href="../code.html" class="tab tab-blue">code</a>
+        <a href="../shop.html" class="tab tab-pink">shop</a>
+      </nav>
+    </header>
+
+    <div class="page-wrap">
+      <div class="sheet lg-sheet">
+        <div class="rings" aria-hidden="true"></div>
+
+        <nav class="lg-dividers" aria-label="Guide pages">
+          <a class="lg-divider lg-divider--countdown" href="index.html">Countdown</a>
+          <a class="lg-divider lg-divider--checklist" href="checklist.html">Checklist</a>
+          <a class="lg-divider lg-divider--check" href="check.html">Choose</a>
+          <a class="lg-divider lg-divider--prepare" href="prepare.html" aria-current="page">Prepare</a>
+          <a class="lg-divider lg-divider--download" href="download.html">Transfer</a>
+          <a class="lg-divider lg-divider--tldr" href="tldr.html">TL;DR</a>
+        </nav>
+
+        <div class="lg-intro">
+          <p class="lg-kicker">Part 4</p>
+          <h1 class="page-title">Prepare Lengau data for download</h1>
+          <p class="page-lede">You are preparing a <a href="list.html">download list</a> of folders and files to save from oblivion.
+            But before you download, there are a few things to consider. 
+            Most folders come down as they are. Only folders you mark as a tarball are packed on Lengau first:
+            a tarball is a single file that contains a folder and all its contents.</p>
+          <p class="lg-note-line">The commands below use <a href="checklist.html#details">your details</a>.</p>
+          <p class="lg-note-line lg-where-key"><img src="laptop.svg" alt="">Your computer
+            &nbsp;·&nbsp; <img src="data-server.svg" alt="">Lengau</p>
+        </div>
+
+        <!-- ============ travel ============ -->
+        <section class="section lg-section" id="travel">
+          <div class="section-head"><h2>How should it travel?</h2></div>
+          <p class="page-lede">You've <a href="check.html#how">decided how much of each folder to keep</a>.
+            Now choose how it gets to your drive. This can save you a lot of time. You can specify which method to use for each folder in
+            your <a href="list.html">download list</a>.</p>
+          <ol class="lg-ways">
+            <li>
+              <details class="lg-way">
+                <summary>
+                  <span class="lg-part-num" aria-hidden="true">1</span>
+                  <span class="lg-way-title"><span class="lg-way-kind lg-way-kind--kept">Arrives ready to use</span><h3>As it is <code>rsync</code></h3></span>
+                  <span class="lg-way-arrow" aria-hidden="true"></span>
+                </summary>
+                <div class="lg-way-body">
+                  <p> Downloads file by file, links left out. Slow for thousands of small files, and it carries on where it
+                    stopped if the VPN drops unlike scp.</p>
+                  <p>Best for folders of big files, such as model output and restarts. Nothing to do on Lengau first.</p>
+                  <p><strong>On your drive:</strong> ready to use as soon as it lands.</p>
+                </div>
+              </details>
+            </li>
+            <li>
+              <details class="lg-way">
+                <summary>
+                  <span class="lg-part-num" aria-hidden="true">2</span>
+                  <span class="lg-way-title"><span class="lg-way-kind lg-way-kind--kept">Arrives ready to use</span><h3>Stream <code>tar</code> over <code>ssh</code></h3></span>
+                  <span class="lg-way-arrow" aria-hidden="true"></span>
+                </summary>
+                <div class="lg-way-body">
+                  <p>Lengau packs the folder as it sends it and your computer unpacks it as it arrives, so it is as fast as a tarball, but takes no space
+                    or job on Lengau, and keeps its links. If the VPN drops, doesn't start again: the <code>rsync</code> command under it copies only the files
+                    that are missing.</p>
+                  <p>For folders of thousands of small files: code, logs, many short runs. </p>
+                  <p><strong>On your drive:</strong> ready to use as soon as it lands.</p>
+                </div>
+              </details>
+            </li>
+            <li>
+              <details class="lg-way">
+                <summary>
+                  <span class="lg-part-num" aria-hidden="true">3</span>
+                  <span class="lg-way-title"><span class="lg-way-kind lg-way-kind--later">pack on lengau - unpack before use</span><h3>Tarball <code>.tar</code></h3></span>
+                  <span class="lg-way-arrow" aria-hidden="true"></span>
+                </summary>
+                <div class="lg-way-body">
+                  <p> You pack your files on Lengau first, one file per folder, so it takes a job and as much free space in your scratch as the
+                    folder. Then use <code>rsync</code> to copy the tarball to your drive.</p>
+                  <p>For a huge folder of small files on a connection that keeps dropping, or if you want your files archived.  
+                  <p><strong>On your drive:</strong> unpack it before use, so you need room for it twice.
+                    <code>tar xf</code> can pull out a single file.</p>
+                </div>
+              </details>
+            </li>
+            <li>
+              <details class="lg-way">
+                <summary>
+                  <span class="lg-part-num" aria-hidden="true">4</span>
+                  <span class="lg-way-title"><span class="lg-way-kind lg-way-kind--later">pack on lengau - unpack before use</span><h3>Compressed tarball <code>.tar.gz</code></h3></span>
+                  <span class="lg-way-arrow" aria-hidden="true"></span>
+                </summary>
+                <div class="lg-way-body">
+                  <p> You pack your folders on Lengau first, so it takes a job and as much free space in your scratch as the
+                    folder. Then use <code>rsync</code> to copy the tarball to your drive.</p>
+                  <p>Worth it for text: logs, code, CSV. NetCDF barely shrinks, and packing a big folder takes hours.</p>
+                  <p><strong>On your drive:</strong> unpack it before use too, and getting at one file means reading
+                    through the whole tarball.</p>
+                </div>
+              </details>
+            </li>
+          </ol>
+        </section>
+
+        <div class="torn torn--heart" aria-hidden="true"></div>
+
+
+        <!-- ============ make the list ============ -->
+        <section class="section lg-section" id="make-list">
+          <div class="section-head"><h2>Make a list of data to download</h2></div>
+          <p>You can use the download list to help generate the script to make tarballs and then download your data.</p>
+
+          <p>You should now have:</p>
+          <ul class="lg-list">
+            <li>an idea of <a href="check.html#sizes">how much data you have on Lengau</a></li>
+            <li>the amount of local storage you need</li>
+            <li>folders of <a href="check.html#how">compressed data</a> (optional)</li>
+            <li><a href="check.html#settings">your settings</a> on Lengau</li>
+          </ul>
+          <p>You can now start listing all the directories you will download, if you haven't started adding
+            folders already.</p>
+          <a class="lg-list-next" href="list.html">Open the download list →</a>
+        </section>
+
+      <div class="torn torn--cat" aria-hidden="true"></div>
+
+        <!-- ============ tarballs ============ -->
+        <section class="section lg-section lg-step" id="tars" data-step="tars">
+          <div class="section-head"><h2>Make the tarballs</h2></div>
+          <p>If you have chosen for any of your files or folders to be packed into tarballs, this section guides you through the process. 
+            If there are none, skip this part.</p>
+          <p>The chosen folders are packed into tarballs by one job, which then checks each tarball, these files/folders are:</p>
+          <ul class="lg-list lg-pack-list" id="lg-pack-list"></ul>
+          <p>The tarballs go into <code>lengau_tars</code> in your scratch, so you need as much free space there
+            as the folders take up. See how much space you have left:</p>
+          <div class="lg-cmd" data-cmd="quota"></div>
+
+
+          <p>Then write the job and send it to the queue:</p>
+          <div class="lg-cmd" data-cmd="tar-job"></div>
+          <p><strong>Changed your list?</strong> Run it again: it packs everything again, so only do that once you're sure.</p>
+          <p>See if the job is still running. It is done when it no longer shows up:</p>
+          <div class="lg-cmd" data-cmd="tar-wait"></div>
+          <p>Then read what it did. Each tarball should say <code>OK</code>; run the job again for any that say <code>FAILED</code>:</p>
+          <div class="lg-cmd" data-cmd="tar-log"></div>
+          <label class="lg-done"><input type="checkbox" data-tick="tars"> Done: every tarball says OK</label>
+        </section>
+
+        <div class="torn torn--fish" aria-hidden="true"></div>
+
+
+        <nav class="lg-pager" aria-label="Previous and next page">
+          <a class="lg-pager-link lg-pager-prev" href="check.html" rel="prev">
+            <span class="lg-pager-dir">Previous</span>
+            <span class="lg-pager-title"><span aria-hidden="true">← </span>Choose your data on Lengau</span>
+          </a>
+          <a class="lg-pager-link lg-pager-next" href="download.html" rel="next">
+            <span class="lg-pager-dir">Next</span>
+            <span class="lg-pager-title">Transfer your data off Lengau<span aria-hidden="true"> →</span></span>
+          </a>
+        </nav>
+      </div>
+    </div>
+
+    <div class="footer-border" aria-hidden="true"></div>
+    <footer>
+      <div class="contact-links">
+        <a href="mailto:chang.nicolette@gmail.com">email</a>
+        <a href="https://github.com/nicolettechang">github</a>
+        <a href="https://www.linkedin.com/in/nicolette-chang-949672b">linkedin</a>
+        <a href="https://orcid.org/0000-0001-7144-7529">orcid</a>
+      </div>
+      <span class="copyright">© 2026 · built with a spiral binder, for GitHub Pages</span>
+    </footer>
+    <a class="to-top" href="#top" aria-label="Back to top" title="Back to top">
+      <img src="../assets/logo-mark.svg?v=4" alt="">
+    </a>
+  </main>
+  <noscript><p class="lg-noscript">This page needs JavaScript to fill in the commands.</p></noscript>
+  <script src="../assets/to-top.js" defer></script>
+  <script src="lengau.js?v=35" defer></script>
+</body>
+</html>

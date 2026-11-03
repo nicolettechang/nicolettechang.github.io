@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Choose your Lengau data — Nicolette Chang</title>
+<meta name="description" content="Lengau (CHPC) shuts down on 1 December 2026: see what you have on Lengau and decide what to keep.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="../assets/logo-mark.svg?v=4" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/style.css?v=25">
+<link rel="stylesheet" href="lengau.css?v=34">
+</head>
+<body class="notebook" id="top">
+  <main>
+    <header class="masthead">
+      <a class="brand" href="../index.html">
+        <img class="brand-mark" src="../assets/logo-mark.svg?v=4" alt="">
+        <span>
+          <span class="brand-name">Nicolette Chang</span>
+          <span class="brand-tag">climate · ocean modelling · HPC</span>
+        </span>
+      </a>
+      <nav class="tabs" aria-label="Primary">
+        <a href="../index.html" class="tab tab-home">home</a>
+        <a href="../about.html" class="tab tab-mint">about</a>
+        <a href="../work.html" class="tab tab-teal">work</a>
+        <a href="../code.html" class="tab tab-blue">code</a>
+        <a href="../shop.html" class="tab tab-pink">shop</a>
+      </nav>
+    </header>
+
+    <div class="page-wrap">
+      <div class="sheet lg-sheet">
+        <div class="rings" aria-hidden="true"></div>
+
+        <nav class="lg-dividers" aria-label="Guide pages">
+          <a class="lg-divider lg-divider--countdown" href="index.html">Countdown</a>
+          <a class="lg-divider lg-divider--checklist" href="checklist.html">Checklist</a>
+          <a class="lg-divider lg-divider--check" href="check.html" aria-current="page">Choose</a>
+          <a class="lg-divider lg-divider--prepare" href="prepare.html">Prepare</a>
+          <a class="lg-divider lg-divider--download" href="download.html">Transfer</a>
+          <a class="lg-divider lg-divider--tldr" href="tldr.html">TL;DR</a>
+        </nav>
+
+        <div class="lg-intro">
+          <p class="lg-kicker">Part 3</p>
+          <h1 class="page-title">Choose your data on Lengau</h1>
+          <p class="page-lede">See what you have on Lengau and decide what to keep, before you download anything.</p>
+          <p class="lg-note-line">Reminder: for easier copy-paste fill in <a href="checklist.html#details"> your details</a>,
+            you can also keep track of your progress with the <a href="list.html#snapshot"> download list</a>.</p>
+          <p class="lg-note-line lg-where-key"><img src="laptop.svg" alt="">Your computer
+            &nbsp;·&nbsp; <img src="data-server.svg" alt="">Lengau</p>
+        </div>
+
+        <!-- ============ sizes ============ -->
+        <section class="section lg-section lg-step" id="sizes" data-step="sizes">
+          <div class="section-head"><h2>See what data you have</h2></div>
+          <p class="page-lede">List and size your directories.</p>
+          <details class="lg-details lg-details--explain">
+            <summary><span class="lg-kind">Explainer</span> File and folder sizes</summary>
+            <p>The size of one file:</p>
+            <div class="lg-cmd" data-cmd="ex-file"></div>
+            <p>The size of a folder and everything in it:</p>
+            <div class="lg-cmd" data-cmd="ex-dir"></div>
+            <p><code>ls -lh</code> shows how big a file is. <code>du</code> (disk usage) adds up the space a folder
+              takes, so it can take a while on big folders.</p>
+            <p>The commands below put a few pieces together:</p>
+            <dl class="lg-explain">
+              <dt><code>du -sh</code></dt>
+              <dd><code>-s</code> gives one total per folder instead of a line for every subfolder;
+                <code>-h</code> shows sizes as KB, MB and GB.</dd>
+              <dt><code>~/* ~/.[!.]*</code></dt>
+              <dd>everything in your home folder, then the hidden files and folders, whose names start with a dot.</dd>
+              <dt><code>2&gt;/dev/null</code></dt>
+              <dd>throws away error messages such as <code>Permission denied</code>: <code>2&gt;</code> redirects
+                the errors, and <code>/dev/null</code> discards whatever is sent to it.</dd>
+              <dt><code>&gt; file.txt</code></dt>
+              <dd>sends the output into a file instead of the screen, as the job under <em>It stopped with Killed</em> does
+                with <code>~/sizes_scratch.txt</code>. <code>&gt;</code> replaces the file; <code>&gt;&gt;</code> adds to its end.</dd>
+              <dt><code>|</code></dt>
+              <dd>a pipe: passes the output of one command on to the next.</dd>
+              <dt><code>sort -h</code></dt>
+              <dd>sorts by size. <code>sort -h</code> sorts from smallest to largest; 
+                <code>sort -hr</code> reverses the order so largest first.</dd>
+            </dl>
+          </details>
+          <p>Log in to Lengau first:</p>
+          <div class="lg-cmd" data-cmd="login"></div>
+          <details class="lg-details lg-details--option" id="snapshot">
+            <summary><span class="lg-kind">Shortcut</span> I don't want to slog through all my directories, make it faster</summary>
+            <p>The following steps help you create a snapshot of your directories (on the day you run it) 
+              and then make a tickable list of directories to download. You will also have a list of all the files
+              you accidentally left behind to cry over later.
+            </p>
+             <h3 class="lg-sub lg-sub--small">1. List every folder in your home and your scratch with its size</h3>
+            <fieldset class="lg-snap-opts">
+              <legend>What to list</legend>
+              <label class="lg-radio"><input type="radio" name="snap-kind" value="folders" checked>
+                Every folder, with its size <span class="lg-optional">(quicker, small file)</span></label>
+              <label class="lg-radio"><input type="radio" name="snap-kind" value="files">
+                Every file</label>
+              <p class="lg-warn" data-snap-files-warn hidden>Listing every file can take many hours on a big scratch,
+                and makes a much bigger file to download. The tree below still shows folders for now.</p>
+            </fieldset>
+            <p>Copy and paste the following code on Lengau. It will submit a job that lists the folders in your home and scratch directories.
+               It usually takes under an hour but can take longer if your scratch is big.</p>
+            <div class="lg-cmd" data-cmd="snap-job"></div>
+            <p class="lg-warn"><strong>Still running jobs?</strong> Then your folders are still changing, and a
+              snapshot is only right for the day it was taken. Run it again before you decide, and again before you download.</p>
+            <p>If your job completes cleanly, the file ends with <code>done: lengau_snapshot_[date].tsv.gz</code>.</p>
+            <div class="lg-cmd" data-cmd="snap-log"></div>
+            <h3 class="lg-sub lg-sub--small">2. Download the list</h3>
+           
+            <p>Now, in a terminal on your computer, go to the folder where you want to keep your snapshots, for example
+              your Documents. <span data-os="win">Pick a folder under <code>/mnt/c</code>, so Windows and your browser can see it.</span></p>
+            <div class="lg-cmd" data-cmd="snap-cd"></div>
+            <p>Then make a <code>lengau_snapshots</code> folder there and download the snapshot into it.
+              Each snapshot has its date in its name.</p>
+            <div class="lg-cmd" data-cmd="snap-get"></div>
+
+            <h3 class="lg-sub lg-sub--small">The group folder</h3>
+            <p>If you want a list of contents of the group folder, download the pre-made snapshot
+              from <code>/mnt/lustre/groups/erth0834/SHARE/snapshots</code>. Run it from the same folder on your
+              computer, so it lands in the same <code>lengau_snapshots</code>:</p>
+            <div class="lg-cmd" data-cmd="snap-group-get"></div>
+
+            <h3 class="lg-sub lg-sub--small">3. Read list and tick what to keep</h3>
+            <p>Open your snapshots on <a href="list.html#snapshot">your download list</a>, from the
+              <code>lengau_snapshots</code> folder you made, and tick the folders to keep. The list opens in its own
+              tab, so you can keep it next to this page.</p>
+          </details>
+          <p>List directories and their sizes in your home folder, largest last:</p>
+          <div class="lg-cmd" data-cmd="size-home"></div>
+          <p>Now, your scratch, largest last:</p>
+          <div class="lg-cmd" data-cmd="size-scratch"></div>
+          <p>Only want part of a folder? Type its path: a full path, one starting with <code>~</code>,
+            or a name from the scratch list:</p>
+          <label class="lg-peek">Folder
+            <input data-peek placeholder="e.g. MYCONFIG/OUTPUT or ~/models" spellcheck="false" autocomplete="off">
+          </label>
+          <p>Go into that folder and list what is in it (folders end in <code>/</code>):</p>
+          <div class="lg-cmd" data-cmd="cd-dir"></div>
+          <p>Then size everything in it, largest last:</p>
+          <div class="lg-cmd" data-cmd="size-sub"></div>
+          <p>Then add just the subfolders you want to
+            <a href="list.html">your download list</a>,
+            or add the whole folder and leave some names out. For a folder in your home, start it with <code>~/</code>.</p>
+          <details class="lg-details lg-details--option">
+            <summary><span class="lg-kind">Another method 1</span><code>Killed</code>? Run it as an interactive job</summary>
+            <p>Lengau's login nodes stop long-running commands. Run it interactively:</p>
+            <div class="lg-cmd" data-cmd="pbs-ijob"></div>
+            <p>When the prompt comes back (it can take a few minutes) you are on a compute node, in your home
+              folder. Run the command that stopped again from there. For your scratch, that is:</p>
+            <div class="lg-cmd" data-cmd="size-scratch"></div>
+            <p>For a folder you typed in above, run its two commands again: first go into it, then size it.
+              Type <code>exit</code> when you are done, to give the node back.</p>
+          </details>
+          <details class="lg-details lg-details--option">
+            <summary><span class="lg-kind">Another method 2</span><code>Killed</code>? Run it as a job instead</summary>
+            <p>Lengau's login nodes stop long-running commands. Run it as a small job instead 
+              (but if you are going to submit a job you might as well make snapshots like in the shortcut)
+              Run this on Lengau. The job writes <code>~/sizes_scratch.txt</code>, usually within the hour:</p>
+            <div class="lg-cmd" data-cmd="size-job"></div>
+            <p>Read it on Lengau once the job has finished:</p>
+            <div class="lg-cmd" data-cmd="size-read"></div>
+          </details>
+          <label class="lg-done"><input type="checkbox" data-tick="sizes">Yikes, didn't realise how much storage I was using</label>
+        </section>
+
+        <div class="torn torn--heart" aria-hidden="true"></div>
+
+        <!-- ============ decide ============ -->
+        <section class="section lg-section lg-step" id="decide" data-step="decide1">
+          <div class="section-head"><h2>Decide what to keep</h2></div>
+          <p class="page-lede">Remember anything you leave on the cluster will be <strong>gone forever</strong>.
+            This guide can help you add each folder you want to keep in a <a href="list.html">download list</a>. 
+            This list will be used to generate the download commands.</p>
+          <h3 class="lg-sub">What to keep and what to let go?</h3>
+          <div class="lg-table-wrap">
+            <table class="lg-table">
+              <thead><tr><th scope="col">files</th><th scope="col">keep</th><th scope="col">let go</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">code</th>
+                    <td data-label="keep">code, scripts, notebooks (and push them to a git remote too), plus build files and
+                      the <code>module list</code> you compiled with</td>
+                    <td data-label="let go"><code>*.o</code> and <code>*.mod</code> files, and executables you can rebuild</td></tr>
+                <tr><th scope="row">settings</th>
+                    <td data-label="keep">namelists and config files, job scripts (<code>*.pbs</code>), and a
+                      <a href="#settings">record</a> of your modules, conda environments, crontab and settings files
+                      such as <code>.bashrc</code></td>
+                    <td data-label="let go">installed conda environments: keep the recipe, rebuild them later</td></tr>
+                <tr><th scope="row">model inputs</th>
+                    <td data-label="keep">grids, initial and boundary conditions, forcing you made yourself</td>
+                    <td data-label="let go">public data, anything you can easily re-download (ERA5, CMIP6, satellite products, …)</td></tr>
+                <tr><th scope="row">model runs</th>
+                    <td data-label="keep">reference runs, output for a paper or thesis, and restart files you would need to carry on a run</td>
+                    <td data-label="let go">test and benchmark runs, <code>TMPDIR_*</code> and other working folders</td></tr>
+                <tr><th scope="row">datasets</th>
+                    <td data-label="keep">processed data, data you will need for the next 3 months, anything that took a long time to make</td>
+                    <td data-label="let go">anything you can easily re-run or download again</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p><strong>If you need a backup of your data</strong> in addition to the files you're downloading: let's chat.</p>
+          <details class="lg-details lg-details--explain">
+            <summary><span class="lg-kind">Explainer</span> Why let executables go?</summary>
+            <p>An executable built on Lengau is tied to Lengau: it was linked against Lengau's compilers,
+              MPI and libraries, so it usually won't run on your laptop or on the next cluster. You will
+              rebuild it from source there. That is why the build files (Makefiles, arch or config files,
+              compile scripts) and the output of <code>module list</code> are worth keeping: they are the recipe.</p>
+            <p>Keep an executable if a run behind a paper or thesis chapter used it, so there is a record of
+              exactly what made the results, or if you can no longer get its source code.</p>
+          </details>
+          <label class="lg-done"><input type="checkbox" data-tick="decide1">Yes, I'm thinking about it</label>
+        </section>
+
+        <div class="torn torn--cat" aria-hidden="true"></div>
+
+        <!-- ============ how ============ -->
+        <section class="section lg-section lg-step" id="how" data-step="how">
+          <div class="section-head"><h2>Compress your data, or not?</h2></div>
+          <p>To save storage space, you can choose to compress your data. However, this only works for certain types of data.</p>
+          <ul class="lg-list">
+            <li><strong>Datasets that are NetCDF-4</strong> barely shrink.</li>
+            <li><strong>Uncompressed NetCDF files </strong> can often shrink by half. 
+
+          <h3 class="lg-sub lg-sub--small">You will need NetCDF tools for this</h3>
+          <p>The NetCDF tools below come in modules. See which ones Lengau has, and load them first:</p>
+          <div class="lg-cmd" data-cmd="nc-modules"></div>
+          <p>In this example, I will use:</p>
+          <div class="lg-cmd" data-cmd="nc-modload"></div>
+
+          <h3 class="lg-sub lg-sub--small">What to do with your dataset</h3>
+          <p>Here are the storage demands from most to least storage required. 
+            It does involve a bit of processing but you can gain more storage space.</p>
+          <ol class="lg-ways">
+            <li>
+              <details class="lg-way">
+                <summary>
+                  <span class="lg-part-num" aria-hidden="true">1</span>
+                  <span class="lg-way-title"><span class="lg-way-kind lg-way-kind--kept">nothing</span><h4>Keep it as is</h4></span>
+                  <span class="lg-way-arrow" aria-hidden="true"></span>
+                </summary>
+                <div class="lg-way-body">
+                  <p>Every file as it is. The simplest choice, and the biggest download.</p>
+                </div>
+              </details>
+            </li>
+            <li>
+              <details class="lg-way">
+                <summary>
+                  <span class="lg-part-num" aria-hidden="true">2</span>
+                  <span class="lg-way-title"><span class="lg-way-kind lg-way-kind--kept">lossless</span><h4>Compress NetCDF</h4></span>
+                  <span class="lg-way-arrow" aria-hidden="true"></span>
+                </summary>
+                <div class="lg-way-body">
+                  <p>The same data in less space, and the copy opens just like the original. Classic NetCDF often
+                    shrinks by half; NetCDF-4 that is already compressed barely changes. See which kind a file is:</p>
+                  <div class="lg-cmd" data-cmd="nc-kind"></div>
+                  <p><code>classic</code> or <code>64-bit offset</code> means it is not compressed yet. Write a
+                    compressed copy and <strong>check it opens</strong>:</p>
+                  <div class="lg-cmd" data-cmd="nc-compress"></div>
+                  <p>Stopped with <code>Killed</code>? The login node stops long commands. Ask for an interactive
+                    job instead: a compute node of your own for up to 4 hours. Run this from the folder with the file:</p>
+                  <div class="lg-cmd" data-cmd="pbs-ijob"></div>
+                  <p>When the prompt comes back (it can take a few minutes) you are on the compute node, in your home
+                    folder. Go back to the folder, load the module again, and run the command above once more:</p>
+                  <div class="lg-cmd" data-cmd="nc-interactive-back"></div>
+                  <p>Type <code>exit</code> when it is done, to give the node back.</p>
+                </div>
+              </details>
+            </li>
+            <li>
+              <details class="lg-way">
+                <summary>
+                  <span class="lg-part-num" aria-hidden="true">3</span>
+                  <span class="lg-way-title"><span class="lg-way-kind lg-way-kind--drops">lossy</span><h4>Trim precision</h4></span>
+                  <span class="lg-way-arrow" aria-hidden="true"></span>
+                </summary>
+                <div class="lg-way-body">
+                  <p>Model output is rarely accurate to every digit it is written with. Keeping 3 significant digits
+                    throws the rest away for good, so <strong>check with your supervisor first</strong>. It only saves space in a
+                    compressed file, which <code>-7 -L 1</code> writes:</p>
+                  <div class="lg-cmd" data-cmd="nc-ppc"></div>
+                  <p>Only the data is trimmed: <code>nav_lat</code>, <code>nav_lon</code>, depth and time stay exact.</p>
+                </div>
+              </details>
+            </li>
+            <li>
+              <details class="lg-way">
+                <summary>
+                  <span class="lg-part-num" aria-hidden="true">4</span>
+                  <span class="lg-way-title"><span class="lg-way-kind lg-way-kind--drops">drops the rest</span><h4>Extract variables</h4></span>
+                  <span class="lg-way-arrow" aria-hidden="true"></span>
+                </summary>
+                <div class="lg-way-body">
+                  <p>Keep only the fields you use: often the biggest saving. See what is in a file:</p>
+                  <div class="lg-cmd" data-cmd="nc-header"></div>
+                  <p>Then copy just the variables you want, by the names it shows. Name <code>nav_lat</code> and
+                    <code>nav_lon</code> too: <code>ncks</code> only brings the grid along when the variables list it
+                    under <code>coordinates</code>, and without it you can't tell where the data is. Depth and time
+                    come along on their own.</p>
+                  <div class="lg-cmd" data-cmd="nc-extract"></div>
+                  <p>Area means and land masks need the cell sizes from the run's <code>mesh_mask.nc</code>
+                    (or <code>domain_cfg.nc</code>), which the output files don't have. Keep one copy of it with each run.</p>
+                </div>
+              </details>
+            </li>
+            <li>
+              <details class="lg-way">
+                <summary>
+                  <span class="lg-part-num" aria-hidden="true">5</span>
+                  <span class="lg-way-title"><span class="lg-way-kind lg-way-kind--drops">drops the rest</span><h4>Subset or average</h4></span>
+                  <span class="lg-way-arrow" aria-hidden="true"></span>
+                </summary>
+                <div class="lg-way-body">
+                  <p>Keep some of the time steps, or average daily output into monthly means. This keeps the first
+                    12 time steps (counting from 0). NEMO calls its time dimension <code>time_counter</code>; other
+                    models often call it <code>time</code>, so check with <code>ncdump -h</code>:</p>
+                  <div class="lg-cmd" data-cmd="nc-subset"></div>
+                  <p>And this writes monthly means, then lists their dates:</p>
+                  <div class="lg-cmd" data-cmd="nc-monmean"></div>
+                  <p>CDO warns that it skipped <code>time_centered</code>. That is expected: NEMO files have two time
+                    variables and CDO keeps <code>time_counter</code>. Check that the dates fall mid-month.</p>
+                </div>
+              </details>
+            </li>
+            <li>
+              <details class="lg-way">
+                <summary>
+                  <span class="lg-part-num" aria-hidden="true">6</span>
+                  <span class="lg-way-title"><span class="lg-way-kind lg-way-kind--later">rerun later</span><h4>Let it go</h4></span>
+                  <span class="lg-way-arrow" aria-hidden="true"></span>
+                </summary>
+                <div class="lg-way-body">
+                  <p>Output you can make again only needs its recipe: the code, namelists, inputs and the modules it
+                    ran with. Keep those, and <a href="#settings">write down your settings</a> below.
+                    <strong>But will you even have the time?</strong></p>
+                </div>
+              </details>
+            </li>
+          </ol>
+          <p>Write the smaller files into a folder of their own, such as <code>MYCONFIG/keep</code>, check them,
+            then put that folder on your <a href="list.html">download list</a> instead of the original.
+            On big files these can run for a while: if one stops with <code>Killed</code>, run it in an interactive job or submit as a job; 
+            See ANOTHER METHOD 1 and ANOTHER METHOD 2 in the <a href="#sizes">sizes</a> section above.</p>
+     
+       
+            <label class="lg-done"><input type="checkbox" data-tick="how">I have a plan for my data</label>
+       
+       
+       
+        </section>
+
+         <div class="torn torn--heart" aria-hidden="true"></div>
+
+        <!-- ============ settings ============ -->
+        <section class="section lg-section lg-step" id="settings" data-step="decide">
+          <div class="section-head"><h2>Record your settings</h2></div>
+          <p>Some settings only live on Lengau: the modules you load, your conda environments, your crontab,
+            and the settings files in your home folder such as <code>.bashrc</code> and <code>.ssh/config</code>.</p>
+          <p>First load the modules you usually use, so <code>module list</code> shows them. That includes your conda:
+            without it Lengau's generic conda answers, and your environments are not in it. For example:</p>
+          <div class="lg-cmd" data-cmd="loadmodules"></div>
+          <p>The code below writes a record of each into <code>lengau_settings</code> in your scratch, with copies of your
+            shell, git, conda and vim settings and, in <code>ssh/</code>, your ssh config and public keys.
+            Only environments in your home folder or your scratch are saved. The created files will be added to your
+             download list. Run it on Lengau:</p>
+          <div class="lg-cmd" data-cmd="settings"></div>
+          <details class="lg-details lg-details--explain">
+            <summary><span class="lg-kind">Explainer</span> Why not all of <code>.ssh</code>?</summary>
+            <p><code>.ssh</code> also holds your private keys (<code>id_rsa</code>, <code>id_ed25519</code>).
+              Anyone with one of those can log in as you wherever it is accepted, so it should not sit on an
+              external drive. Make new keys on the next system instead, and add the new public key wherever the
+              old one was used, such as GitHub.</p>
+          </details>
+          <p class="lg-note-line" data-settings-note>Copying this command adds <code>lengau_settings</code> to your <a href="list.html">download list</a>.</p>
+          <label class="lg-done"><input type="checkbox" data-tick="decide">Settings saved</label>
+        </section>
+
+       
+
+
+        <nav class="lg-pager" aria-label="Previous and next page">
+          <a class="lg-pager-link lg-pager-prev" href="checklist.html" rel="prev">
+            <span class="lg-pager-dir">Previous</span>
+            <span class="lg-pager-title"><span aria-hidden="true">← </span>The checklist</span>
+          </a>
+          <a class="lg-pager-link lg-pager-next" href="prepare.html" rel="next">
+            <span class="lg-pager-dir">Next</span>
+            <span class="lg-pager-title">Prepare Lengau data for download<span aria-hidden="true"> →</span></span>
+          </a>
+        </nav>
+      </div>
+    </div>
+
+    <div class="footer-border" aria-hidden="true"></div>
+    <footer>
+      <div class="contact-links">
+        <a href="mailto:chang.nicolette@gmail.com">email</a>
+        <a href="https://github.com/nicolettechang">github</a>
+        <a href="https://www.linkedin.com/in/nicolette-chang-949672b">linkedin</a>
+        <a href="https://orcid.org/0000-0001-7144-7529">orcid</a>
+      </div>
+      <span class="copyright">© 2026 · built with a spiral binder, for GitHub Pages</span>
+    </footer>
+    <a class="to-top" href="#top" aria-label="Back to top" title="Back to top">
+      <img src="../assets/logo-mark.svg?v=4" alt="">
+    </a>
+  </main>
+  <noscript><p class="lg-noscript">This page needs JavaScript to fill in the commands.</p></noscript>
+  <script src="../assets/to-top.js" defer></script>
+  <script src="lengau.js?v=35" defer></script>
+</body>
+</html>

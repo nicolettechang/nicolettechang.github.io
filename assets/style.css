@@ -121,7 +121,7 @@ p { max-width: 62ch; }
 }
 .brand-tag {
   font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: 0.69rem;
   color: var(--ink-soft);
   display: block;
   margin-top: -2px;
@@ -849,6 +849,28 @@ footer {
 }
 .to-top img { width: 100%; height: 100%; transition: transform 0.18s ease; }
 .to-top:hover img { transform: translateY(-4px) rotate(-4deg); }
+/* a paper tag above the cat says what it does */
+.to-top::before {
+  content: "↑ top";
+  position: absolute;
+  bottom: calc(100% + 2px);
+  left: 50%;
+  transform: translateX(-50%) rotate(-5deg);
+  padding: 2px 9px 3px;
+  border-radius: 6px;
+  background: var(--sheet-glow);
+  box-shadow: var(--shadow-tape);
+  color: var(--ink);
+  font-family: var(--font-caption);
+  font-size: 0.82rem;
+  font-weight: 700;
+  white-space: nowrap;
+  transition: transform 0.18s ease, background-color 0.18s ease;
+}
+.to-top:hover::before, .to-top:focus-visible::before {
+  transform: translateX(-50%) translateY(-4px) rotate(-5deg);
+  background: var(--pink);
+}
 .to-top:focus-visible { outline-offset: 4px; border-radius: 50%; }
 .to-top[data-hidden] {
   opacity: 0;

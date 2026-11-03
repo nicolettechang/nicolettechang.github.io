@@ -1,0 +1,826 @@
+/* Save your Lengau data: page-specific pieces on top of ../assets/style.css
+   (same tokens, same notebook sheet). Prefix lg- so nothing collides. */
+
+.lg-intro .page-title { margin-top: 0; }
+.lg-note-line { color: var(--ink-soft); margin-top: 12px; }
+.lg-where-key img { display: inline-block; width: 22px; height: 22px; vertical-align: -6px; margin-right: 4px; }
+
+/* ---------- divider tabs on the sheet's right edge: one per page ---------- */
+
+.lg-sheet { margin-right: 44px; }
+.lg-dividers {
+  position: absolute;
+  top: 56px;
+  left: calc(100% - 2px);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  z-index: 1;
+}
+.lg-divider {
+  writing-mode: vertical-rl;
+  font-weight: 800;
+  font-size: 0.92rem;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  color: var(--ink);
+  padding: 22px 10px 22px 8px;
+  width: 44px;
+  box-sizing: border-box;
+  border-radius: 0 12px 12px 0;
+  border: 2px solid rgba(19, 33, 62, 0.10);
+  border-left: none;
+  box-shadow: 4px 6px 12px -8px rgba(19, 33, 62, 0.35);
+  transition: transform 0.18s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.lg-divider--countdown { background: var(--teal); --tab-edge: var(--teal-deep); }
+.lg-divider--checklist { background: var(--sky); --tab-edge: var(--sky); }
+.lg-divider--check { background: var(--mint); --tab-edge: var(--mint-deep); }
+.lg-divider--prepare { background: var(--lavender); --tab-edge: var(--lavender-edge); }
+.lg-divider--download { background: var(--pink); --tab-edge: var(--pink-deep); }
+.lg-divider--tldr { background: #fbecc9; --tab-edge: #e5c477; }   /* butter, like the "copied" pill */
+.lg-divider:not([aria-current]):hover { transform: translateX(4px); }
+.lg-divider:focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; }
+/* the open divider takes the sheet's colour and joins the page */
+.lg-divider[aria-current="page"] {
+  background: var(--sheet);
+  margin-left: -2px;
+  padding-left: 10px;
+  width: 52px;
+  border-color: var(--tab-edge);
+  box-shadow: 4px 6px 14px -8px rgba(19, 33, 62, 0.4);
+}
+
+/* ---------- intro with a button at its top right ---------- */
+
+.lg-intro--action {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px 28px;
+}
+.lg-intro--action > div { flex: 1 1 32rem; min-width: 0; }
+.lg-intro-btn { flex: none; }
+
+/* ---------- page kicker, sub-heading ---------- */
+
+.lg-kicker {
+  margin: 0 0 6px;
+  font-weight: 800;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.lg-sub { margin: 32px 0 0; font-size: 1.35rem; scroll-margin-top: 24px; }
+.lg-sub + .lg-note-line { margin-top: 6px; }
+.lg-sub + .lg-table-wrap { margin-top: 16px; }
+.lg-section > .lg-form { margin-top: 14px; }
+
+/* ---------- checklist overview: the four parts ---------- */
+
+.lg-overview {
+  list-style: none;
+  margin: 34px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+  max-width: 760px;
+}
+.lg-part {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 8px 16px;
+  padding: 12px 18px;
+  border-radius: var(--radius);
+  border: 2px solid rgba(19, 33, 62, 0.10);
+  background: var(--sheet-glow);
+}
+.lg-part-num {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  background: var(--pale-blue);
+}
+.lg-part-link { font-weight: 800; font-size: 1.08rem; color: var(--ink); }
+.lg-part-link:focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; }
+.lg-part-state {
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 2px 10px;
+  border-radius: 999px;
+  border: 2px solid rgba(19, 33, 62, 0.10);
+  background: var(--paper-dim);
+  white-space: nowrap;
+}
+.lg-part.is-done .lg-part-num { background: #dcf2e5; color: #1d7446; }
+.lg-part.is-done .lg-part-state { background: #dcf2e5; color: #1d7446; }
+
+/* ---------- previous / next page ---------- */
+
+.lg-pager {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: clamp(44px, 6vw, 72px);
+  padding-top: 24px;
+  border-top: 2px solid rgba(19, 33, 62, 0.07);
+}
+.lg-pager-link {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 14px 20px 16px;
+  border-radius: var(--radius);
+  border: 2px solid rgba(19, 33, 62, 0.10);
+  background: var(--sheet-glow);
+  color: var(--ink);
+  text-decoration: none;
+  transition: border-color 0.18s ease;
+}
+.lg-pager-link:hover { border-color: var(--blue); }
+.lg-pager-link:focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; }
+.lg-pager-next { grid-column: 2; text-align: right; }
+.lg-pager-dir { font-family: var(--font-caption); font-style: italic; color: var(--ink-soft); }
+.lg-pager-title { font-weight: 800; font-size: 1.15rem; }
+
+/* ---------- countdown ---------- */
+
+.lg-countdown {
+  list-style: none;
+  padding: 0;
+  margin: 34px 0 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+.lg-tile {
+  border-radius: var(--radius);
+  border: 2px solid rgba(19, 33, 62, 0.08);
+  padding: 16px 20px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.lg-tile--pink { background: var(--pink); }
+.lg-tile--blue { background: var(--pale-blue); }
+.lg-tile-label { font-family: var(--font-caption); font-style: italic; color: var(--ink-soft); }
+.lg-tile-value { font-size: clamp(1.6rem, 3.4vw, 2.3rem); font-weight: 800; line-height: 1.15; }
+.lg-tile-date { font-family: var(--font-mono); font-size: 0.8rem; color: var(--ink-soft); }
+.lg-tile.is-past { opacity: 0.6; }
+
+/* ---------- calendar ---------- */
+
+.lg-cal {
+  margin-top: 16px;
+  background: var(--sheet-glow);
+  border: 2px solid rgba(19, 33, 62, 0.08);
+  border-radius: var(--radius);
+  padding: clamp(18px, 3vw, 28px) clamp(14px, 3vw, 24px);
+  display: grid;
+  gap: 6px;
+}
+.lg-cal-head { display: grid; gap: 4px; margin-bottom: 14px; }
+.lg-cal-kicker {
+  font-weight: 800;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.lg-cal-head h2 { margin: 0; font-size: clamp(1.5rem, 3vw, 2.1rem); line-height: 1.1; }
+.lg-cal-week, .lg-cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 6px;
+}
+.lg-cal-week span {
+  padding-left: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--ink-soft);
+}
+.lg-cal-grid { list-style: none; margin: 0; padding: 0; }
+.lg-cal-day {
+  position: relative;
+  min-height: 84px;
+  box-sizing: border-box;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid var(--lavender);
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 4px;
+  overflow: hidden;
+  font-family: var(--font-mono);
+}
+.lg-cal-day.is-other { background: var(--sheet); }
+.lg-cal-day.is-data { background: var(--sky); border-color: var(--sky); }
+.lg-cal-day.is-off { background: var(--pink-deep); border-color: var(--pink-deep); }
+.lg-cal-day.is-today { border: 2px solid var(--blue); padding: 7px; }
+.lg-cal-day.is-crossed:not(.is-data):not(.is-off) { color: var(--ink-soft); }
+.lg-cal-num { font-weight: 500; font-size: 0.875rem; line-height: 1.3; }
+.lg-cal-month { font-size: 0.7rem; font-weight: 400; color: var(--ink-soft); }
+.lg-cal-tag {
+  font-weight: 500;
+  font-size: 0.6875rem;
+  line-height: 1.2;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.lg-cal-cross {
+  position: absolute;
+  inset: 10px;
+  width: calc(100% - 20px);
+  height: calc(100% - 20px);
+  pointer-events: none;
+  stroke: var(--blue);
+}
+.is-data .lg-cal-cross, .is-off .lg-cal-cross { stroke: var(--ink); }
+.lg-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+.lg-cal-key {
+  list-style: none;
+  margin: 18px 0 0;
+  padding: 18px 0 0;
+  border-top: 2px solid rgba(19, 33, 62, 0.07);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 32px;
+}
+.lg-cal-key li { display: flex; gap: 12px; align-items: flex-start; font-weight: 700; }
+.lg-cal-key-date {
+  display: block;
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+}
+.lg-cal-swatch { flex: none; width: 20px; height: 20px; margin-top: 2px; border-radius: 4px; }
+.lg-cal-swatch--data { background: var(--sky); }
+.lg-cal-swatch--off { background: var(--pink-deep); }
+
+/* ---------- sections ---------- */
+
+.lg-section.section { margin-top: clamp(44px, 6vw, 72px); }
+.lg-section > p { margin: 14px 0 0; }
+.lg-section > .lg-cmd { margin-top: 10px; }
+
+.lg-sheet p { max-width: 80ch; }   /* wider than the site's 62ch, closer to the command boxes */
+.lg-list { margin: 0; padding-left: 1.2em; max-width: 80ch; }
+.lg-cmd + .lg-list { margin-top: 16px; }
+.lg-list li + li { margin-top: 8px; }
+
+.lg-step.is-done .section-head h2::before {
+  content: "✓ ";
+  color: #1d7446;
+}
+
+.lg-done {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 18px;
+  padding: 7px 16px;
+  border-radius: 999px;
+  border: 2px solid rgba(19, 33, 62, 0.12);
+  background: var(--sheet-glow);
+  font-weight: 700;
+  cursor: pointer;
+}
+.lg-done input, .lg-tick input { width: 18px; height: 18px; accent-color: var(--blue); }
+
+/* ---------- forms ---------- */
+
+.lg-form, .lg-add {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
+  gap: 16px 24px;
+  align-items: end;
+}
+.lg-form label, .lg-add label { display: flex; flex-direction: column; gap: 6px; font-weight: 700; }
+.lg-form fieldset { border: 0; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 4px 18px; }
+.lg-form legend { font-weight: 700; padding: 0; margin-bottom: 6px; width: 100%; }
+.lg-form label.lg-radio { flex-direction: row; align-items: center; gap: 8px; font-weight: 600; }
+.lg-form input[type="radio"] { accent-color: var(--blue); width: 18px; height: 18px; }
+.lg-form input:not([type]), .lg-add input, .lg-add select {
+  font: 500 0.95rem var(--font-mono);
+  color: var(--ink);
+  background: var(--sheet-glow);
+  border: 2px solid rgba(19, 33, 62, 0.18);
+  border-radius: 10px;
+  padding: 10px 12px;
+  min-width: 0;
+}
+.lg-add select { font-family: var(--font-body); font-weight: 600; }
+.lg-form input:focus-visible, .lg-add input:focus-visible, .lg-add select:focus-visible,
+.lg-done input:focus-visible, .lg-tick input:focus-visible, .lg-copy:focus-visible,
+.lg-remove:focus-visible {
+  outline: 3px solid var(--blue);
+  outline-offset: 2px;
+}
+.lg-form-note { grid-column: 1 / -1; margin: 0; }
+.lg-save-row { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 16px 28px; margin-top: 16px; }
+.lg-form--user { max-width: 760px; }   /* TL;DR: just the username and the drive */
+.lg-add { margin-top: 22px; }
+.lg-add .btn { justify-self: start; cursor: pointer; font: inherit; font-weight: 700; }
+.lg-add-error { grid-column: 1 / -1; margin: 0; color: #b02a22; font-weight: 700; }
+
+[hidden] { display: none !important; }
+
+/* ---------- TL;DR: a label, then its one-line command ---------- */
+
+.lg-tldr { list-style: none; margin: 0; padding: 0; display: grid; gap: 18px; }
+.lg-tldr-what { display: block; font-weight: 700; margin-bottom: 6px; }
+
+/* ---------- command boxes ---------- */
+
+.lg-cmd {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  max-width: 100%;
+}
+.lg-cmd + .lg-cmd { margin-top: 8px; }
+.lg-cmd-where { flex: 0 0 auto; width: 32px; height: 32px; margin-top: 9px; }
+.lg-cmd-box {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  align-items: flex-start;
+  background: #eef0f3;
+  border: 2px solid rgba(19, 33, 62, 0.10);
+  border-radius: 12px;
+  max-width: 100%;
+}
+.lg-cmd pre {
+  flex: 1 1 auto;
+  min-width: 0;
+  margin: 0;
+  padding: 14px 16px;
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  line-height: 1.55;
+  white-space: pre-wrap;      /* wraps on screen only: Copy still gives one line */
+  overflow-wrap: anywhere;
+}
+.lg-cmd.is-unfilled pre { color: var(--ink-soft); }
+/* the site's action blue, like "Add to my list": no label or tag shares it, so it reads as a button */
+.lg-copy {
+  flex: 0 0 auto;
+  margin: 8px 8px 8px 0;
+  font: 700 0.82rem var(--font-body);
+  color: #fff;
+  background: var(--blue);
+  border: 2px solid var(--blue-deep);
+  border-radius: 999px;
+  padding: 4px 14px;
+  cursor: pointer;
+}
+.lg-copy:hover { background: var(--blue-deep); }
+.lg-copy:focus-visible { outline: 3px solid var(--sky-deep); outline-offset: 2px; }
+.lg-copy.is-copied { color: var(--ink); background: var(--sheet-glow); border-color: rgba(19, 33, 62, 0.15); }
+
+.lg-section code, .lg-list code, .lg-table code {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  background: rgba(19, 33, 62, 0.06);
+  border-radius: 5px;
+  padding: 1px 5px;
+}
+
+.lg-details { margin-top: 16px; max-width: 100%; }
+.lg-details summary { cursor: pointer; font-weight: 700; color: var(--blue-deep); }
+.lg-details[open] summary { margin-bottom: 4px; }
+/* two kinds of drop-down, told apart by a label and a shape:
+   an explainer is background reading, a plain line that opens onto a tinted note;
+   "another method" is another way to do the step, a card you work through */
+.lg-kind {
+  display: inline-block;
+  margin-right: 6px;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  vertical-align: 1px;
+}
+.lg-details--explain .lg-kind { background: var(--pale-blue); color: var(--blue-deep); border: 1.5px solid var(--lavender-edge); }
+.lg-details--explain[open] { padding: 12px 16px 16px; border-radius: var(--radius); background: rgba(221, 245, 250, 0.55); }
+.lg-details--option {
+  padding: 14px clamp(14px, 3vw, 20px);
+  border: 2px solid var(--mint-deep);
+  border-radius: var(--radius);
+  background: var(--sheet-glow);
+}
+.lg-details--option summary { color: var(--ink); }
+.lg-details--option .lg-kind { background: var(--mint); color: #1f5e50; border: 1.5px solid var(--mint-deep); }
+.lg-details > p { margin: 12px 0 0; }
+.lg-details > .lg-cmd { margin-top: 10px; }
+.lg-details > .lg-list { margin-top: 8px; }
+.lg-explain {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  gap: 10px 20px;
+  margin: 14px 0 0;
+  max-width: 80ch;
+}
+.lg-explain dt { white-space: nowrap; }
+.lg-explain dd { margin: 0; }
+
+/* ---------- keep / let go ---------- */
+
+.lg-table-wrap { overflow-x: auto; }
+.lg-table { border-collapse: collapse; width: 100%; max-width: 860px; }
+.lg-table th {
+  text-align: left;
+  font-family: var(--font-caption);
+  font-style: italic;
+  font-weight: 600;
+  font-size: 1.05rem;
+  padding: 0 16px 8px 0;
+}
+.lg-table td, .lg-table tbody th {
+  vertical-align: top;
+  padding: 10px 16px 10px 0;
+  border-top: 2px solid rgba(19, 33, 62, 0.07);
+  width: 40%;
+}
+.lg-table tbody th { text-align: left; font-weight: 700; width: 20%; }
+
+/* ---------- ways to keep a folder (Check page) ---------- */
+
+.lg-ways { list-style: none; padding: 0; margin: 18px 0 0; display: grid; gap: 14px; }
+.lg-way {
+  border-radius: var(--radius);
+  border: 2px solid rgba(19, 33, 62, 0.10);
+  background: var(--sheet-glow);
+  min-width: 0;
+}
+/* the header: number (as on the checklist), a small kicker over the name, and an arrow that turns when open */
+.lg-way summary {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 8px 16px;
+  padding: 12px 18px;
+  list-style: none;
+  cursor: pointer;
+  border-radius: var(--radius);
+}
+.lg-way summary::-webkit-details-marker { display: none; }
+.lg-way summary:focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; }
+.lg-way-title { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.lg-way-title h3, .lg-way-title h4 { margin: 0; font-size: 1.08rem; font-weight: 800; }
+.lg-way-kind { font-size: 0.72rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; }
+.lg-way-kind--kept { color: #1f5e50; }     /* nothing is lost */
+.lg-way-kind--drops { color: #a3285f; }    /* some of the data is gone for good */
+.lg-way-kind--later { color: #7a5230; }    /* rerun later */
+.lg-way-arrow {
+  width: 10px;
+  height: 10px;
+  margin: 0 6px 4px;
+  border-right: 2.5px solid var(--blue-deep);
+  border-bottom: 2.5px solid var(--blue-deep);
+  transform: rotate(45deg);
+  transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.lg-way[open] .lg-way-arrow { transform: translateY(4px) rotate(-135deg); }
+.lg-way-body { padding: 0 18px 18px 68px; }   /* lines up under the name */
+.lg-way-body > p { margin: 8px 0 0; }
+.lg-way-body > p:first-child { margin-top: 0; }
+.lg-way-body > .lg-cmd { margin-top: 10px; }
+/* a narrow card (a phone): Copy goes under the command, so the command gets the whole width */
+.lg-way-body, .lg-tldr, .lg-tldr-loops { container-type: inline-size; }
+@container (max-width: 380px) {
+  .lg-cmd-box { flex-direction: column; }
+  .lg-copy { align-self: flex-end; margin: 0 8px 8px; }
+}
+
+/* ---------- my folders ---------- */
+
+.lg-progress { font-weight: 700; margin-top: 26px !important; }
+.lg-folders { list-style: none; padding: 0; margin: 12px 0 0; display: grid; gap: 16px; }
+.lg-folder {
+  background: var(--sheet-glow);
+  border: 2px solid rgba(19, 33, 62, 0.10);
+  border-radius: var(--radius);
+  padding: 16px clamp(14px, 3vw, 22px) 18px;
+  min-width: 0;
+}
+.lg-folder-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+}
+.lg-folder-name { font-family: var(--font-mono); font-weight: 600; font-size: 0.95rem; overflow-wrap: anywhere; }
+.lg-pill {
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 2px 10px;
+  border-radius: 999px;
+  border: 2px solid rgba(19, 33, 62, 0.10);
+  background: var(--pale-blue);
+}
+.lg-pill--state { background: var(--paper-dim); }
+.lg-pill--state.is-copied { background: #fbecc9; color: #855600; }
+.lg-pill--state.is-checked { background: #dcf2e5; color: #1d7446; }
+.lg-remove {
+  margin-left: auto;
+  font: 600 0.85rem var(--font-body);
+  color: var(--blue-deep);
+  background: none;
+  border: 0;
+  border-bottom: 1.5px dashed var(--blue-deep);
+  padding: 0;
+  cursor: pointer;
+}
+.lg-folder-step { margin-top: 14px; }
+.lg-folder-step > p { margin: 0 0 8px; }
+.lg-tick { display: inline-flex; align-items: center; gap: 8px; margin-top: 8px; font-weight: 700; cursor: pointer; }
+
+/* ---------- dividers between sections: the site's cat and wave-heart, plus the fish and the double wave ---------- */
+
+.lg-sheet .torn { margin: clamp(48px, 6vw, 72px) auto 0; }
+.lg-sheet .torn + .lg-section.section { margin-top: clamp(32px, 4vw, 48px); }   /* the divider already makes the gap */
+.lg-sheet .torn--cat { max-width: 440px; }
+.lg-sheet .torn--heart { max-width: 600px; }
+.torn--fish {
+  height: auto;
+  aspect-ratio: 596 / 208;
+  max-width: 120px;
+  background: url("../assets/fish-trio.svg") center / contain no-repeat;
+}
+.torn--waves {
+  height: auto;
+  aspect-ratio: 245 / 31;
+  max-width: 245px;
+  background: url("../assets/border.svg") center / contain no-repeat;
+  /* the file is cut off square at both ends: fade them out */
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 18%, #000 82%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 18%, #000 82%, transparent);
+}
+
+/* ---------- the download list: its page, and the button and window on every other page ---------- */
+
+.lg-link-btn {
+  font: inherit;
+  color: var(--blue-deep);
+  background: none;
+  border: 0;
+  padding: 0;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.lg-list-btn {
+  position: fixed;
+  right: clamp(12px, 3vw, 32px);
+  top: clamp(12px, 3vw, 32px);
+  z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font: 800 0.95rem var(--font-body);
+  color: var(--ink);
+  background: var(--pink);
+  border: 2px solid var(--pink-deep);
+  border-radius: 999px;
+  padding: 6px 12px 6px 12px;
+  box-shadow: var(--shadow-tape);
+  cursor: pointer;
+  transition: transform 0.18s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.lg-list-btn:hover { transform: translateY(-2px); }
+/* the cart sits top right: keep the site tabs clear of it (150px = its offset, width and a gap) */
+@media (min-width: 641px) {
+  .masthead .tabs { margin-right: max(33px, calc(150px - var(--gutter) - max(0px, (100vw - var(--page-max)) / 2))); }
+}
+.lg-list-cart { width: 40px; height: 40px; flex: none; }
+/* the "download list" bullet in the checklist is the same cart */
+.lg-list li.lg-li-cart { list-style: none; position: relative; }
+.lg-list li.lg-li-cart::before {
+  content: "";
+  position: absolute;
+  left: -1.5em;
+  top: 0.1em;
+  width: 1.25em;
+  height: 1.25em;
+  background: url("cart.svg") center / contain no-repeat;
+}
+.lg-cart-inline { display: inline-block; width: 1.4em; height: 1.4em; vertical-align: -0.3em; }
+.lg-list-count {
+  min-width: 26px;
+  padding: 1px 8px;
+  border-radius: 999px;
+  background: var(--sheet-glow);
+  text-align: center;
+}
+.lg-list-dialog {
+  width: min(680px, calc(100% - 32px));
+  max-height: calc(100% - 48px);
+  padding: clamp(18px, 4vw, 28px);
+  color: var(--ink);
+  background: var(--sheet);
+  border: 2px solid rgba(19, 33, 62, 0.12);
+  border-radius: var(--radius);
+  box-shadow: 0 18px 40px -12px rgba(19, 33, 62, 0.45);
+}
+.lg-list-dialog::backdrop { background: rgba(19, 33, 62, 0.35); }
+.lg-list-dialog > p { margin: 10px 0 0; max-width: none; }
+.lg-list-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.lg-list-head h2 { margin: 0; font-size: 1.4rem; }
+.lg-close {
+  width: 40px;
+  height: 40px;
+  flex: none;
+  font: 700 1.4rem/1 var(--font-body);
+  color: var(--ink);
+  background: var(--sheet-glow);
+  border: 2px solid rgba(19, 33, 62, 0.12);
+  border-radius: 50%;
+  cursor: pointer;
+}
+.lg-mini-list { list-style: none; padding: 0; margin: 18px 0 0; display: grid; gap: 8px; }
+.lg-mini {
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 2px solid rgba(19, 33, 62, 0.08);
+  background: var(--sheet-glow);
+}
+/* the sticky note at the top of the list page, taped on, that jumps down to the list */
+.lg-jump {
+  position: relative;
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  max-width: none;
+  margin-top: 26px;
+  color: var(--ink);
+  font-size: 1.05rem;
+  text-decoration: none;
+  transition: transform 0.18s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.lg-jump::before {
+  content: "";
+  position: absolute;
+  top: -11px;
+  left: 50%;
+  width: 64px;
+  height: 22px;
+  background: var(--pink);
+  opacity: 0.85;
+  transform: translateX(-50%) rotate(3deg);
+  box-shadow: 0 2px 4px rgba(19, 33, 62, 0.15);
+}
+.lg-jump img { width: 64px; height: auto; flex: none; transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1); }
+.lg-jump:hover { transform: rotate(0deg) translateY(-2px); }
+.lg-jump:hover img { transform: translateX(6px); }   /* the fish swim on */
+.lg-jump:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
+.lg-jump-count {
+  font: 700 0.85rem var(--font-body);
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: var(--sheet-glow);
+}
+.lg-mini--empty { color: var(--ink-soft); }
+.lg-list-next { display: inline-block; margin-top: 18px; font-weight: 700; }
+.lg-pack-list code { overflow-wrap: anywhere; }
+
+/* ---------- "I'm lazy": snapshot options, and the tree to tick ---------- */
+
+.lg-sub--small { margin-top: 26px; }
+.lg-snap-opts { border: 0; margin: 14px 0 0; padding: 0; display: grid; gap: 8px; }
+.lg-snap-opts legend { font-weight: 700; padding: 0; margin-bottom: 6px; }
+.lg-snap-opts .lg-radio { display: flex; align-items: center; gap: 8px; font-weight: 600; cursor: pointer; }
+.lg-snap-opts input { width: 18px; height: 18px; accent-color: var(--blue); flex: none; }
+.lg-warn {
+  margin: 12px 0 0;
+  padding: 10px 14px;
+  border: 1.5px solid #e9c27a;
+  border-radius: 10px;
+  background: #fbecc9;
+  color: #5c3d00;
+}
+.lg-snap-opts .lg-warn { margin: 0; }
+.lg-snap-file { display: flex; flex-direction: column; gap: 8px; margin-top: 10px; font-weight: 700; }
+.lg-snap-file input { font: inherit; font-weight: 600; }
+.lg-snap-info { list-style: none; padding: 0; margin: 14px 0 0; display: grid; gap: 4px; color: var(--ink-soft); }
+.lg-snap-old { color: #8a4b00; }
+.lg-tree-method { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; font-weight: 700; }
+.lg-tree-method select {
+  font: 600 0.95rem var(--font-body);
+  color: var(--ink);
+  background: var(--sheet-glow);
+  border: 2px solid rgba(19, 33, 62, 0.18);
+  border-radius: 10px;
+  padding: 6px 10px;
+}
+.lg-tree-total { font-weight: 700; margin: 12px 0 0; }
+.lg-tree, .lg-tree ul { list-style: none; margin: 0; padding: 0; }
+.lg-tree { margin-top: 12px; border: 2px solid rgba(19, 33, 62, 0.08); border-radius: 12px; background: var(--sheet-glow); padding: 6px 0; }
+.lg-tree ul { padding-left: 22px; }
+.lg-tree { container-type: inline-size; }
+.lg-tree-row {
+  display: grid;
+  grid-template-columns: 26px minmax(0, 1fr) 5.5em 8.5em 10em;
+  align-items: center;
+  gap: 4px 10px;
+  padding: 3px 12px 3px 6px;
+}
+.lg-tree-row:hover { background: rgba(19, 33, 62, 0.04); }
+.lg-tree-toggle {
+  width: 26px;
+  height: 26px;
+  font: 700 0.9rem/1 var(--font-body);
+  color: var(--ink);
+  background: none;
+  border: 0;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.lg-tree-toggle:disabled { cursor: default; }
+.lg-tree-toggle:focus-visible, .lg-tree-name input:focus-visible { outline: 3px solid var(--blue); outline-offset: 1px; }
+.lg-tree-name { display: flex; align-items: center; gap: 8px; min-width: 0; cursor: pointer; }
+.lg-tree-name input { width: 17px; height: 17px; accent-color: var(--blue); flex: none; }
+.lg-tree-label { font-family: var(--font-mono); font-size: 0.88rem; overflow-wrap: anywhere; }
+.lg-tree-size { font-family: var(--font-mono); font-size: 0.88rem; font-weight: 600; text-align: right; }
+.lg-tree-files, .lg-tree-date { font-size: 0.85rem; color: var(--ink-soft); text-align: right; white-space: nowrap; }
+.lg-tree-more { padding: 4px 12px 6px 38px; font-size: 0.85rem; color: var(--ink-soft); }
+/* a narrow tree, as in a window beside the guide: name and size only */
+@container (max-width: 600px) {
+  .lg-tree-row { grid-template-columns: 26px minmax(0, 1fr) 4.5em; }
+  .lg-tree-files, .lg-tree-date { display: none; }
+}
+.lg-folder-skip { font-size: 0.85rem; color: var(--ink-soft); }
+.lg-optional { font-weight: 600; color: var(--ink-soft); }
+.lg-peek { display: flex; flex-direction: column; gap: 6px; max-width: 360px; margin: 10px 0; font-weight: 700; }
+.lg-peek input {
+  font: 500 0.95rem var(--font-mono);
+  color: var(--ink);
+  background: var(--sheet-glow);
+  border: 2px solid rgba(19, 33, 62, 0.18);
+  border-radius: 10px;
+  padding: 10px 12px;
+}
+.lg-peek input:focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; }
+
+.lg-source { margin-top: clamp(44px, 6vw, 72px); }
+.lg-noscript { text-align: center; font-weight: 700; }
+
+/* ---------- small screens ---------- */
+
+@media (max-width: 640px) {
+  .lg-pager { grid-template-columns: 1fr; }
+  .lg-part { grid-template-columns: auto minmax(0, 1fr); padding: 12px 14px; }
+  .lg-part-state { grid-column: 2; justify-self: start; }
+  .lg-way summary { padding: 12px 14px; }
+  .lg-way-body { padding: 0 12px 14px; }
+  .lg-pager-next { grid-column: 1; }
+  .lg-sheet { margin-right: 36px; }
+  .lg-dividers { left: 100%; top: 40px; }
+  .lg-divider { width: 36px; padding: 16px 6px; font-size: 0.82rem; }
+  .lg-divider[aria-current="page"] { width: 40px; padding-left: 8px; }
+  .lg-countdown { grid-template-columns: 1fr; }
+  .lg-cal-week, .lg-cal-grid { gap: 4px; }
+  .lg-cal-week span { padding-left: 8px; font-size: 0.6875rem; }
+  .lg-cal-day { min-height: 52px; padding: 8px; }
+  .lg-cal-day.is-today { padding: 7px; }
+  .lg-cal-month, .lg-cal-tag { display: none; }   /* too narrow: colour and the key carry it */
+  .lg-cal-cross { inset: 6px; width: calc(100% - 12px); height: calc(100% - 12px); }
+  .lg-cmd pre { padding: 12px; }
+  .lg-cmd { gap: 8px; }
+  /* keep / let go: one block per kind of file, the column name in front of each cell */
+  .lg-table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .lg-table tr { display: block; padding: 10px 0; border-top: 2px solid rgba(19, 33, 62, 0.07); }
+  .lg-table td, .lg-table tbody th { display: block; width: auto; padding: 2px 0; border-top: 0; }
+  .lg-table td::before {
+    content: attr(data-label) ": ";
+    font-family: var(--font-caption);
+    font-style: italic;
+    font-weight: 600;
+  }
+  .lg-cmd-where { width: 26px; height: 26px; margin-top: 10px; }
+  .lg-explain { grid-template-columns: 1fr; gap: 4px; }
+  .lg-tree-row { grid-template-columns: 26px minmax(0, 1fr) 4.5em; }
+  .lg-tree-files, .lg-tree-date { display: none; }
+  .lg-tree ul { padding-left: 14px; }
+  .lg-explain dd { margin-bottom: 10px; }
+}

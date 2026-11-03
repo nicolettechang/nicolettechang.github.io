@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lengau checklist — Nicolette Chang</title>
+<meta name="description" content="Lengau (CHPC) shuts down on 1 December 2026: the five parts of saving your data.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="../assets/logo-mark.svg?v=4" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/style.css?v=25">
+<link rel="stylesheet" href="lengau.css?v=34">
+</head>
+<body class="notebook" id="top">
+  <main>
+    <header class="masthead">
+      <a class="brand" href="../index.html">
+        <img class="brand-mark" src="../assets/logo-mark.svg?v=4" alt="">
+        <span>
+          <span class="brand-name">Nicolette Chang</span>
+          <span class="brand-tag">climate · ocean modelling · HPC</span>
+        </span>
+      </a>
+      <nav class="tabs" aria-label="Primary">
+        <a href="../index.html" class="tab tab-home">home</a>
+        <a href="../about.html" class="tab tab-mint">about</a>
+        <a href="../work.html" class="tab tab-teal">work</a>
+        <a href="../code.html" class="tab tab-blue">code</a>
+        <a href="../shop.html" class="tab tab-pink">shop</a>
+      </nav>
+    </header>
+
+    <div class="page-wrap">
+      <div class="sheet lg-sheet">
+        <div class="rings" aria-hidden="true"></div>
+
+        <nav class="lg-dividers" aria-label="Guide pages">
+          <a class="lg-divider lg-divider--countdown" href="index.html">Countdown</a>
+          <a class="lg-divider lg-divider--checklist" href="checklist.html" aria-current="page">Checklist</a>
+          <a class="lg-divider lg-divider--check" href="check.html">Choose</a>
+          <a class="lg-divider lg-divider--prepare" href="prepare.html">Prepare</a>
+          <a class="lg-divider lg-divider--download" href="download.html">Transfer</a>
+          <a class="lg-divider lg-divider--tldr" href="tldr.html">TL;DR</a>
+        </nav>
+
+        <div class="lg-intro">
+          <h1 class="page-title">The checklist</h1>
+          <p class="page-lede">Five parts, in order. Tick each one off as you go: your ticks are kept in this browser.</p>
+        </div>
+
+        <ol class="lg-overview">
+          <li class="lg-part" data-part="happening">
+            <span class="lg-part-num" aria-hidden="true">1</span>
+            <a class="lg-part-link" href="#happening">Err, wait... what's happening?</a>
+            <span class="lg-part-state"></span>
+          </li>
+          <li class="lg-part" data-part="need">
+            <span class="lg-part-num" aria-hidden="true">2</span>
+            <a class="lg-part-link" href="#need">What do you need?</a>
+            <span class="lg-part-state"></span>
+          </li>
+          <li class="lg-part" data-part="check">
+            <span class="lg-part-num" aria-hidden="true">3</span>
+            <a class="lg-part-link" href="check.html">Choose your data on Lengau</a>
+            <span class="lg-part-state"></span>
+          </li>
+          <li class="lg-part" data-part="prepare">
+            <span class="lg-part-num" aria-hidden="true">4</span>
+            <a class="lg-part-link" href="prepare.html">Prepare your data on Lengau</a>
+            <span class="lg-part-state"></span>
+          </li>
+          <li class="lg-part" data-part="download">
+            <span class="lg-part-num" aria-hidden="true">5</span>
+            <a class="lg-part-link" href="download.html">Transfer your data off Lengau</a>
+            <span class="lg-part-state"></span>
+          </li>
+        </ol>
+
+        <!-- ============ 1 what's happening ============ -->
+        <section class="section lg-section lg-step" id="happening" data-step="happening">
+          <div class="section-head"><h2>1. Err, wait... what's happening?</h2></div>
+          <ul class="lg-list">
+            <li><strong>CHPC shuts Lengau down on 1 December 2026</strong> and deletes everything on it,
+              your home folder and your scratch included.</li>
+            <li><strong>Really?</strong>
+              Yes, <a href="https://www.chpc.ac.za/important-user-notice-chpc-transition-to-new-hpc-system-from-1-december-2026/">they said so</a>.</li>
+            <li><strong>Nothing moves to the new system.</strong> It is due in March 2027, with the date
+              not yet confirmed.</li>
+            <li><strong>Move your data off by Friday 27 November</strong>, CHPC's deadline.
+              The <a href="index.html">countdown</a> shows how long is left.</li>
+            <li>You can run jobs until CHPC's job cut-off, which they will announce.
+              But you still need time to copy your data off before 1 December when all jobs still running will be killed.</li>
+            <li>Anything you need between December and March must be on your laptop or your drive.</li>
+          </ul>
+          <label class="lg-done"><input type="checkbox" data-tick="happening"> Got it</label>
+        </section>
+
+        <div class="torn torn--cat" aria-hidden="true"></div>
+
+        <!-- ============ 2 what we need ============ -->
+        <section class="section lg-section lg-step" id="need" data-step="before">
+          <div class="section-head"><h2>2. What do you need?</h2></div>
+          <ul class="lg-list">
+            <li><strong>Your laptop.</strong> Hopefully with some space available on it.</li>
+            <li><strong>CHPC access.</strong> Connection to network through CHPC VPN.</li>
+            <li><strong>An external drive</strong> with enough space for your data and a bit more.
+              If it is a new drive, format it <strong>exFAT</strong> (Mac and Windows) or <strong>APFS</strong> (Mac only), and
+              <strong>not FAT32</strong>: it cannot hold files over 4 GB, and model files are bigger.
+              <span data-os="mac">Disk Utility → select the drive → Erase → ExFAT.</span>
+              Erasing deletes everything on the drive.</li>
+            <li><strong>Time.</strong> Over the VPN a copy runs at about <strong>30 GB an hour</strong>.
+              100 GB takes an afternoon, 1 TB a day and a half. Sort before you copy.</li>
+            <li><strong>This guide.</strong> Keep following.</li>
+          </ul>
+          <label class="lg-done"><input type="checkbox" data-tick="before1"> I'm ready</label>
+
+          <h3 class="lg-sub" id="details">How this guide works</h3>
+          <ul class="lg-list">
+            <li>This guide will provide a suggested workflow to help you get the necessary data off Lengau.</li>
+            <li>The terminal commands are also provided. Customise them for your username in the box below.</li>
+            <li class="lg-li-cart">A <a href="list.html">download list</a> to track the folders for download is provided.
+              This will write both the commands or the script to help you download your data. You can keep it open in
+              another browser tab or use the cart button <img class="lg-cart-inline" src="cart.svg" alt=""> at the top right of every page.</li>
+          </ul>
+          <form class="panel panel--pale-blue lg-form" id="lg-details" autocomplete="off">
+            <label>Lengau username
+              <input name="user" placeholder="e.g. nchang" spellcheck="false">
+            </label>
+            <fieldset>
+              <legend>Your laptop</legend>
+              <label class="lg-radio"><input type="radio" name="os" value="mac" checked> Mac</label>
+              <label class="lg-radio"><input type="radio" name="os" value="win"> Windows (Ubuntu under WSL)</label>
+            </fieldset>
+            <label data-os="mac">Drive name, as Finder shows it
+              <input name="drive" placeholder="e.g. /Volumes/USBSTICK" spellcheck="false">
+            </label>
+            <label data-os="win">Drive letter
+              <input name="letter" placeholder="e.g. d" maxlength="1" spellcheck="false">
+            </label>
+            <p class="caption lg-form-note">Your customised commands are saved in this browser only. Nothing you type here is sent anywhere.</p>
+          </form>
+
+          <p class="lg-note-line">Now each step gives you copy-paste commands.</p>
+          <p class="lg-note-line"><strong>But, paste on which machine?</strong></p>
+          <p class="lg-note-line lg-where-key"><img src="laptop.svg" alt="">run on your computer
+            &nbsp;·&nbsp; <img src="data-server.svg" alt="">run on Lengau</p>
+          <label class="lg-done"><input type="checkbox" data-tick="before"> Let's go</label>
+        </section>
+
+        <nav class="lg-pager" aria-label="Previous and next page">
+          <a class="lg-pager-link lg-pager-prev" href="index.html" rel="prev">
+            <span class="lg-pager-dir">Previous</span>
+            <span class="lg-pager-title"><span aria-hidden="true">← </span>Save your Lengau data</span>
+          </a>
+          <a class="lg-pager-link lg-pager-next" href="check.html" rel="next">
+            <span class="lg-pager-dir">Next</span>
+            <span class="lg-pager-title">Choose your data on Lengau<span aria-hidden="true"> →</span></span>
+          </a>
+        </nav>
+      </div>
+    </div>
+
+    <div class="footer-border" aria-hidden="true"></div>
+    <footer>
+      <div class="contact-links">
+        <a href="mailto:chang.nicolette@gmail.com">email</a>
+        <a href="https://github.com/nicolettechang">github</a>
+        <a href="https://www.linkedin.com/in/nicolette-chang-949672b">linkedin</a>
+        <a href="https://orcid.org/0000-0001-7144-7529">orcid</a>
+      </div>
+      <span class="copyright">© 2026 · built with a spiral binder, for GitHub Pages</span>
+    </footer>
+    <a class="to-top" href="#top" aria-label="Back to top" title="Back to top">
+      <img src="../assets/logo-mark.svg?v=4" alt="">
+    </a>
+  </main>
+  <noscript><p class="lg-noscript">This page needs JavaScript to fill in the commands.</p></noscript>
+  <script src="../assets/to-top.js" defer></script>
+  <script src="lengau.js?v=35" defer></script>
+</body>
+</html>
