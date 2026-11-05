@@ -1,4 +1,4 @@
-// Save your Lengau data, checklist pages (checklist, check, prepare, download, list): fills every
+// Save your Lengau data, checklist pages (checklist, check, prepare, download, list, tools): fills every
 // command box from "Your details" and the download list, keeps the list and the ticks in
 // this browser (localStorage), shared by all the pages and kept in step across open tabs.
 // The list is changed on its own page (list.html), to keep open next to the guide; every other
@@ -860,8 +860,17 @@
   var tree = {};     // root key -> { node, source, date, kind }, from the latest snapshot that had that root
   var listed = {};   // list path -> item, rebuilt on every render
   var treeBox = document.getElementById('lg-tree');
+  var viewOnly = !!treeBox && treeBox.hasAttribute('data-view-only');   // Tools page: sizes to read, nothing to tick
   var snapStatus = document.getElementById('lg-snap-status');
   var SHOW = 200;    // folders shown per level, largest first
+
+  function bySize(x, y) { return y.bytes - x.bytes; }
+  // per-file snapshots on the Tools page: only each folder's largest files stay in memory
+  function keepFile(n, name, bytes, m) {
+    var big = n.big || (n.big = []);
+    big.push({ name: name, bytes: bytes, m: m });
+    if (big.length >= 2 * SHOW) { big.sort(bySize); big.length = SHOW; }
+  }
 
   function newNode(name, parent) { return { name: name, parent: parent, kids: null, bytes: 0, files: 0, m: '', a: '' }; }
   function child(node, name) {
@@ -916,6 +925,7 @@
         var m = folders ? c[2] : c[1], a = folders ? c[3] : c[2];
         if (m > n.m) n.m = m;
         if (a > n.a) n.a = a;
+        if (viewOnly && !folders) keepFile(n, path.slice(path.lastIndexOf('/') + 1), +c[0], m);
         lines++;
       }
       function pump() {
@@ -944,6 +954,7 @@
       kids.push(c);
     }
     n.sorted = kids.sort(function (x, y) { return y.tb - x.tb; });
+    if (n.big) { n.big.sort(bySize); if (n.big.length > SHOW) n.big.length = SHOW; }
   }
 
   function useSnapshot(snap) {
@@ -1056,13 +1067,10 @@
       new Date(t).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
   }
 
-  function treeRow(key, node, focusNode) {
-    var li = el('li');
-    var row = el('div', 'lg-tree-row');
-    var kids = node.sorted || [];
-    var tg = el('button', 'lg-tree-toggle', kids.length ? (node.open ? '▾' : '▸') : '');
+  function treeToggle(node, openable, focusNode) {
+    var tg = el('button', 'lg-tree-toggle', openable ? (node.open ? '▾' : '▸') : '');
     tg.type = 'button';
-    if (kids.length) {
+    if (openable) {
       tg.setAttribute('aria-expanded', node.open ? 'true' : 'false');
       tg.setAttribute('aria-label', (node.open ? 'Close ' : 'Open ') + node.name);
       tg.addEventListener('click', function () { node.open = !node.open; renderTree(node); });
@@ -1071,7 +1079,64 @@
       tg.disabled = true;
       tg.setAttribute('aria-hidden', 'true');
     }
+    return tg;
+  }
+
+  // Tools page: what is inside a folder, folders and files together, largest first.
+  // A snapshot of every folder only has a count for the files directly in a folder, so they share one row.
+  function viewItems(node) {
+    var items = (node.sorted || []).map(function (c) { return { node: c, bytes: c.tb }; });
+    (node.big || []).forEach(function (f) { items.push({ file: f, bytes: f.bytes }); });
+    if (!node.big && node.files && items.length) items.push({ here: node.files, bytes: node.bytes, m: node.m });
+    return items.sort(bySize);
+  }
+  function viewCells(row, bytes, files, m) {
+    row.appendChild(el('span', 'lg-tree-size', fmtSize(bytes)));
+    row.appendChild(el('span', 'lg-tree-files', files ? files.toLocaleString('en-GB') + (files === 1 ? ' file' : ' files') : ''));
+    row.appendChild(el('span', 'lg-tree-date', m ? 'changed ' + m : ''));
+  }
+  function viewLeaf(text, cls, bytes, m) {   // a file, or the files directly in a folder
+    var li = el('li'), row = el('div', 'lg-tree-row');
+    row.appendChild(el('span'));
+    var name = el('span', 'lg-tree-name lg-tree-name--plain');
+    name.appendChild(el('span', cls, text));
+    row.appendChild(name);
+    viewCells(row, bytes, 0, m);
+    li.appendChild(row);
+    return li;
+  }
+  function viewRow(node, focusNode) {
+    var li = el('li'), row = el('div', 'lg-tree-row');
+    var items = viewItems(node);
+    var tg = treeToggle(node, items.length > 0, focusNode);
     row.appendChild(tg);
+    var name = el('span', 'lg-tree-name' + (items.length ? '' : ' lg-tree-name--plain'));
+    name.appendChild(el('span', 'lg-tree-label', node.parent ? node.name + '/' : node.name));
+    if (items.length) name.addEventListener('click', function () { tg.click(); });   // the toggle is the keyboard route
+    row.appendChild(name);
+    viewCells(row, node.tb, node.tf, node.tm);
+    li.appendChild(row);
+
+    if (node.open && items.length) {
+      var ul = el('ul');
+      items.slice(0, SHOW).forEach(function (it) {
+        if (it.node) ul.appendChild(viewRow(it.node, focusNode));
+        else if (it.file) ul.appendChild(viewLeaf(it.file.name, 'lg-tree-label', it.bytes, it.file.m));
+        else ul.appendChild(viewLeaf(it.here.toLocaleString('en-GB') + (it.here === 1 ? ' file' : ' files') + ' directly in this folder',
+          'lg-tree-here', it.bytes, it.m));
+      });
+      var more = Math.max(items.length - SHOW, 0) + (node.big ? node.files - node.big.length : 0);
+      if (more > 0) ul.appendChild(el('li', 'lg-tree-more', '… and ' + more.toLocaleString('en-GB') + ' smaller files and folders'));
+      li.appendChild(ul);
+    }
+    return li;
+  }
+
+  function treeRow(key, node, focusNode) {
+    var li = el('li');
+    var row = el('div', 'lg-tree-row');
+    var kids = node.sorted || [];
+    row.appendChild(treeToggle(node, kids.length > 0, focusNode));
 
     var st = tickState(key, node);
     var label = el('label', 'lg-tree-name');
@@ -1145,6 +1210,20 @@
       info.appendChild(li);
     });
     treeBox.appendChild(info);
+
+    if (viewOnly) {
+      var mine = keys.filter(function (r) { return r.key !== 'group'; });
+      if (mine.length) {
+        var size = 0, count = 0;
+        mine.forEach(function (r) { size += tree[r.key].node.tb; count += tree[r.key].node.tf; });
+        treeBox.appendChild(el('p', 'lg-tree-total', mine.map(function (r) { return r.label; }).join(' + ') + ': ' +
+          fmtSize(size) + ' in ' + count.toLocaleString('en-GB') + (count === 1 ? ' file.' : ' files.')));
+      }
+      var view = el('ul', 'lg-tree');
+      keys.forEach(function (r) { view.appendChild(viewRow(tree[r.key].node, focusNode)); });
+      treeBox.appendChild(view);
+      return;
+    }
 
     var how = el('label', 'lg-tree-method');
     how.appendChild(document.createTextNode('Ticked folders go on your list as '));

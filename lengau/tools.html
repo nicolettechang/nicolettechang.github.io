@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lengau tools — Nicolette Chang</title>
+<meta name="description" content="Lengau (CHPC) shuts down on 1 December 2026: open a snapshot and see the size of your folders and files.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="../assets/logo-mark.svg?v=4" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/style.css?v=26">
+<link rel="stylesheet" href="lengau.css?v=35">
+</head>
+<body class="notebook" id="top">
+  <main>
+    <header class="masthead">
+      <a class="brand" href="../index.html">
+        <img class="brand-mark" src="../assets/logo-mark.svg?v=4" alt="">
+        <span>
+          <span class="brand-name">Nicolette Chang</span>
+          <span class="brand-tag">climate · ocean modelling · HPC</span>
+        </span>
+      </a>
+      <nav class="tabs" aria-label="Primary">
+        <a href="../index.html" class="tab tab-home">home</a>
+        <a href="../about.html" class="tab tab-mint">about</a>
+        <a href="../work.html" class="tab tab-teal">work</a>
+        <a href="../code.html" class="tab tab-blue">code</a>
+        <a href="../shop.html" class="tab tab-pink">shop</a>
+      </nav>
+    </header>
+
+    <div class="page-wrap">
+      <div class="sheet lg-sheet">
+        <div class="rings" aria-hidden="true"></div>
+
+        <nav class="lg-dividers" aria-label="Guide pages">
+          <a class="lg-divider lg-divider--countdown" href="index.html">Countdown</a>
+          <a class="lg-divider lg-divider--checklist" href="checklist.html">Checklist</a>
+          <a class="lg-divider lg-divider--check" href="check.html">Choose</a>
+          <a class="lg-divider lg-divider--prepare" href="prepare.html">Prepare</a>
+          <a class="lg-divider lg-divider--download" href="download.html">Transfer</a>
+          <a class="lg-divider lg-divider--tldr" href="tldr.html">TL;DR</a>
+          <a class="lg-divider lg-divider--tools" href="tools.html" aria-current="page" title="Tools"><img src="tools.svg" alt="Tools"></a>
+        </nav>
+
+        <div class="lg-intro">
+          <p class="lg-kicker">Tools</p>
+          <h1 class="page-title">Lengau tools</h1>
+          <p class="page-lede">Small helpers for looking at your data. These don't change anything on Lengau or on your download list.</p>
+        </div>
+
+        <!-- ============ snapshot viewer ============ -->
+        <section class="section lg-section" id="viewer">
+          <div class="section-head"><h2>Snapshot viewer</h2></div>
+          <p>Made a snapshot with the <a href="check.html#snapshot">faster method</a> on the Choose page?
+            Open it here to see how much space you are using, with the largest folders first. Nothing to tick:
+            to pick folders to keep, use <a href="list.html#snapshot">your download list</a>.</p>
+          <label class="lg-snap-file"><span>Open your snapshots, from
+            the <code>lengau_snapshots</code> folder you made</span>
+            <input type="file" id="lg-snap-file" accept=".gz,.tsv,.txt" multiple>
+          </label>
+          <p class="lg-note-line" id="lg-snap-status" aria-live="polite"></p>
+          <div id="lg-tree" data-view-only></div>
+          <p class="lg-note-line">A snapshot of <strong>every folder</strong> shows each folder's size and how many files
+            are in it. A snapshot of <strong>every file</strong> also shows the 200 largest files in each folder.</p>
+          <p class="lg-note-line">Nothing is uploaded. Your snapshot is read in this browser and forgotten when you close the page.</p>
+        </section>
+      </div>
+    </div>
+
+    <div class="footer-border" aria-hidden="true"></div>
+    <footer>
+      <div class="contact-links">
+        <a href="mailto:chang.nicolette@gmail.com">email</a>
+        <a href="https://github.com/nicolettechang">github</a>
+        <a href="https://www.linkedin.com/in/nicolette-chang-949672b">linkedin</a>
+        <a href="https://orcid.org/0000-0001-7144-7529">orcid</a>
+      </div>
+      <span class="copyright">© 2026 · built with a spiral binder, for GitHub Pages</span>
+    </footer>
+    <a class="to-top" href="#top" aria-label="Back to top" title="Back to top">
+      <img src="../assets/logo-mark.svg?v=4" alt="">
+    </a>
+  </main>
+  <noscript><p class="lg-noscript">This page needs JavaScript to read your snapshot.</p></noscript>
+  <script src="../assets/to-top.js" defer></script>
+  <script src="lengau.js?v=37" defer></script>
+</body>
+</html>

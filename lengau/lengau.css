@@ -7,7 +7,7 @@
 
 /* ---------- divider tabs on the sheet's right edge: one per page ---------- */
 
-.lg-sheet { margin-right: 44px; }
+.lg-sheet { margin-right: 44px; min-height: 920px; }   /* tall enough for the divider tabs on a short page */
 .lg-dividers {
   position: absolute;
   top: 56px;
@@ -40,6 +40,8 @@
 .lg-divider--prepare { background: var(--lavender); --tab-edge: var(--lavender-edge); }
 .lg-divider--download { background: var(--pink); --tab-edge: var(--pink-deep); }
 .lg-divider--tldr { background: #fbecc9; --tab-edge: #e5c477; }   /* butter, like the "copied" pill */
+.lg-divider--tools { display: flex; align-items: center; padding: 16px 6px; background: var(--pale-blue); --tab-edge: var(--teal-deep); }
+.lg-divider--tools img { width: 28px; height: 28px; }
 .lg-divider:not([aria-current]):hover { transform: translateX(4px); }
 .lg-divider:focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; }
 /* the open divider takes the sheet's colour and joins the page */
@@ -174,6 +176,63 @@
 .lg-tile-value { font-size: clamp(1.6rem, 3.4vw, 2.3rem); font-weight: 800; line-height: 1.15; }
 .lg-tile-date { font-family: var(--font-mono); font-size: 0.8rem; color: var(--ink-soft); }
 .lg-tile.is-past { opacity: 0.6; }
+
+/* ---------- if you do one thing today ---------- */
+
+.lg-first {
+  margin-top: 16px;
+  background: var(--sheet-glow);
+  border: 2px solid var(--blue);
+  border-radius: var(--radius);
+  padding: clamp(18px, 3vw, 28px) clamp(14px, 3vw, 24px);
+}
+.lg-first h2 { margin: 4px 0 0; font-size: clamp(1.5rem, 3vw, 2.1rem); line-height: 1.1; }
+.lg-first-steps {
+  list-style: none;
+  counter-reset: lg-first;
+  margin: 16px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 30px;
+}
+.lg-first-steps li { position: relative; display: flex; counter-increment: lg-first; }
+.lg-first-steps li:not(:last-child)::after {
+  content: "→" / "";
+  position: absolute;
+  top: 50%;
+  right: -30px;
+  width: 30px;
+  transform: translateY(-50%);
+  text-align: center;
+  font-weight: 800;
+  color: var(--blue);
+}
+.lg-first-step {
+  flex: 1;
+  padding: 12px 14px 14px;
+  border: 2px solid var(--ink);
+  border-radius: 10px;
+  font-weight: 800;
+  line-height: 1.25;
+  color: var(--ink);
+  text-decoration: none;
+}
+.lg-first-step span { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.lg-first-step::before {
+  content: counter(lg-first);
+  display: block;
+  margin-bottom: 2px;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+.lg-first-step:hover span { text-decoration-thickness: 2px; }
+.lg-first-step:focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; }
+.lg-first-step--mint { background: var(--mint); }
+.lg-first-step--sky { background: var(--sky); }
+.lg-first-step--pink { background: var(--pink); }
+.lg-first-note { margin: 12px 0 0; color: var(--ink-soft); }
 
 /* ---------- calendar ---------- */
 
@@ -760,7 +819,9 @@
 .lg-tree-toggle:focus-visible, .lg-tree-name input:focus-visible { outline: 3px solid var(--blue); outline-offset: 1px; }
 .lg-tree-name { display: flex; align-items: center; gap: 8px; min-width: 0; cursor: pointer; }
 .lg-tree-name input { width: 17px; height: 17px; accent-color: var(--blue); flex: none; }
+.lg-tree-name--plain { cursor: default; }
 .lg-tree-label { font-family: var(--font-mono); font-size: 0.88rem; overflow-wrap: anywhere; }
+.lg-tree-here { font-size: 0.85rem; font-style: italic; color: var(--ink-soft); }
 .lg-tree-size { font-family: var(--font-mono); font-size: 0.88rem; font-weight: 600; text-align: right; }
 .lg-tree-files, .lg-tree-date { font-size: 0.85rem; color: var(--ink-soft); text-align: right; white-space: nowrap; }
 .lg-tree-more { padding: 4px 12px 6px 38px; font-size: 0.85rem; color: var(--ink-soft); }
@@ -798,7 +859,21 @@
   .lg-dividers { left: 100%; top: 40px; }
   .lg-divider { width: 36px; padding: 16px 6px; font-size: 0.82rem; }
   .lg-divider[aria-current="page"] { width: 40px; padding-left: 8px; }
+  .lg-divider--tools img { width: 22px; height: 22px; }
+  .lg-sheet { min-height: 780px; }
   .lg-countdown { grid-template-columns: 1fr; }
+  .lg-first-steps { grid-template-columns: 1fr; gap: 26px; }
+  .lg-first-steps li:not(:last-child)::after {
+    content: "↓" / "";
+    top: auto;
+    bottom: -26px;
+    right: auto;
+    left: 0;
+    width: 100%;
+    height: 26px;
+    line-height: 26px;
+    transform: none;
+  }
   .lg-cal-week, .lg-cal-grid { gap: 4px; }
   .lg-cal-week span { padding-left: 8px; font-size: 0.6875rem; }
   .lg-cal-day { min-height: 52px; padding: 8px; }

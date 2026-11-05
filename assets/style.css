@@ -153,7 +153,7 @@ p { max-width: 62ch; }
 .tab-home { background: var(--lavender); border-color: var(--lavender-edge); --tab-edge: var(--lavender-edge); }
 .tab.tab-home[aria-current] { border-color: var(--lavender-edge); }
 .tab-mint { background: var(--mint); --tab-edge: var(--mint-deep); }
-.tab-teal { background: var(--teal); color: #fff; --tab-edge: var(--teal-deep); }
+.tab-teal { background: var(--teal); --tab-edge: var(--teal-deep); }
 .tab-blue { background: var(--blue); color: #fff; --tab-edge: var(--blue); }
 .tab-pink { background: var(--pink); --tab-edge: var(--pink-deep); }
 
